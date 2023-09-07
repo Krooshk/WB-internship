@@ -16,7 +16,7 @@
 			</div>
 			<h1>товары</br> и точка</h1>
 			<div id="search">
-				<input  placeholder="Я ищу..." type="text">
+				<input placeholder="Я ищу..." type="text">
 				<div class="loop"><img src="src/images/Search.svg" alt="search"></div>
 			</div>
 			<div class="profile">
@@ -26,19 +26,215 @@
 			<div class="shopping-cart-sign">
 				<div><img src="src/images/cart.svg" alt="cart"></div>
 				<div>Корзина</div>
+				<div id="amount">3</div>
 			</div>
 		</div>
 	</header>
 	<main>
-		<section class="section-details">
-			<div class="shopping-cart">1</div>
-			<div class="missing-goods">1</div>
-			<div class="delivery-way">1</div>
-			<div class="payment-way">1</div>
-			<div class="recipient">1</div>
-		</section>
-		<section class="section-final">
 
+		<section class="section-details">
+			<h2>Корзина</h2>
+			<div>
+				<div>
+					<label for="all">
+						<input type="checkbox" name="all" id="all">
+						Выбрать всё
+					</label>
+				</div>
+				<div>
+					<button></button>
+				</div>
+			</div>
+			<div class="shopping-cart">
+				<ul>
+					<li>
+						<div><input type="checkbox" name="1" id="1"></div>
+						<div><img src="src/images/goods/tshirt.png" alt="t-shirt"></div>
+						<div>
+							<ul>
+								<li>
+									<h4>Футболка UZcotton мужская</h4>
+								</li>
+								<li>
+									<span>Цвет: белый</span>
+									<span>Размер: 56</span>
+								</li>
+								<li>Коледино WB</li>
+								<li>
+									<div>OOO Вайлдберриз</div>
+									<div>
+										<img src="src/images/important.svg" alt="important">
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<ul>
+								<li class="counter">
+									<div>−</div>
+									<div><input type="number"></div>
+									<div>+</div>
+								</li>
+								<li>Осталось 2 шт.</li>
+								<li>
+									<div><img src="src/images/heart.svg" alt="like"></div>
+									<div><img src="src/images/bin.svg" alt="delete"></div>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<div>
+								<span>522</span>
+								<span> сом</span>
+							</div>
+							<div>1051 сом</div>
+						</div>
+					</li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div class="missing-goods">1</div>
+
+			<div class="delivery-way">
+				<div class="delivery-way-first">
+					<h3>Способ доставки</h3>
+					<h4>Изменить</h4>
+				</div>
+				<div class="delivery-way-table-4x2">
+					<div>
+						<h4>Пункт выдачи</h3>
+					</div>
+					<div>
+						<div>
+							<div class="delivery-way-adress">Бишкек, улица Ахматбека Суюмбаева, 12/1</div>
+							<div class="delivery-way-point">
+								<div><img src="src/images/star_fill.svg" alt="star"></div>
+								<div>4.99</div>
+								<div>Ежедневно с 10 до 21 </div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<h4>Стоимость доставки</h4>
+					</div>
+					<div class="delivery-way-price">Бесплатно</div>
+					<div>
+						<h4>5—6 февраля</h4>
+					</div>
+					<div>
+						<div class="delivery-way-day1-goods">
+							<div>
+								<img src="src/images/goods/tshirt.png" width="40px" height="56px" alt="tshirt">
+							</div>
+							<div>
+								<img src="src/images/goods/mobile.png" width="40px" height="56px" alt="mobile">
+							</div>
+							<div>
+								<img src="src/images/goods/pens.png" width="40px" height="56px" alt="pens">
+							</div>
+						</div>
+					</div>
+					<div>
+						<h4>7—8 февраля</h4>
+					</div>
+					<div>
+						<div>
+							<img src="src/images/goods/mobile.png" width="40px" height="56px" alt="mobile">
+						</div>
+					</div>
+				</div>
+				<div class="delivery-way-bottom-info">
+					<div><img src="src/images/priceShipping.svg" alt="okey"></div>
+					<div>Обратная доставка товаров на склад при отказе — <span>бесплатно</span></div>
+				</div>
+			</div>
+
+
+			<div class="payment-way">
+				<div class="payment-way-first">
+					<h3>Способ оплаты</h3>
+					<h4>Изменить</h4>
+				</div>
+				<div class="payment-way-second">
+					<div><img src="src/images/cards/mir.svg" height="10px" alt="mir"></div>
+					<div>1234 12•• •••• 1234</div>
+					<div>01/30</div>
+				</div>
+				<div class="payment-way-third">
+					Спишем оплату с карты при получении
+				</div>
+			</div>
+
+			<div class="recipient">
+				<h3>Получатель</h3>
+				<form action="">
+					<div>
+						<input type="text" placeholder="Имя">
+					</div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</form>
+			</div>
+		</section>
+
+		<section class="section-final">
+			<div>
+				<div>Итого</div>
+				<div>2 101 063 сом</div>
+			</div>
+			<div>
+				<div>203 товара</div>
+				<div>2 302 048 сом</div>
+			</div>
+			<div>
+				<div>Скидка</div>
+				<div>−200 985 сом</div>
+			</div>
+			<div>
+				<div>Доставка</div>
+				<div>Бесплатно</div>
+			</div>
+			<div>
+				<div>
+					<div>Доставка в пункт выдачи</div>
+					<div><img src="src/images/pen.svg" alt="pen"></div>
+				</div>
+				<div>Бишкек, улица Ахматбека Суюмбаева, 12/1</div>
+				<div>5–8 фев</div>
+			</div>
+
+			<div>
+				<div><img src="src/images/priceShipping.svg" alt="okey"></div>
+				<div>Обратная доставка товаров на склад при отказе — <span>бесплатно</span></div>
+			</div>
+
+			<div>
+				<div>
+					<div>Оплата картой</div>
+					<div><img src="src/images/pen.svg" alt="pen"></div>
+				</div>
+				<div>
+					<div><img src="src/images/cards/mir.svg" alt="mir"></div>
+					<div>1234 12•• •••• 1234</div>
+				</div>
+			</div>
+			<div>
+				<div><label for="pay">
+						<input type="checkbox" name="" id="pay">
+						Списать оплату сразу
+					</label></div>
+				<div>Спишем оплату с карты при получении</div>
+			</div>
+			<div>
+				<button>Заказать</button>
+			</div>
+			<div>
+				<div><img src="src/images/mark.svg" alt="mark"></div>
+				<div>Соглашаюсь с правилами пользования торговой площадкой и возврата</div>
+			</div>
 		</section>
 	</main>
 	<footer>
