@@ -14,7 +14,7 @@
 			<div class="burger">
 				<div class="line-burger"></div>
 			</div>
-			<h1>товары</br> и точка</h1>
+			<div class="name-company">товары</br> и точка</div>
 			<div id="search">
 				<input placeholder="Я ищу..." type="text">
 				<div class="loop"><img src="src/images/Search.svg" alt="search"></div>
@@ -33,61 +33,71 @@
 	<main>
 
 		<section class="section-details">
-			<h2>Корзина</h2>
-			<div>
+			<h1>Корзина</h1>
+			<div class="on-hand-goods">
 				<div>
-					<label for="all">
-						<input type="checkbox" name="all" id="all">
-						Выбрать всё
-					</label>
+					<input class="custom-checkbox" checked type="checkbox" name="all" id="all">
+					<label for="all"> Выбрать всё</label>
 				</div>
 				<div>
-					<button></button>
+					<button><img src="src/images/arrow.svg" alt="arrow"></button>
 				</div>
 			</div>
+			<div class="line"></div>
 			<div class="shopping-cart">
 				<ul>
 					<li>
-						<div><input type="checkbox" name="1" id="1"></div>
-						<div><img src="src/images/goods/tshirt.png" alt="t-shirt"></div>
-						<div>
+						<div class="shopping-cart-first">
+							<input class="custom-checkbox" checked type="checkbox" name="1" id="1">
+							<label for="1"></label>
+						</div>
+						<div class="shopping-cart-second">
+							<img src="src/images/goods/tshirt.png" alt="t-shirt">
+						</div>
+						<div class="shopping-cart-third">
 							<ul>
 								<li>
 									<h4>Футболка UZcotton мужская</h4>
 								</li>
-								<li>
+								<li class="characteristics-product">
 									<span>Цвет: белый</span>
 									<span>Размер: 56</span>
 								</li>
-								<li>Коледино WB</li>
-								<li>
-									<div>OOO Вайлдберриз</div>
+								<li class="shopping-cart-third-adress">
+									<h5>Коледино WB</h5>
+								</li>
+								<li class="shop">
+									<div>
+										<h5>OOO Вайлдберриз</h5>
+									</div>
 									<div>
 										<img src="src/images/important.svg" alt="important">
 									</div>
 								</li>
 							</ul>
 						</div>
-						<div>
+						<div class="shopping-cart-four">
 							<ul>
 								<li class="counter">
 									<div>−</div>
-									<div><input type="number"></div>
+									<div><input value="1" type="number"></div>
 									<div>+</div>
 								</li>
-								<li>Осталось 2 шт.</li>
-								<li>
+								<li class="shopping-cart-four-left">Осталось 2 шт.</li>
+								<li class="shopping-cart-four-actions">
 									<div><img src="src/images/heart.svg" alt="like"></div>
 									<div><img src="src/images/bin.svg" alt="delete"></div>
 								</li>
 							</ul>
 						</div>
-						<div>
+						<div class="shopping-cart-five">
 							<div>
 								<span>522</span>
 								<span> сом</span>
 							</div>
-							<div>1051 сом</div>
+							<div>
+								<del>1051 сом</del>
+							</div>
 						</div>
 					</li>
 					<li></li>
