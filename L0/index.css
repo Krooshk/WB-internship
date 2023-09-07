@@ -104,9 +104,11 @@
   	margin-top: 0;
   	display: flex;
   	flex-direction: row;
-  	width: 100%;
-  	height: 88px;
-  	/* background-color: rgba(0, 0, 255, 0.116); */
+  	/* width: 100%; */
+  	height: 46px;
+  	margin: 20px 20px 20px 24px;
+
+
   }
 
   main {
@@ -115,8 +117,6 @@
   	display: grid;
   	grid-template-columns: 66% 33%;
   	height: 100%;
-  	/* background-color: white; */
-
   }
 
   .section-details {
@@ -174,4 +174,129 @@
   	height: 64px;
   	text-align: center;
   	/* padding-top: 12px; */
+  }
+
+  h1 {
+  	font-family: Segoe UI;
+  	margin-left: 16px;
+  	width: 110px;
+  	color: white;
+  	font-size: 28px;
+  	font-style: normal;
+  	font-weight: 600;
+  	line-height: 24px;
+  	font-variant: all-small-caps;
+  	letter-spacing: 0.56px;
+  	margin-top: -2px;
+  }
+
+  .burger {
+  	width: 48px;
+  	height: 48px;
+  	border-radius: 8px;
+  	border: 1px solid white;
+  	display: flex;
+  	justify-content: center;
+  	/* align-content: center; */
+  }
+
+  .line-burger {
+  	position: relative;
+  	width: 28px;
+  	background-color: white;
+  	height: 4px;
+  	align-self: center;
+  	border-radius: 2px;
+  }
+
+  .line-burger::after {
+  	content: "";
+  	width: 28px;
+  	background-color: white;
+  	height: 4px;
+  	border-radius: 2px;
+  	position: absolute;
+  	top: 10px;
+  }
+
+  .line-burger::before {
+  	content: "";
+  	width: 28px;
+  	background-color: white;
+  	height: 4px;
+  	border-radius: 2px;
+  	position: absolute;
+  	bottom: 10px;
+  }
+
+  #search {
+  	position: relative;
+  	height: 48px;
+  	width: 71.5%;
+  	border-radius: 36px;
+  	margin-left: 28px;
+
+  }
+
+  #search input {
+  	height: 48px;
+  	width: 100%;
+  	background: rgba(255, 255, 255, 0.20);
+  	padding-left: 20px;
+  	border-radius: 36px;
+  }
+
+  #search input,
+  #search input::placeholder {
+  	color: var(--system-white, #FFF);
+  	font-family: Segoe UI;
+  	font-size: 18px;
+  	font-style: normal;
+  	font-weight: 400;
+  	line-height: 24px;
+  	opacity: 0.5;
+  	padding-bottom: 5px;
+  }
+
+  .loop {
+  	position: absolute;
+  	top: 12px;
+  	right: 20px;
+  }
+
+  .profile {
+  	margin-left: 34px;
+  	color: white;
+  	font-family: Segoe UI;
+  	font-size: 13px;
+  	font-style: normal;
+  	font-weight: 400;
+  	line-height: 16px;
+  }
+
+  .profile div:first-child {
+  	display: flex;
+  	justify-content: center;
+  	padding-bottom: 5px;
+  	margin-top: -3px;
+
+  }
+
+
+  .shopping-cart-sign {
+  	margin-left: 42.5px;
+  	color: white;
+  	font-family: Segoe UI;
+  	font-size: 13px;
+  	font-style: normal;
+  	font-weight: 400;
+  	line-height: 16px;
+  }
+
+  .shopping-cart-sign div:first-child {
+  	display: flex;
+  	justify-content: center;
+	margin-right: 5px;
+  	padding-bottom: 5px;
+  	margin-top: -3px;
   }
