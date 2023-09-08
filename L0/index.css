@@ -177,7 +177,7 @@ main {
 	height: 216px;
 	background-color: white;
 	border-radius: 16px;
-	margin: 16px;
+	margin: 16px 16px 16px 0px;
 	padding: 16px 24px 24px 24px;
 }
 
@@ -260,7 +260,7 @@ main {
 
 input:focus::placeholder {
 	color: transparent;
-  }
+}
 
 #form-info-recipient input:focus+.input-up-title-active {
 	display: block;
@@ -429,7 +429,7 @@ footer {
 	height: 136px;
 	background-color: white;
 	border-radius: 16px;
-	margin: 16px;
+	margin: 16px 16px 16px 0px;
 	padding: 16px 26px 24px 24px;
 	display: flex;
 	flex-direction: column;
@@ -491,7 +491,7 @@ footer {
 	height: 362px;
 	background-color: white;
 	border-radius: 16px;
-	margin: 16px;
+	margin: 16px 16px 16px 0px;
 	padding: 16px 24px 28px 24px;
 }
 
@@ -625,10 +625,12 @@ footer {
 .section-final {
 	background-color: white;
 	border-radius: 16px;
-	width: 429px;
+	max-width: 429px;
+	min-width: 303px;
 	height: 572px;
 	padding: 16px 24px 24px 24px;
 	margin-top: 24px;
+	margin-right: 25px;
 
 }
 
