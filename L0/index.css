@@ -293,6 +293,7 @@ footer {
 	font-variant: all-small-caps;
 	letter-spacing: 0.56px;
 	margin-top: -2px;
+	flex-shrink: 0;
 }
 
 .burger {
