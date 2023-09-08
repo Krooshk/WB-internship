@@ -46,7 +46,8 @@
 			<div class="line"></div>
 			<div class="shopping-cart">
 				<ul>
-					<li>
+					<li class="shopping-cart-product">
+
 						<div class="shopping-cart-first">
 							<input class="custom-checkbox" checked type="checkbox" name="1" id="1">
 							<label for="1"></label>
@@ -100,8 +101,119 @@
 							</div>
 						</div>
 					</li>
-					<li></li>
-					<li></li>
+
+
+					<li style="padding-top: 3px;" class="shopping-cart-product">
+						<div class="shopping-cart-first">
+							<input class="custom-checkbox" checked type="checkbox" name="2" id="2">
+							<label for="2"></label>
+						</div>
+						<div class="shopping-cart-second">
+							<img src="src/images/goods/mobile.png" alt="mobile">
+						</div>
+						<div class="shopping-cart-third">
+							<ul>
+								<li>
+									<h4>Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на
+										Apple iPhone XR, MobiSafe</h4>
+								</li>
+								<li class="characteristics-product">
+									<span>Цвет: прозрачный</span>
+									<span></span>
+								</li>
+								<li class="shopping-cart-third-adress">
+									<h5>Коледино WB</h5>
+								</li>
+								<li class="shop">
+									<div>
+										<h5>OOO Мегапрофстиль</h5>
+									</div>
+									<div>
+										<img src="src/images/important.svg" alt="important">
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="shopping-cart-four">
+							<ul>
+								<li class="counter">
+									<div>−</div>
+									<div><input value="1" type="number"></div>
+									<div>+</div>
+								</li>
+								<li class="shopping-cart-four-left"></li>
+								<li class="shopping-cart-four-actions">
+									<div><img src="src/images/heart.svg" alt="like"></div>
+									<div><img src="src/images/bin.svg" alt="delete"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="shopping-cart-five">
+							<div>
+								<span style="font-size: 16px;">2 100 047</span>
+								<span> сом</span>
+							</div>
+							<div>
+								<del>2 300 047 сом</del>
+							</div>
+						</div>
+					</li>
+
+					<li class="shopping-cart-product">
+						<div class="shopping-cart-first">
+							<input class="custom-checkbox" checked type="checkbox" name="3" id="3">
+							<label for="3"></label>
+						</div>
+						<div class="shopping-cart-second">
+							<img src="src/images/goods/pens.png" alt="pens">
+						</div>
+						<div class="shopping-cart-third">
+							<ul>
+								<li>
+									<h4>Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные,
+										шестигранные, <br>Faber-Castell</h4>
+								</li>
+								<li style="margin-bottom: 0px;" class="characteristics-product">
+									<span></span>
+									<span></span>
+								</li>
+								<li class="shopping-cart-third-adress">
+									<h5>Коледино WB</h5>
+								</li>
+								<li class="shop">
+									<div>
+										<h5>OOO Вайлдберриз</h5>
+									</div>
+									<div>
+										<img src="src/images/important.svg" alt="important">
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="shopping-cart-four">
+							<ul>
+								<li class="counter">
+									<div>−</div>
+									<div><input value="1" type="number"></div>
+									<div>+</div>
+								</li>
+								<li class="shopping-cart-four-left">Осталось 2 шт.</li>
+								<li class="shopping-cart-four-actions">
+									<div><img src="src/images/heart.svg" alt="like"></div>
+									<div><img src="src/images/bin.svg" alt="delete"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="shopping-cart-five">
+							<div>
+								<span>494</span>
+								<span> сом</span>
+							</div>
+							<div>
+								<del>950 сом</del>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<div class="missing-goods">
@@ -244,14 +356,27 @@
 
 			<div class="recipient">
 				<h3>Получатель</h3>
-				<form action="">
+				<form id="form-info-recipient" action="#">
 					<div>
 						<input type="text" placeholder="Имя">
+						<span class="input-up-title input-up-title-active">Имя</span>
 					</div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
+					<div>
+						<input type="text" placeholder="Фамилия">
+						<span class="input-up-title input-up-title-active">Фамилия</span>
+					</div>
+					<div>
+						<input type="mail" placeholder="Почта">
+						<span class="input-up-title input-up-title-active">Почта</span>
+					</div>
+					<div>
+						<input type="tel" placeholder="Телефон">
+						<span class="input-up-title input-up-title-active">Телефон</span>
+					</div>
+					<div>
+						<input type="text" placeholder="ИНН">
+						<span class="input-up-title input-up-title-active">ИНН</span>
+					</div>
 				</form>
 			</div>
 		</section>
