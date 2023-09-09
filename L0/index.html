@@ -342,7 +342,7 @@
 			<div class="payment-way">
 				<div class="payment-way-first">
 					<h3>Способ оплаты</h3>
-					<h4>Изменить</h4>
+					<h4 data-name="popup-pay" class="popup-link">Изменить</h4>
 				</div>
 				<div class="payment-way-second">
 					<div><img src="src/images/cards/mir.svg" height="10px" alt="mir"></div>
@@ -415,7 +415,7 @@
 			<div class="section-final-seven">
 				<div>
 					<div>Оплата картой</div>
-					<div><img src="src/images/pen.svg" alt="pen"></div>
+					<div data-name="popup-pay" class="popup-link"><img src="src/images/pen.svg" alt="pen"></div>
 				</div>
 				<div>
 					<div class="section-final-seven-card"><img src="src/images/cards/mir.svg" alt="mir"></div>
@@ -442,6 +442,52 @@
 	<footer>
 		© 2022 ООО «Товары и точка»
 	</footer>
+
+	<div id="popup-pay" class="popup">
+		<div class="popup__body">
+			<div class="popup__content">
+				<div>
+					<div>
+						<h3>Способ оплаты</h3>
+					</div>
+					<div class="btn-close-popup">
+						<img src="src/images/close.svg" alt="close">
+					</div>
+				</div>
+				<ul>
+					<li>
+						<input class="custom-radio" type="radio" id="mir" name="pay" value="mir" checked />
+						<label for="mir">
+							<div><img src="src/images/cards/mir.svg" width="32px" alt="mir"></div>
+							<div>1234 56•• •••• 1234</div>
+						</label>
+					</li>
+					<li>
+						<input class="custom-radio" type="radio" id="visa" name="pay" value="visa" />
+						<label for="visa">
+							<div><img src="src/images/cards/visa.svg" width="32px" alt="visa"></div>
+							<div>1234 56•• •••• 1234</div>
+						</label>
+					</li>
+					<li>
+						<input class="custom-radio" type="radio" id="master" name="pay" value="master" />
+						<label for="master">
+							<div><img src="src/images/cards/mastercard.svg" width="32px" alt="master"></div>
+							<div>1234 56•• •••• 1234</div>
+						</label>
+					</li>
+					<li>
+						<input class="custom-radio" type="radio" id="maestro" name="pay" value="maestro" />
+						<label for="maestro">
+							<div><img src="src/images/cards/maestro.svg" width="32px" alt="maestro"></div>
+							<div>1234 56•• •••• 1234</div>
+						</label>
+					</li>
+				</ul>
+				<button>Выбрать</button>
+			</div>
+		</div>
+	</div>
 	<script type="module" src="index.js"></script>
 </body>
 
