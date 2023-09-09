@@ -32,7 +32,7 @@
 	</header>
 	<main>
 
-		<section class="section-details">
+		<section class="section-details parent-accordeon">
 			<h1>Корзина</h1>
 			<div class="on-hand-goods">
 				<div>
@@ -40,12 +40,12 @@
 					<label for="all"> Выбрать всё</label>
 				</div>
 				<div>
-					<button><img src="src/images/arrow.svg" alt="arrow"></button>
+					<button class="accordion-btn"><img src="src/images/arrow.svg" alt="arrow"></button>
 				</div>
 			</div>
 			<div class="line"></div>
 			<div class="shopping-cart">
-				<ul>
+				<ul class="accordion__content open">
 					<li class="shopping-cart-product">
 
 						<div class="shopping-cart-first">
@@ -216,13 +216,13 @@
 					</li>
 				</ul>
 			</div>
-			<div class="missing-goods">
+			<div class="missing-goods parent-accordeon">
 				<div class="missing-goods-line">
 					<h4>Отсутствуют · 3 товара</h4>
-					<button><img src="src/images/arrow.svg" alt="arrow"></button>
+					<button class="accordion-btn"><img src="src/images/arrow.svg" alt="arrow"></button>
 				</div>
 				<div class="line"></div>
-				<ul class="missing-goods-list">
+				<ul class="accordion__content open missing-goods-list ">
 					<li class="missing-goods-product">
 						<div class="missing-goods-product-first">
 							<img src="src/images/goods/tshirt.png" alt="tshirt">
@@ -442,6 +442,7 @@
 	<footer>
 		© 2022 ООО «Товары и точка»
 	</footer>
+	<script type="module" src="index.js"></script>
 </body>
 
 </html>

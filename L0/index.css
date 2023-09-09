@@ -1063,6 +1063,12 @@ footer {
 	margin-top: 18px;
 }
 
+.missing-goods-list {
+	transition: all 0.5s;
+}
+
+
+
 .missing-goods-list li {
 	display: flex;
 	margin-bottom: 30px;
@@ -1106,4 +1112,19 @@ footer {
 
 .shopping-cart-product {
 	margin-bottom: 30px;
+}
+
+.accordion__content.open {
+	max-height: 1000px;
+	transition: all 2s;
+  }
+  
+.accordion__content {
+	max-height: 0; overflow: hidden; padding: 0 15px;
+	transition: all 0.5s;
+  }
+
+.rotate-180 {
+	transform: rotate(180deg);
+
 }
