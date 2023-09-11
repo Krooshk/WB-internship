@@ -67,3 +67,19 @@ tabs.forEach((tab, index, array) => tab.addEventListener("click", () => {
 		tabItems.forEach(el => el.classList.toggle('active-tab-item'));
 	}
 }))
+
+
+let checkboxPay = document.querySelector('#pay');
+let finalButton = document.querySelector('.section-final-button button');
+
+checkboxPay.addEventListener("change", () => {
+	if (checkboxPay.checked) {
+		let finalSumm = document.querySelector('.section-final-first div:last-child');
+		finalButton.innerHTML = "Оплатить " + finalSumm.innerHTML;
+	} else {
+		finalButton.innerHTML = "Заказать";
+	}
+}
+);
+
+
