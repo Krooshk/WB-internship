@@ -31,6 +31,7 @@ if (popupLinks.length > 0) {
 }
 
 function popupOpen(currentPopup) {
+	body.classList.add('lock');
 	if (currentPopup) {
 		const popupActive = document.querySelector('.popup.open');
 		if (popupActive) {
@@ -38,7 +39,6 @@ function popupOpen(currentPopup) {
 		}
 		let btnClose = currentPopup.querySelector('.btn-close-popup');
 		btnClose.addEventListener("click", (e) => popupClose(e.target.closest('.popup')));
-		body.classList.add('lock');
 		currentPopup.classList.add('open');
 		currentPopup.addEventListener("click", function (e) {
 			if (!e.target.closest('.popup__content')) {
@@ -51,4 +51,19 @@ function popupOpen(currentPopup) {
 function popupClose(popupActive) {
 	popupActive.classList.remove('open');
 	body.classList.remove('lock');
+
 }
+
+
+// popup delivery tab
+
+let tabs = document.querySelectorAll('.tab');
+let tabItems = document.querySelectorAll('.tab-item');
+
+
+tabs.forEach((tab, index, array) => tab.addEventListener("click", () => {
+	if (!tab.classList.contains('active-tab')) {
+		array.forEach(el => el.classList.toggle('active-tab'));
+		tabItems.forEach(el => el.classList.toggle('active-tab-item'));
+	}
+}))

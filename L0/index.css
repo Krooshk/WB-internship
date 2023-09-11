@@ -981,6 +981,10 @@ h1 {
 	line-height: 16px;
 }
 
+.counter img {
+	display: block;
+}
+
 .counter {
 	display: flex;
 	justify-content: space-between;
@@ -1182,6 +1186,7 @@ footer {
 	transform: perspective(600px) translate(0px, 0%) rotate(0deg);
 }
 
+
 body.lock {
 	overflow: hidden;
 }
@@ -1233,6 +1238,10 @@ body.lock {
 	margin-top: 128px;
 }
 
+.popup-link {
+	cursor: pointer;
+}
+
 
 /* custom-radio */
 
@@ -1269,4 +1278,153 @@ body.lock {
 	background-color: #CB11AB;
 	background-image: url("src/images/radiobox.svg");
 	background-size: 150% 150%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+
+
+#popup-delivery .popup__content {
+	width: 500px;
+	height: auto;
+	min-height: 408px;
+}
+
+#popup-delivery h3 {
+	font-family: Segoe UI;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 28px;
+	letter-spacing: -0.2px;
+}
+
+#popup-delivery .popup__content>div {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 13px;
+}
+
+.tabs {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 26px;
+}
+
+.tab {
+	width: 224px;
+	height: 36px;
+	text-align: center;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 16px;
+	border-radius: 24px;
+	border-radius: 20px;
+	border: 2px solid rgba(203, 17, 171, 0.15);
+	padding-top: 6px;
+	cursor: pointer;
+}
+
+.active-tab {
+	border: 2px solid #CB11AB;
+}
+
+.tab-item {
+	display: none;
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+
+
+.tab-item li {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+}
+
+.tab-item li label {
+	position: relative;
+}
+
+.tab-item li label::before {
+	position: absolute;
+	top: 5px;
+
+}
+
+.active-tab-item {
+	display: block;
+}
+
+.adress-and-point {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	margin-left: 28px;
+}
+
+.adress-and-point div:first-child {
+	margin-bottom: 4px;
+}
+
+.adress-and-point img {
+	display: block;
+}
+
+.adress-and-point div:last-child {
+	color: #A0A0A4;
+	font-size: 13px;
+	display: flex;
+	gap: 8px;
+
+}
+
+.adress-and-point div:last-child span {
+	color: black;
+}
+
+.popup__content {
+	position: relative;
+}
+
+#popup-delivery button {
+	position: absolute;
+	width: 164px;
+	height: 44px;
+	border-radius: 8px;
+	background-color: #CB11AB;
+	color: white;
+	font-family: Segoe UI;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 24px;
+	vertical-align: center;
+	bottom: 24px;
+}
+
+
+#tab-courier label div {
+	margin-left: 28px;
+	max-width: 400px;
+	margin-bottom: 20px;
+
+}
+
+#popup-delivery li,
+.adress-popup,
+.adress-and-point div:first-child,
+.btn-close-popup,
+#popup-pay li label {
+	cursor: pointer;
 }

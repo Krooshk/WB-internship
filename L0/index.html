@@ -80,9 +80,9 @@
 						<div class="shopping-cart-four">
 							<ul>
 								<li class="counter">
-									<div>−</div>
-									<div><input value="1" type="number"></div>
-									<div>+</div>
+									<div><img src="src/images/counter/−.svg" alt="-"></div>
+									<div><input value="1" min="1" type="number"></div>
+									<div><img src="src/images/counter/+.svg" alt="+"></div>
 								</li>
 								<li class="shopping-cart-four-left">Осталось 2 шт.</li>
 								<li class="shopping-cart-four-actions">
@@ -137,9 +137,9 @@
 						<div class="shopping-cart-four">
 							<ul>
 								<li class="counter">
-									<div>−</div>
-									<div><input value="1" type="number"></div>
-									<div>+</div>
+									<div><img src="src/images/counter/−.svg" alt="-"></div>
+									<div><input value="1" min="1" type="number"></div>
+									<div><img src="src/images/counter/+.svg" alt="+"></div>
 								</li>
 								<li class="shopping-cart-four-left"></li>
 								<li class="shopping-cart-four-actions">
@@ -193,9 +193,9 @@
 						<div class="shopping-cart-four">
 							<ul>
 								<li class="counter">
-									<div>−</div>
-									<div><input value="1" type="number"></div>
-									<div>+</div>
+									<div><img src="src/images/counter/−.svg" alt="-"></div>
+									<div><input value="1" min="1" type="number"></div>
+									<div><img src="src/images/counter/+.svg" alt="+"></div>
 								</li>
 								<li class="shopping-cart-four-left">Осталось 2 шт.</li>
 								<li class="shopping-cart-four-actions">
@@ -287,7 +287,7 @@
 			<div class="delivery-way">
 				<div class="delivery-way-first">
 					<h3>Способ доставки</h3>
-					<h4>Изменить</h4>
+					<h4 data-name="popup-delivery" class="popup-link">Изменить</h4>
 				</div>
 				<div class="delivery-way-table-4x2">
 					<div>
@@ -401,7 +401,7 @@
 			<div class="section-final-five">
 				<div>
 					<div>Доставка в пункт выдачи</div>
-					<div><img src="src/images/pen.svg" alt="pen"></div>
+					<div data-name="popup-delivery" class="popup-link"><img src="src/images/pen.svg" alt="pen"></div>
 				</div>
 				<div class="section-final-adress">Бишкек, улица Ахматбека Суюмбаева, 12/1</div>
 				<div>5–8 фев</div>
@@ -488,6 +488,124 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="popup-delivery" class="popup">
+		<div class="popup__body">
+			<div class="popup__content">
+				<div>
+					<div>
+						<h3>Способ доставки</h3>
+					</div>
+					<div class="btn-close-popup">
+						<img src="src/images/close.svg" alt="close">
+					</div>
+				</div>
+				<nav>
+					<div class="tabs">
+						<div class="tab point active-tab" data-delivery="tab-point">В пункт выдачи</div>
+						<div class="tab courier" data-delivery="tab-courier">Курьером</div>
+					</div>
+				</nav>
+				<div>
+					<div id="tab-point" class="tab-item active-tab-item">
+						<ul>
+							<li>
+								<input class="custom-radio" type="radio" id="point-1" name="delivery-point"
+									value="point-1" checked />
+								<label for="point-1">
+									<div class="adress-and-point">
+										<div>г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1</div>
+										<div>
+											<img src="src/images/star_fill.svg" alt="star">
+											<div>Пункт выдачи</div>
+										</div>
+									</div>
+								</label>
+								<div>
+									<img src="src/images/bin.svg" alt="bin">
+								</div>
+							</li>
+
+							<li>
+								<input class="custom-radio" type="radio" id="point-2" name="delivery-point"
+									value="point-2" />
+								<label for="point-2">
+									<div class="adress-and-point">
+										<div>г. Бишкек, микрорайон Джал, улица Ахунбаева Исы, д. 67/1</div>
+										<div>
+											<img src="src/images/star_fill.svg" alt="star">
+											<span>4.99</span>
+											Пункт выдачи
+										</div>
+									</div>
+								</label>
+								<div>
+									<img src="src/images/bin.svg" alt="bin">
+								</div>
+							</li>
+
+							<li>
+								<input class="custom-radio" type="radio" id="point-3" name="delivery-point"
+									value="point-3" />
+								<label for="point-3">
+									<div class="adress-and-point">
+										<div>г. Бишкек, улица Табышалиева, д. 57</div>
+										<div>
+											<img src="src/images/star_fill.svg" alt="star">
+											<span>4.99</span>
+											Пункт выдачи
+										</div>
+									</div>
+								</label>
+								<div>
+									<img src="src/images/bin.svg" alt="bin">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div id="tab-courier" class="tab-item">
+						<ul>
+							<li>
+								<input class="custom-radio" type="radio" id="courier-1" name="delivery-courier"
+									value="courier-1" checked />
+								<label for="courier-1">
+									<div class="adress-popup">Бишкек, улица Табышалиева, 57</div>
+								</label>
+								<div>
+									<img src="src/images/bin.svg" alt="bin">
+								</div>
+							</li>
+
+							<li>
+								<input class="custom-radio" type="radio" id="courier-2" name="delivery-courier"
+									value="courier-2" checked />
+								<label for="courier-2">
+									<div class="adress-popup">Бишкек, улица Жукеева-Пудовкина, 77/1</div>
+								</label>
+								<div>
+									<img src="src/images/bin.svg" alt="bin">
+								</div>
+							</li>
+
+							<li>
+								<input class="custom-radio" type="radio" id="courier-3" name="delivery-courier"
+									value="courier-3" checked />
+								<label for="courier-3">
+									<div class="adress-popup">Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</div>
+								</label>
+								<div>
+									<img src="src/images/bin.svg" alt="bin">
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<button>Выбрать</button>
+			</div>
+		</div>
+	</div>
+
+
 	<script type="module" src="index.js"></script>
 </body>
 
