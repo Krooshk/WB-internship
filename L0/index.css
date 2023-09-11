@@ -1451,12 +1451,16 @@ label[for="all"] span {
 }
 
 .counter {
-	background-color: #cb11ac6d;
+	/* background-color: #cb11ac6d; */
 }
 
 .counter div:nth-child(2) {
 	padding-bottom: 6px;
 	padding-left: 2px;
+}
+
+.counter div:nth-child(1) {
+	padding-left: 4px;
 }
 
 .accordion__content li.shopping-cart-product:nth-child(2) {
