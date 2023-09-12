@@ -1504,6 +1504,10 @@ label[for="all"] span {
 	margin-bottom: 0px;
 }
 
+.line-mobile {
+	display: none;
+}
+
 
 
 @media (max-width: 1023px) {
@@ -1656,6 +1660,7 @@ label[for="all"] span {
 		font-size: 14px;
 		margin-top: 24px;
 		margin-bottom: 6px;
+		line-height: 20px;
 	}
 
 	.shopping-cart-third .shop {
@@ -1669,6 +1674,28 @@ label[for="all"] span {
 	.shopping-cart-four .counter {
 		width: 80px;
 		height: 32px;
+		padding-left: 5px;
+		padding-right: 16px;
+		border-radius: 8px;
+		margin-right: 16px;
+	}
+
+	.shopping-cart-four .counter input {
+		width: 34px;
+		margin-right: 4px;
+	}
+
+	.shopping-cart-four-left {
+		padding-top: 6px;
+		width: 100px;
+	}
+
+	.shopping-cart-four-actions {
+		justify-content: end;
+		gap: 8px;
+		padding-top: 6px;
+		margin-left: 0px;
+		margin-right: 12px;
 	}
 
 	.shopping-cart-four ul {
@@ -1678,7 +1705,7 @@ label[for="all"] span {
 		justify-content: space-between;
 		position: absolute;
 		left: 0;
-		top: 120px;
+		top: 118px;
 
 	}
 
@@ -1701,6 +1728,31 @@ label[for="all"] span {
 		font-size: 13px;
 		margin-left: 5px;
 		padding-bottom: 10px;
+	}
+
+	li.shopping-cart-product:nth-child(2) .shopping-cart-four ul {
+		margin-top: 10px;
+	}
+
+	li.shopping-cart-product:last-child{
+	margin-top: 32px;
+	}
+
+	li.shopping-cart-product:last-child .shopping-cart-four-actions{
+		margin-right: 4px;
+
+	}
+
+
+
+	li.shopping-cart-product:last-child .line-mobile {
+		display: none;
+	}
+
+	.line-mobile {
+		display: block;
+		position: absolute;
+		bottom: -32px;
 	}
 
 }
