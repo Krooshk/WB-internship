@@ -1554,10 +1554,6 @@ label[for="all"] span {
 		height: 572px;
 	}
 
-	.section-details {
-		padding-right: 0px;
-		padding-left: 0px;
-	}
 
 	.section-final,
 	.delivery-way {
@@ -1630,8 +1626,6 @@ label[for="all"] span {
 		padding-top: 0;
 		padding-left: 16px;
 		padding-right: 16px;
-		/* margin-left: 16px;
-		margin-right: 16px; */
 	}
 
 	h1 {
@@ -1790,5 +1784,27 @@ label[for="all"] span {
 		right: -5px;
 	}
 
+	.recipient {
+		margin-left: -16px;
+		width: 100vw;
+		height: auto;
+		padding: 16px 18px 0px 14px;
+	}
+
+	#form-info-recipient {
+		display: flex;
+		flex-direction: column;
+		gap: 45px;
+		/* height: 420px; */
+	}
+
+	.recipient h3 {
+		font-size: 20px;
+		margin-bottom: 18px;
+	}
+
+	main {
+		/* background-color: #000000; */
+	}
 
 }
