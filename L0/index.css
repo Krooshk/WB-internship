@@ -1795,7 +1795,7 @@ label[for="all"] span {
 		display: flex;
 		flex-direction: column;
 		gap: 45px;
-		/* height: 420px; */
+		max-width: 500px;
 	}
 
 	.recipient h3 {
@@ -1803,8 +1803,26 @@ label[for="all"] span {
 		margin-bottom: 18px;
 	}
 
-	main {
-		/* background-color: #000000; */
+	.payment-way {
+		margin-left: -16px;
+		width: 100vw;
+		height: 124px;
+		padding-left: 16px;
+		padding-top: 14px;
+		padding-right: 16px;
 	}
+
+	.payment-way h3 {
+		font-size: 20px;
+	}
+
+	.payment-way-first {
+		height: 28px;
+		margin-bottom: 10px;
+	}
+
+	/* main {
+		background-color: #1c1a1c8e;
+	} */
 
 }
