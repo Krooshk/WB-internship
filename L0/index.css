@@ -265,7 +265,28 @@ input:focus::placeholder {
 	display: block;
 }
 
+.input-up-title-hasLetters {
+	display: block;
+}
 
+
+
+
+.input-up-hint {
+	display: none;
+	position: absolute;
+	color: #F55123;
+	font-family: Segoe UI;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 14px;
+	bottom: -18px;
+}
+
+.input-up-hint-active {
+	display: block;
+}
 
 
 
@@ -1986,17 +2007,17 @@ label[for="all"] span {
 		bottom: 44px;
 	}
 
-	.shopping-cart{
-	margin-bottom: 18px;
+	.shopping-cart {
+		margin-bottom: 18px;
 	}
 
 	.missing-goods {
-	margin-bottom: -4px;
+		margin-bottom: -4px;
 	}
 
-	.payment-way{
-	margin-top: -6px;
-	margin-bottom: -6px;
+	.payment-way {
+		margin-top: -6px;
+		margin-bottom: -6px;
 	}
 
 

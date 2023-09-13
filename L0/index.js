@@ -98,19 +98,19 @@ let PlaceAnOrderBtn = document.querySelector('.section-final-button button');
 PlaceAnOrderBtn.addEventListener("click", () => {
 	let form = document.querySelector('form');
 	(e) => e.preventDefault()
-
 	let data = getFormValue(form);
 
 	function check(data) {
-		let result = [...data].every(([el, value]) => Boolean(value.match(allRegex[el])))
-		alert(result);
+		let result = [...data].map(([el, value]) => checkInput(el, true)).every(el => el === true);
 		return result
 	}
 
 	let resultOfCheck = check(data);
 
 	if (resultOfCheck) {
-		alert('Данные отправлены:\n' + JSON.stringify(Object.fromEntries(data)));
+		alert('Данные отправлены:\n' + JSON.stringify(Object.assign({}, [...data.values()])));
+	} else {
+		form.parentElement.scrollIntoView(({ block: 'nearest', behavior: 'smooth' }));
 	}
 
 
@@ -126,18 +126,18 @@ function getFormValue(form) {
 		INN = form.querySelector('[name="INN"]');
 
 	const data = new Map([
-		["firstName", firstName.value],
-		["secondName", secondName.value],
-		["mail", mail.value],
-		["tel", tel.value],
-		["INN", INN.value],
+		[firstName, firstName.value],
+		[secondName, secondName.value],
+		[mail, mail.value],
+		[tel, tel.value],
+		[INN, INN.value],
 	]);
 	return data;
 }
 
 const allRegex = {
-	firstName: /[a-zA-Z]*/,
-	secondName: /[a-zA-Z].*/,
+	firstName: /^[a-zA-Z]{1,}$/,
+	secondName: /^[a-zA-Z]{1,}$/,
 	mail: /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
 	tel: /^\+\d+ \d{3} \d{3} \d{2} \d{2}$/,
 	INN: /\d{14}/,
@@ -145,11 +145,9 @@ const allRegex = {
 
 let inputsFromForm = document.querySelectorAll('#form-info-recipient input');
 
-let mistake = new Set();
-
 inputsFromForm.forEach((el) => {
 	el.addEventListener("change", (e) => {
-		checkInput(e);
+		checkInput(e.target);
 	})
 })
 
@@ -157,22 +155,41 @@ inputsFromForm.forEach((el) => {
 	el.addEventListener("input", (e) => {
 		console.log(e.target.name);
 		if (mistake.has(e.target.name)) {
-			checkInput(e)
+			checkInput(e.target)
 		}
 	})
 })
 
+let mistake = new Set();
 
-function checkInput(e) {
-	let value = e.target.value;
-	let name = e.target.name;
-	if (!Boolean(value.match(allRegex[name]))) {
-		e.target.style.color = "#F55123";
-		mistake.add(name);
+function checkInput(el, clickOnOrder = null) {
+	let value = el.value;
+	let name = el.name;
+	let title = el.parentNode.querySelector('.input-up-title');
+	let hint = el.parentNode.querySelector('.input-up-hint');
+
+
+	if (value.length > 0) {
+		title.classList.add('input-up-title-hasLetters');
 	} else {
-		e.target.style.color = "#9797AF";
-		mistake.delete(name);
+		title.classList.remove('input-up-title-hasLetters');
 	}
+
+
+	if ((!Boolean(value.match(allRegex[name]))) && (clickOnOrder || (value != ""))) {
+		el.style.color = "#F55123";
+		el.style.borderBottom = "1px solid #F55123";
+		mistake.add(name);
+		hint.classList.add('input-up-hint-active');
+		return false;
+	} else {
+		el.style.color = "#9797AF";
+		mistake.delete(name);
+		el.style.borderBottom = "1px solid rgba(0, 0, 0, 0.20)";
+		hint.classList.remove('input-up-hint-active');
+		return true;
+	}
+
 }
 
 
