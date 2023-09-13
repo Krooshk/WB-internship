@@ -84,14 +84,9 @@ checkboxPay.addEventListener("change", () => {
 
 
 
-// Задача: Взаимодействие с формами: Напишите функцию, которая получает данные 
-// из формы на веб-странице и выполняет определенные 
-// действия с этими данными, например, отправляет 
-// их на сервер или отображает всплывающее окно с результатами.
 
 
 let PlaceAnOrderBtn = document.querySelector('.section-final-button button');
-
 
 
 
@@ -112,8 +107,6 @@ PlaceAnOrderBtn.addEventListener("click", () => {
 	} else {
 		form.parentElement.scrollIntoView(({ block: 'nearest', behavior: 'smooth' }));
 	}
-
-
 })
 
 
@@ -140,7 +133,7 @@ const allRegex = {
 	secondName: /^(?:[a-zA-Z]+|[а-яА-Я]+)$/,
 	mail: /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
 	tel: /^\+\d+ \d{3} \d{3} \d{2} \d{2}$/,
-	INN: /\d{14}/,
+	INN: /^\d{14}$/,
 }
 
 let inputsFromForm = document.querySelectorAll('#form-info-recipient input');
