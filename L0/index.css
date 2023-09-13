@@ -526,6 +526,8 @@ footer {
 }
 
 
+
+
 .delivery-way-adress {
 	font-family: Segoe UI;
 	font-size: 16px;
@@ -1556,7 +1558,50 @@ label[for="all"] span {
 
 
 	.section-final {
+		/* overflow: hidden; */
+		height: auto;
+		padding: 0 16px;
+		margin: 0;
+		margin-top: 8px;
+		background-color: #F6F6FA;
+		box-shadow: none;
+		margin-bottom: 42px;
+	}
+
+	.section-final-six {
+		margin-top: 18px;
+		background-color: #F0ECF4;
+		border-radius: 8px;
+		margin-bottom: 12px;
+	}
+
+	.section-final-agreement {
+		height: 32px;
+	}
+
+
+	.section-final-agreement div:first-child {
+		margin-top: 14px;
+	}
+
+	.section-final-eight {
+		background-color: #F0ECF4;
+		border-radius: 8px;
+	}
+
+	.section-final-five,
+	.section-final-seven {
 		display: none;
+	}
+
+	.section-details {
+		padding-bottom: 0;
+	}
+
+	.section-final-first {
+		font-size: 20px;
+		line-height: 28px;
+		letter-spacing: -0.2px;
 	}
 
 	.delivery-way {
@@ -1564,13 +1609,37 @@ label[for="all"] span {
 		width: 100vw;
 		padding-left: 16px;
 		padding-right: 16px;
-		/* background-color: rgba(0, 128, 0, 0.334); */
+		height: auto;
 	}
 
 	.delivery-way-table-4x2 {
 		display: flex;
 		flex-direction: column;
 		gap: 0px;
+	}
+
+	.shipping-cost {
+		margin-top: 16px;
+	}
+
+	.delivery-way-price {
+		margin-bottom: 16px;
+	}
+
+	.delivery-way-day1-goods {
+		margin-top: 12px;
+		margin-bottom: 24px;
+	}
+
+	.delivery-way-day2-goods {
+		margin-top: 12px;
+		margin-bottom: 54px;
+	}
+
+	.delivery-way-bottom-info {
+		width: 272px;
+		margin-left: 8px;
+
 	}
 
 	main {
@@ -1815,7 +1884,7 @@ label[for="all"] span {
 		margin-left: -16px;
 		width: 100vw;
 		height: auto;
-		padding: 16px 18px 0px 14px;
+		padding: 16px 18px 40px 14px;
 	}
 
 	#form-info-recipient {
@@ -1847,9 +1916,5 @@ label[for="all"] span {
 		height: 28px;
 		margin-bottom: 10px;
 	}
-
-	/* main {
-		background-color: #1c1a1c8e;
-	} */
 
 }
