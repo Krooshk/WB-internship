@@ -1986,4 +1986,18 @@ label[for="all"] span {
 		bottom: 44px;
 	}
 
+	.shopping-cart{
+	margin-bottom: 18px;
+	}
+
+	.missing-goods {
+	margin-bottom: -4px;
+	}
+
+	.payment-way{
+	margin-top: -6px;
+	margin-bottom: -6px;
+	}
+
+
 }
