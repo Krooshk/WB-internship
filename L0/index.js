@@ -83,3 +83,68 @@ checkboxPay.addEventListener("change", () => {
 );
 
 
+
+// Задача: Взаимодействие с формами: Напишите функцию, которая получает данные 
+// из формы на веб-странице и выполняет определенные 
+// действия с этими данными, например, отправляет 
+// их на сервер или отображает всплывающее окно с результатами.
+
+
+let PlaceAnOrderBtn = document.querySelector('.section-final-button button');
+
+
+
+
+PlaceAnOrderBtn.addEventListener("click", () => {
+	let form = document.querySelector('form');
+	(e) => e.preventDefault()
+
+	let data = getFormValue(form);
+
+	function check(data) {
+		let result = [...data].every(([el, value]) => Boolean(value.match(allRegex[el])))
+		alert(result);
+	}
+
+	check(data);
+
+
+})
+
+
+function getFormValue(form) {
+	const
+		firstName = form.querySelector('[name="firstName"]'),
+		secondName = form.querySelector('[name="secondName"]'),
+		mail = form.querySelector('[name="mail"]'),
+		tel = form.querySelector('[name="tel"]'),
+		INN = form.querySelector('[name="INN"]');
+
+	const data = new Map([
+		["firstName", firstName.value],
+		["secondName", secondName.value],
+		["mail", mail.value],
+		["tel", tel.value],
+		["INN", INN.value],
+	]);
+	return data;
+}
+
+const allRegex = {
+	firstName: /.*/,
+	secondName: /.*/,
+	mail: /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+	tel: /.*/,
+	INN: /.*/,
+}
+
+
+
+
+
+
+
+
+
+
+
