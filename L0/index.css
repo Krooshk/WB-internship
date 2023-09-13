@@ -1531,6 +1531,10 @@ label[for="all"] span {
 	position: relative;
 }
 
+.size-clothes-mobile {
+	display: none;
+}
+
 
 
 @media (max-width: 1023px) {
@@ -1850,7 +1854,7 @@ label[for="all"] span {
 	}
 
 	li.shopping-cart-product:last-child .shopping-cart-four-actions {
-		margin-right: 4px;
+		margin-right: 12px;
 
 	}
 
@@ -1915,6 +1919,71 @@ label[for="all"] span {
 	.payment-way-first {
 		height: 28px;
 		margin-bottom: 10px;
+	}
+
+	.missing-goods-product {
+		position: relative;
+		height: 140px;
+	}
+
+	.missing-goods-product-first img {
+		width: 80px;
+		height: 106px;
+	}
+
+	.missing-goods-product-second h4 {
+		font-size: 14px;
+		display: -webkit-box;
+		min-width: 192px;
+		width: 100%;
+		max-width: 600px;
+		max-height: 45px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		font-size: 14px;
+		line-height: 20px;
+	}
+
+	.missing-goods-product-four {
+		position: absolute;
+		top: 120px;
+		right: 4px;
+		height: 20px;
+	}
+
+	.missing-goods-product-four div:first-child {
+		margin-right: 8px;
+	}
+
+	li.missing-goods-product:last-child .line-mobile {
+		display: none;
+	}
+
+	.missing-goods-product-first {
+		position: relative;
+	}
+
+	.size-clothes-mobile {
+		display: block;
+		position: absolute;
+		width: 22px;
+		height: 22px;
+		border-radius: 6px;
+		font-family: Segoe UI;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 20px;
+		background-color: white;
+		text-align: center;
+		bottom: 38px;
+		left: 2px;
+	}
+
+	.shopping-cart-second .size-clothes-mobile {
+		bottom: 44px;
 	}
 
 }
