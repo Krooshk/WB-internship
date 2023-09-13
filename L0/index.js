@@ -104,9 +104,14 @@ PlaceAnOrderBtn.addEventListener("click", () => {
 	function check(data) {
 		let result = [...data].every(([el, value]) => Boolean(value.match(allRegex[el])))
 		alert(result);
+		return result
 	}
 
-	check(data);
+	let resultOfCheck = check(data);
+
+	if (resultOfCheck) {
+		alert('Данные отправлены:\n' + JSON.stringify(Object.fromEntries(data)));
+	}
 
 
 })
@@ -131,12 +136,45 @@ function getFormValue(form) {
 }
 
 const allRegex = {
-	firstName: /.*/,
-	secondName: /.*/,
+	firstName: /[a-zA-Z]*/,
+	secondName: /[a-zA-Z].*/,
 	mail: /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
-	tel: /.*/,
-	INN: /.*/,
+	tel: /^\+\d+ \d{3} \d{3} \d{2} \d{2}$/,
+	INN: /\d{14}/,
 }
+
+let inputsFromForm = document.querySelectorAll('#form-info-recipient input');
+
+let mistake = new Set();
+
+inputsFromForm.forEach((el) => {
+	el.addEventListener("change", (e) => {
+		checkInput(e);
+	})
+})
+
+inputsFromForm.forEach((el) => {
+	el.addEventListener("input", (e) => {
+		console.log(e.target.name);
+		if (mistake.has(e.target.name)) {
+			checkInput(e)
+		}
+	})
+})
+
+
+function checkInput(e) {
+	let value = e.target.value;
+	let name = e.target.name;
+	if (!Boolean(value.match(allRegex[name]))) {
+		e.target.style.color = "#F55123";
+		mistake.add(name);
+	} else {
+		e.target.style.color = "#9797AF";
+		mistake.delete(name);
+	}
+}
+
 
 
 
