@@ -136,8 +136,8 @@ function getFormValue(form) {
 }
 
 const allRegex = {
-	firstName: /^[a-zA-Z]{1,}$/,
-	secondName: /^[a-zA-Z]{1,}$/,
+	firstName: /^(?:[a-zA-Z]+|[а-яА-Я]+)$/,
+	secondName: /^(?:[a-zA-Z]+|[а-яА-Я]+)$/,
 	mail: /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
 	tel: /^\+\d+ \d{3} \d{3} \d{2} \d{2}$/,
 	INN: /\d{14}/,
