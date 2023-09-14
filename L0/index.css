@@ -2218,3 +2218,29 @@ label[for="all"] span {
 .shopping-cart-product:last-child .shop-info {
 	bottom: 25px;
 }
+
+.free {
+	cursor: pointer;
+}
+
+
+.free::before {
+	content: "Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно";
+	position: absolute;
+	width: 288px;
+	height: 56px;
+	padding: 10px 16px 14px 16px;
+	top: 25px;
+	left: -130px;
+	border-radius: 8px;
+	background-color: white;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.30), 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+	color: black;
+	opacity: 0;
+	display: none;
+}
+
+.free:hover.free::before {
+	display: block;
+	opacity: 1;
+}
