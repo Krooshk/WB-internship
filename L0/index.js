@@ -50,7 +50,10 @@ function popupOpen(currentPopup) {
 
 function popupClose(popupActive) {
 	popupActive.classList.remove('open');
-	body.classList.remove('lock');
+	setTimeout(() => {
+		body.classList.remove('lock');
+	}, 250);
+
 
 }
 

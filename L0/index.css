@@ -1209,7 +1209,7 @@ footer {
 	z-index: 10;
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.8s ease 0s;
+	transition: all 0.25s ease-in-out;
 }
 
 .popup__body {
@@ -1235,11 +1235,13 @@ footer {
 
 .popup.open .popup__content {
 	transform: perspective(600px) translate(0px, 0%) rotate(0deg);
+	transition: ease-in;
 }
 
 
 body.lock {
 	overflow: hidden;
+	padding-right: 16px;
 }
 
 #popup-pay .popup__content h3 {
@@ -1559,6 +1561,50 @@ label[for="all"] span {
 
 
 @media (max-width: 1023px) {
+
+	#popup-pay .popup__content {
+		width: 320px;
+		padding-left: 16px;
+		height: 594px;
+	}
+
+	#popup-pay h3 {
+		font-size: 20px;
+	}
+
+	#popup-pay button,
+	#popup-delivery button {
+		width: 288px;
+		height: 44px;
+		font-size: 16px;
+		margin-top: 320px;
+	}
+
+	#popup-delivery .popup__content {
+		width: 320px;
+		height: 594px;
+		padding-left: 14px;
+	}
+
+	#popup-delivery li {
+		margin-bottom: 20px;
+	}
+
+	#popup-delivery .adress-and-point,
+	#popup-delivery .adress-popup {
+		width: 236px;
+	}
+
+	#popup-delivery h3 {
+		font-size: 20px;
+	}
+
+
+
+	body.lock {
+		padding-right: 0px;
+	}
+
 	main {
 		display: flex;
 		flex-direction: column;
