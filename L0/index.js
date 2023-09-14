@@ -249,6 +249,31 @@ let currentDeliveryWay = {
 }
 
 
+// __________
+
+
+
+
+// Delete elements
+
+let delIconsGoodsOnHands = document.querySelectorAll('.shopping-cart .deleteIcon');
+let delIconsGoodsMissing = document.querySelectorAll('.missing-goods .deleteIcon');
+
+delIconsGoodsOnHands.forEach(icon => {
+	icon.addEventListener("click", () => {
+		icon.closest('li.shopping-cart-product').remove();
+	})
+})
+delIconsGoodsMissing.forEach(icon => {
+	icon.addEventListener("click", () => {
+		icon.closest('li.missing-goods-product').remove();
+	})
+})
+
+
+
+
+
 
 
 
