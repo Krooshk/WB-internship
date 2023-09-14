@@ -1599,9 +1599,6 @@ label[for="all"] span {
 	padding-top: 1px;
 }
 
-.counter {
-	/* background-color: #cb11ac6d; */
-}
 
 .counter div:nth-child(2) {
 	padding-bottom: 6px;
@@ -1819,9 +1816,6 @@ label[for="all"] span {
 
 	}
 
-	main {
-		/* background-color: #24202365; */
-	}
 
 	.delivery-way-first {
 		height: 28px;
@@ -2172,5 +2166,55 @@ label[for="all"] span {
 		margin-bottom: -6px;
 	}
 
+}
 
+.shop {
+	position: relative;
+}
+
+.shop div {
+	cursor: pointer;
+}
+
+.shop-info {
+	padding: 11px 16px 13px 16px;
+	position: absolute;
+	width: 280px;
+	height: 104px;
+	background-color: white;
+	border-radius: 8px;
+	left: 10px;
+	bottom: -110px;
+	z-index: 100;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+	opacity: 0;
+	display: none;
+}
+
+.shop-info div {
+	margin-bottom: 8px;
+
+}
+
+.shop-info h4 {
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 16px;
+	margin-bottom: 8px;
+}
+
+.shop div:hover~.shop-info {
+	opacity: 1;
+	display: block;
+}
+
+
+.shopping-cart-product:last-child .shop-info {
+	bottom: 25px;
 }
