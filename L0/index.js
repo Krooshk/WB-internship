@@ -54,7 +54,7 @@ function popupClose(popupActive) {
 		body.classList.remove('lock');
 	}, 250);
 
-
+	setDefaultCard()
 }
 
 
@@ -187,6 +187,58 @@ function checkInput(el, clickOnOrder = null) {
 	}
 
 }
+
+
+
+
+
+// Change payment-way
+
+let currentCard = "mir";
+
+const cards = {
+	"mir": "1234 56•• •••• 1234",
+	"visa": "0123 45•• •••• 4123",
+	"master": "9012 34•• •••• 3412",
+	"maestro": "8901 23•• •••• 2341",
+}
+
+
+let paymentPlace = [
+	{
+		img: document.querySelector('.section-final-seven-card img'),
+		card: document.querySelector('.section-final-seven-card').nextElementSibling,
+	},
+	{
+		img: document.querySelector('.payment-way-second div:first-child img'),
+		card: document.querySelector('.payment-way-second div:nth-child(2)'),
+	}]
+
+
+
+let inputPopups = [...document.querySelectorAll('#popup-pay input')];
+let btnPopup = document.querySelector('#popup-pay button');
+
+setDefaultCard();
+function setDefaultCard() {
+	inputPopups.forEach(el => el.checked = false);
+	let choosenInput = inputPopups.find(el => el.id === currentCard);
+	choosenInput.checked = true;
+}
+
+btnPopup.addEventListener('click', changeCard)
+
+function changeCard() {
+	let typeCard = inputPopups.find(el => (el.checked === true));
+	currentCard = typeCard.id;
+	paymentPlace.forEach(el => {
+		el.card.textContent = cards[currentCard];
+		el.img.src = `src/images/cards/${currentCard}.svg`;
+	})
+}
+
+// __________
+
 
 
 
