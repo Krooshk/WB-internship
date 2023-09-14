@@ -271,6 +271,28 @@ delIconsGoodsMissing.forEach(icon => {
 })
 
 
+let delIconsDeliveryPoint = document.querySelectorAll('#popup-delivery img[alt="bin"]');
+delIconsDeliveryPoint.forEach(icon => {
+	icon.addEventListener("click", () => {
+		icon.closest('li').remove();
+	})
+})
+
+delIconsDeliveryPoint.forEach(icon => {
+	icon.addEventListener("mouseover", () => {
+		icon.width = 20;
+		icon.height = 20;
+		icon.src = "src/images/binOrange.svg";
+	})
+})
+
+delIconsDeliveryPoint.forEach(icon => {
+	icon.addEventListener("mouseout", () => {
+		icon.src = "src/images/bin.svg";
+	})
+})
+
+
 
 
 
