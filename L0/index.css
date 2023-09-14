@@ -1161,6 +1161,100 @@ footer {
 	display: none;
 }
 
+
+@-webkit-keyframes fadeInFromNone {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: block;
+		opacity: 0;
+	}
+
+	100% {
+		display: block;
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeInFromNone {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: block;
+		opacity: 0;
+	}
+
+	100% {
+		display: block;
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeInFromNone {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: block;
+		opacity: 0;
+	}
+
+	100% {
+		display: block;
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInFromNone {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+
+	1% {
+		display: block;
+		opacity: 0;
+	}
+
+	100% {
+		display: block;
+		opacity: 1;
+	}
+}
+
+
+
+.shopping-cart-four-left,
+.missing-goods-product-four div,
+.shopping-cart-four-actions div {
+	transition: all 0.5 ease-in-out;
+	opacity: 0;
+}
+
+.missing-goods-product-four div:hover svg,
+.shopping-cart-four-actions div:hover svg {
+	color: #FF3B30;
+}
+
+.shopping-cart-product:hover .shopping-cart-four-left,
+.missing-goods-product:hover .missing-goods-product-four div,
+.shopping-cart-product:hover .shopping-cart-four-actions div {
+	-webkit-animation: fadeInFromNone 0.35s ease-in-out;
+	-moz-animation: fadeInFromNone 0.35s ease-in-out;
+	-o-animation: fadeInFromNone 0.35s ease-in-out;
+	animation: fadeInFromNone 0.35s ease-in-out;
+	opacity: 1;
+	cursor: pointer;
+}
+
 @media (max-width: 1200px) {
 	.section-final-adress {
 		width: 255px;
@@ -1562,6 +1656,12 @@ label[for="all"] span {
 
 
 @media (max-width: 1023px) {
+
+	.shopping-cart-four-left,
+	.missing-goods-product-four div,
+	.shopping-cart-four-actions div {
+		opacity: 1;
+	}
 
 	#popup-pay .popup__content {
 		width: 320px;

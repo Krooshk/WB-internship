@@ -239,6 +239,19 @@ function changeCard() {
 
 // __________
 
+// Change delivery-way
+
+
+let currentDeliveryWay = {
+	method: "Пункт выдачи",
+	address: "Бишкек, улица Ахматбека Суюмбаева, 12/1",
+	infoPoint: "4.99"
+}
+
+
+
+
+
 
 
 
