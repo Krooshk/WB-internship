@@ -356,6 +356,16 @@ delIconsDeliveryPoint.forEach(icon => {
 })
 
 
+// Work with final amount
+
+let finalAmount = document.querySelector('.final-amount');
+let numberOfProducts = document.querySelector('.number-of-products');
+let fullAmount = document.querySelector('.full-amount');
+let discount = document.querySelector('.discount');
+
+[finalAmount, numberOfProducts, discount, fullAmount].forEach(el => el.textContent = "0")
+
+
 
 
 
