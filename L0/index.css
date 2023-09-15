@@ -1244,6 +1244,11 @@ footer {
 	color: #FF3B30;
 }
 
+.missing-goods-product-four div:first-child:hover svg,
+.shopping-cart-four-actions div:first-child:hover svg {
+	color: #CB11AB;
+}
+
 .shopping-cart-product:hover .shopping-cart-four-left,
 .missing-goods-product:hover .missing-goods-product-four div,
 .shopping-cart-product:hover .shopping-cart-four-actions div {

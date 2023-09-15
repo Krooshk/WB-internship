@@ -250,7 +250,7 @@ const METHODS = {
 
 let currentDeliveryWay = {
 	method: METHODS.point,
-	address: "Бишкек, улица Ахматбека Суюмбаева, 12/1",
+	address: "г. Бишкек, улица Ахматбека Суюмбаева, 12/1",
 	infoPoint: "4.99"
 }
 
@@ -308,13 +308,6 @@ function setAddress() {
 		pointDetails.style.opacity = 0;
 	}
 }
-
-
-
-
-console.log(deliveryWay.type);
-console.log(deliveryWay.address);
-console.log(deliveryWay.mark);
 
 
 
