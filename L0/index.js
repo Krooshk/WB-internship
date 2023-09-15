@@ -239,14 +239,84 @@ function changeCard() {
 
 // __________
 
+
 // Change delivery-way
+
+const METHODS = {
+	point: "Пункт выдачи",
+	courier: "Курьер",
+}
 
 
 let currentDeliveryWay = {
-	method: "Пункт выдачи",
+	method: METHODS.point,
 	address: "Бишкек, улица Ахматбека Суюмбаева, 12/1",
 	infoPoint: "4.99"
 }
+
+let final = {
+	type: document.querySelector('.section-final-type-delivery'),
+	address: document.querySelector('.section-final-adress'),
+}
+
+let deliveryWay = {
+	type: document.querySelector('.delivery-way-table-4x2 h4'),
+	address: document.querySelector('.delivery-way-adress'),
+	mark: document.querySelector('.delivery-way-mark'),
+}
+
+let buttonPopupDelivery = document.querySelector('#popup-delivery button');
+let pointDetails = document.querySelector('.delivery-way-point');
+
+
+buttonPopupDelivery.addEventListener("click", (e) => {
+	let currentTab = document.querySelector('.active-tab');
+
+
+	if (currentTab.getAttribute("data-delivery") === "tab-point") {
+		let choosenAddresses = [...document.querySelectorAll('#popup-delivery li input.point')];
+		let choosenAddress = choosenAddresses.find(address => address.checked === true);
+		currentDeliveryWay.method = METHODS.point;
+		currentDeliveryWay.address = choosenAddress.nextElementSibling.querySelector('.adress-and-point div:first-child').textContent;
+		// adress-and-point
+
+	} else {
+		let choosenAddresses = [...document.querySelectorAll('#popup-delivery li input.courier')];
+		let choosenAddress = choosenAddresses.find(address => address.checked === true);
+		currentDeliveryWay.address = choosenAddress.nextElementSibling.children[0].textContent;
+		currentDeliveryWay.method = METHODS.courier;
+	}
+	console.log(pointDetails);
+	setAddress();
+})
+
+setAddress();
+
+function setAddress() {
+	if (currentDeliveryWay.method === METHODS.point) {
+		final.type.textContent = "Доставка в пункт выдачи";
+		final.address.textContent = currentDeliveryWay.address;
+		deliveryWay.type.textContent = METHODS.point;
+		deliveryWay.address.textContent = currentDeliveryWay.address;
+		deliveryWay.mark.textContent = currentDeliveryWay.infoPoint;
+		pointDetails.style.opacity = 1;
+	} else {
+		final.type.textContent = "Доставка курьером";
+		final.address.textContent = currentDeliveryWay.address;
+		deliveryWay.type.textContent = "Курьером";
+		deliveryWay.address.textContent = currentDeliveryWay.address;
+		pointDetails.style.opacity = 0;
+	}
+}
+
+
+
+
+console.log(deliveryWay.type);
+console.log(deliveryWay.address);
+console.log(deliveryWay.mark);
+
+
 
 
 // __________
