@@ -87,7 +87,7 @@ checkboxPay.addEventListener("change", () => {
 
 
 
-
+// Move to the form
 
 let PlaceAnOrderBtn = document.querySelector('.section-final-button button');
 
@@ -308,8 +308,6 @@ function setAddress() {
 }
 
 
-
-
 // __________
 
 
@@ -326,11 +324,13 @@ delIconsGoodsOnHands.forEach(icon => {
 		let good = icon.closest('li.shopping-cart-product');
 		arrayGoods.delete(good);
 		countAmount();
+
 	})
 })
 delIconsGoodsMissing.forEach(icon => {
 	icon.addEventListener("click", () => {
 		icon.closest('li.missing-goods-product').remove();
+		changeCountInMssingAccordeon();
 	})
 })
 
@@ -426,9 +426,9 @@ function countAmount() {
 	})
 	changeValuesInFinalSection();
 	countNumberOfGoodsAndCost();
+	changeCountInIconCart();
 }
 countAmount();
-
 
 let shoppingCheckbox = document.querySelectorAll(".shopping-cart-first input");
 let inputOfGoods = document.querySelectorAll(".shopping-cart ul>li.shopping-cart-product .counter input");
@@ -507,6 +507,35 @@ function changeTextAccordeon() {
 		numberOfProductsAndCost.style.display = "none";
 	}
 }
+
+// Shopping-cart count 
+
+
+
+function changeCountInIconCart() {
+	let amount = document.querySelector('#amount');
+	let amountMobile = document.querySelector('#amount-mobile');
+	let length = [...document.querySelectorAll(".shopping-cart-product")].length;
+	if (length > 0) {
+		amount.textContent = length;
+		amountMobile.textContent = length;
+	} else {
+		amount.style.display = "none";
+		amountMobile.style.display = "none";
+	}
+}
+
+// Missing goods count 
+
+
+function changeCountInMssingAccordeon() {
+	let count = document.querySelector(".count-missing-goods");
+	let length = [...document.querySelectorAll(".missing-goods-product")].length;
+	count.textContent = length;
+}
+
+
+
 
 
 

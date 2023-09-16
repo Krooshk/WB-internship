@@ -430,6 +430,7 @@ footer {
 	margin-top: -3px;
 }
 
+#amount-mobile,
 #amount {
 	position: absolute;
 	width: 16px;
@@ -2050,6 +2051,7 @@ label[for="all"] span {
 		margin-bottom: 56px;
 	}
 
+	#amount-mobile,
 	#amount {
 		color: white;
 		top: -5px;
