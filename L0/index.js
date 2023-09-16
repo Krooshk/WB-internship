@@ -381,10 +381,10 @@ function changeValuesInFinalSection() {
 			final.fullpriceAll += good.count * good.fullprice;
 		}
 	}
-	finalAmount.textContent = Math.floor(final.discountpriceAll);
+	finalAmount.textContent = formatString(String(Math.floor(final.discountpriceAll)));
 	numberOfProducts.textContent = toCaseCount(Math.floor(final.countAllofGoods), ['товар', 'товара', 'товаров']);
-	fullAmount.textContent = Math.floor(final.fullpriceAll) + " сом";
-	discount.textContent = "- " + Math.floor(final.fullpriceAll - final.discountpriceAll) + " сом";
+	fullAmount.textContent = formatString(String(Math.floor(final.fullpriceAll))) + " сом";
+	discount.textContent = "- " + formatString(String(Math.floor(final.fullpriceAll - final.discountpriceAll))) + " сом";
 }
 
 [finalAmount, numberOfProducts, discount, fullAmount].forEach(el => el.textContent = "0");
@@ -405,7 +405,7 @@ function countNumberOfGoodsAndCost() {
 	}
 
 	countInaccordeon.textContent = toCaseCount(Number(final.count), ['товар', 'товара', 'товаров']);
-	priceInaccordeon.textContent = Math.floor(final.price) + " cом";
+	priceInaccordeon.textContent = formatString(String(Math.floor(final.price))) + " cом";
 
 }
 
@@ -421,6 +421,7 @@ function countAmount() {
 			discountprice: Number(good.getAttribute('discountprice')),
 			left: Number(good.getAttribute('left')),
 			count: Number(good.querySelector('.counter input').value),
+			limit: good.getAttribute('limit'),
 		}
 		arrayGoods.set(good, obj)
 	})
@@ -461,6 +462,7 @@ counterPlus.forEach((el) => {
 })
 
 
+
 chooseAll.addEventListener("click", (e) => {
 	let state = e.target.checked;
 	shoppingCheckbox.forEach(el => {
@@ -486,8 +488,8 @@ inputOfGoods.forEach(el => {
 function countForOneProduct(product) {
 	let discount = product.querySelector('.shopping-cart-five div:first-child span');
 	let startCost = product.querySelector('.shopping-cart-five div:last-child del');
-	discount.textContent = Math.floor(product.getAttribute("discountprice") * product.querySelector(".counter input").value);
-	startCost.textContent = Math.floor(product.getAttribute("fullprice") * product.querySelector(".counter input").value) + " сом";
+	discount.textContent = formatString(String(Math.floor(product.getAttribute("discountprice") * product.querySelector(".counter input").value)));
+	startCost.textContent = formatString(String(Math.floor(product.getAttribute("fullprice") * product.querySelector(".counter input").value))) + " сом";
 }
 
 
@@ -539,6 +541,39 @@ function toCaseCount(num, arrayOfWords) {
 	return num + " " + arrayOfWords[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[Math.min(num % 10, 5)]];
 }
 
+function formatString(str) {
+	let arrayOfPart = [];
+	for (let i = 3; i < str.length; i += 3) {
+		arrayOfPart.unshift(str.substr(-i, 3));
+	}
+	arrayOfPart.unshift(str.substr(0, str.length - arrayOfPart.length * 3));
+	return arrayOfPart.join(' ');
+}
+
+console.log(formatString("3"));
+console.log(formatString("63"));
+console.log(formatString("063"));
+console.log(formatString("1063"));
+console.log(formatString("01063"));
+console.log(formatString("101063"));
+console.log(formatString("2101063"));
+console.log(formatString("32101063"));
+console.log(formatString("432101063"));
+console.log(formatString("5432101063"));
+
+// DELIVERY WAY 
+
+let images = document.querySelectorAll(".product-item");
+
+
+
+
+
+console.log(arrayGoods);
+
+
+
+console.log(images);
 
 
 

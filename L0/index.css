@@ -2275,3 +2275,31 @@ label[for="all"] span {
 	font-weight: 600;
 	line-height: 24px;
 }
+
+.delivery-way-day2-goods>div,
+.delivery-way-day1-goods>div {
+	position: relative;
+}
+
+.delivery-way-day2-goods>div {
+	width: min-content;
+}
+
+.product-item-count {
+	position: absolute;
+	height: 18px;
+	width: min-content;
+	background-color: #F55123;
+	top: -10px;
+	right: -5px;
+	color: white;
+	text-align: center;
+	font-family: Segoe UI;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 18px;
+	border-radius: 16px;
+	padding: 0 4px;
+
+}
