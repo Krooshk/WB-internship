@@ -358,12 +358,64 @@ delIconsDeliveryPoint.forEach(icon => {
 
 // Work with final amount
 
+let arrayGoods = new Map();
+
 let finalAmount = document.querySelector('.final-amount');
 let numberOfProducts = document.querySelector('.number-of-products');
 let fullAmount = document.querySelector('.full-amount');
 let discount = document.querySelector('.discount');
 
-[finalAmount, numberOfProducts, discount, fullAmount].forEach(el => el.textContent = "0")
+[finalAmount, numberOfProducts, discount, fullAmount].forEach(el => el.textContent = "0");
+
+
+let goodsInCart = [...document.querySelectorAll('.shopping-cart ul>li.shopping-cart-product')];
+
+
+function countAmount() {
+	goodsInCart.forEach(good => {
+		let obj = {
+			isChoosen: good.querySelector('.custom-checkbox').checked,
+			fullprice: Number(good.getAttribute('fullprice')),
+			discountprice: Number(good.getAttribute('discountprice')),
+			left: Number(good.getAttribute('left')),
+			count: Number(good.querySelector('.counter input').value),
+		}
+		arrayGoods.set(good, obj)
+	})
+}
+countAmount();
+
+
+let shoppingCheckbox = document.querySelectorAll(".shopping-cart-first input");
+let inputOfGoods = document.querySelectorAll(".shopping-cart ul>li.shopping-cart-product .counter input");
+let chooseAll = document.querySelector('.on-hand-goods input');
+
+
+chooseAll.addEventListener("click", (e) => {
+	let state = e.target.checked;
+	shoppingCheckbox.forEach(el => {
+		el.checked = state;
+	})
+})
+
+shoppingCheckbox.forEach(el => {
+	el.addEventListener("change", () => {
+		let stateOfarray = [...shoppingCheckbox].map(el => el.checked).every(state => state === true);
+		chooseAll.checked = stateOfarray ? true : false;
+		console.log(stateOfarray);
+		// alert('work');
+	})
+})
+
+inputOfGoods.forEach(el => {
+	el.addEventListener("change", () => {
+		alert('work');
+	})
+})
+
+console.log(chooseAll);
+// console.log(shoppingCheckbox);
+
 
 
 
