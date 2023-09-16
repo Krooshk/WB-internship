@@ -382,7 +382,7 @@ function changeValuesInFinalSection() {
 		}
 	}
 	finalAmount.textContent = Math.floor(final.discountpriceAll);
-	numberOfProducts.textContent = Math.floor(final.countAllofGoods) + " товара";
+	numberOfProducts.textContent = toCaseCount(Math.floor(final.countAllofGoods), ['товар', 'товара', 'товаров']);
 	fullAmount.textContent = Math.floor(final.fullpriceAll) + " сом";
 	discount.textContent = "- " + Math.floor(final.fullpriceAll - final.discountpriceAll) + " сом";
 }
@@ -404,7 +404,7 @@ function countNumberOfGoodsAndCost() {
 		final.price += good.count * good.discountprice;
 	}
 
-	countInaccordeon.textContent = Number(final.count) + " товаров";
+	countInaccordeon.textContent = toCaseCount(Number(final.count), ['товар', 'товара', 'товаров']);
 	priceInaccordeon.textContent = Math.floor(final.price) + " cом";
 
 }
@@ -531,7 +531,12 @@ function changeCountInIconCart() {
 function changeCountInMssingAccordeon() {
 	let count = document.querySelector(".count-missing-goods");
 	let length = [...document.querySelectorAll(".missing-goods-product")].length;
-	count.textContent = length;
+	count.textContent = toCaseCount(length, ['товар', 'товара', 'товаров']);
+}
+
+function toCaseCount(num, arrayOfWords) {
+	let cases = [2, 0, 1, 1, 1, 2];
+	return num + " " + arrayOfWords[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[Math.min(num % 10, 5)]];
 }
 
 
