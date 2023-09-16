@@ -365,6 +365,28 @@ let numberOfProducts = document.querySelector('.number-of-products');
 let fullAmount = document.querySelector('.full-amount');
 let discount = document.querySelector('.discount');
 
+
+function changeValuesInFinalSection() {
+	let final = {
+		countAllofGoods: 0,
+		discountpriceAll: 0,
+		fullpriceAll: 0,
+	}
+
+	for (let [el, good] of arrayGoods) {
+		if (good.isChoosen) {
+			console.log(good.count * good.fullprice);
+			final.countAllofGoods += good.count;
+			final.discountpriceAll += good.count * good.discountprice;
+			final.fullpriceAll += good.count * good.fullprice;
+		}
+	}
+	finalAmount.textContent = Math.floor(final.discountpriceAll);
+	numberOfProducts.textContent = Math.floor(final.countAllofGoods) + " товара";
+	fullAmount.textContent = Math.floor(final.fullpriceAll) + " сом";
+	discount.textContent = "- " + Math.floor(final.fullpriceAll - final.discountpriceAll) + " сом";
+}
+
 [finalAmount, numberOfProducts, discount, fullAmount].forEach(el => el.textContent = "0");
 
 
@@ -382,6 +404,8 @@ function countAmount() {
 		}
 		arrayGoods.set(good, obj)
 	})
+	changeValuesInFinalSection();
+	console.log('qwerty');
 }
 countAmount();
 
@@ -390,30 +414,60 @@ let shoppingCheckbox = document.querySelectorAll(".shopping-cart-first input");
 let inputOfGoods = document.querySelectorAll(".shopping-cart ul>li.shopping-cart-product .counter input");
 let chooseAll = document.querySelector('.on-hand-goods input');
 
+let counterMinus = document.querySelectorAll('.counter div:first-child');
+let counterPlus = document.querySelectorAll('.counter div:last-child');
+
+counterMinus.forEach((el) => {
+	el.addEventListener("click", () => {
+		let good = el.closest('li.shopping-cart-product');
+		let input = el.nextElementSibling.querySelector('input');
+		if (input.value > 1) {
+			input.value = input.value - 1;
+			countAmount();
+		}
+	})
+})
+
+counterPlus.forEach((el) => {
+	el.addEventListener("click", () => {
+		let good = el.closest('li.shopping-cart-product');
+		let left = arrayGoods.get(good).left;
+		let input = el.previousElementSibling.querySelector('input');
+		if (left > input.value) {
+			input.value = Number(input.value) + 1;
+			countAmount();
+		}
+	})
+})
+
+
+
+
+
+console.log(counterMinus, counterPlus);
+
 
 chooseAll.addEventListener("click", (e) => {
 	let state = e.target.checked;
 	shoppingCheckbox.forEach(el => {
 		el.checked = state;
-	})
+	});
+	countAmount();
 })
 
 shoppingCheckbox.forEach(el => {
 	el.addEventListener("change", () => {
 		let stateOfarray = [...shoppingCheckbox].map(el => el.checked).every(state => state === true);
-		chooseAll.checked = stateOfarray ? true : false;
-		console.log(stateOfarray);
-		// alert('work');
+		chooseAll.checked = stateOfarray;
+		countAmount();
 	})
 })
 
 inputOfGoods.forEach(el => {
-	el.addEventListener("change", () => {
-		alert('work');
-	})
+	el.addEventListener("input", countAmount);
 })
 
-console.log(chooseAll);
+// console.log(chooseAll);
 // console.log(shoppingCheckbox);
 
 

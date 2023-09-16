@@ -2249,3 +2249,18 @@ label[for="all"] span {
 	display: block;
 	opacity: 1;
 }
+
+.counter div:first-child,
+.counter div:last-child {
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;/
+}
+
+.counter div img {
+	padding: 15px 0;
+}
