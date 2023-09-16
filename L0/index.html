@@ -39,8 +39,17 @@
 			<h1>Корзина</h1>
 			<div class="on-hand-goods">
 				<div>
-					<input class="custom-checkbox" checked type="checkbox" name="all" id="all">
-					<label for="all"><span>Выбрать всё</span></label>
+					<div class="select-all">
+						<input class="custom-checkbox" checked type="checkbox" name="all" id="all">
+						<label for="all"><span>Выбрать всё</span></label>
+					</div>
+					<div class="number-of-products-and-cost">
+						<div>
+							<span>266 товаров</span>
+							<span> · </span>
+							<span>2 100 569 сом</span>
+						</div>
+					</div>
 				</div>
 				<div>
 					<button class="accordion-btn"><img src="src/images/arrow.svg" alt="arrow"></button>
@@ -49,7 +58,8 @@
 			<div class="line"></div>
 			<div class="shopping-cart">
 				<ul class="accordion__content open">
-					<li fullprice="1051" discountprice="522" left="2" class="shopping-cart-product">
+					<li fullprice="1051" discountprice="522" left="2" range='[{"amount":100,"range":[5,6]}]'
+						class="shopping-cart-product">
 
 						<div class="shopping-cart-first">
 							<input class="custom-checkbox" checked type="checkbox" name="1" id="1">

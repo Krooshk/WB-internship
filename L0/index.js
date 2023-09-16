@@ -376,7 +376,6 @@ function changeValuesInFinalSection() {
 
 	for (let [el, good] of arrayGoods) {
 		if (good.isChoosen) {
-			// console.log(good.count * good.fullprice);
 			final.countAllofGoods += good.count;
 			final.discountpriceAll += good.count * good.discountprice;
 			final.fullpriceAll += good.count * good.fullprice;
@@ -392,7 +391,23 @@ function changeValuesInFinalSection() {
 
 
 
+function countNumberOfGoodsAndCost() {
+	let countInaccordeon = document.querySelector('.number-of-products-and-cost span:first-child');
+	let priceInaccordeon = document.querySelector('.number-of-products-and-cost span:last-child');
+	let final = {
+		count: 0,
+		price: 0,
+	}
 
+	for (let [el, good] of arrayGoods) {
+		final.count += good.count;
+		final.price += good.count * good.discountprice;
+	}
+
+	countInaccordeon.textContent = Number(final.count) + " товаров";
+	priceInaccordeon.textContent = Math.floor(final.price) + " cом";
+
+}
 
 function countAmount() {
 	let goodsInCart = [...document.querySelectorAll('.shopping-cart ul>li.shopping-cart-product')];
@@ -410,6 +425,7 @@ function countAmount() {
 		arrayGoods.set(good, obj)
 	})
 	changeValuesInFinalSection();
+	countNumberOfGoodsAndCost();
 }
 countAmount();
 
@@ -475,6 +491,22 @@ function countForOneProduct(product) {
 }
 
 
+
+let accordeonButton = document.querySelector('.on-hand-goods button');
+
+accordeonButton.addEventListener("click", changeTextAccordeon);
+
+function changeTextAccordeon() {
+	let selectAll = document.querySelector(".select-all");
+	let numberOfProductsAndCost = document.querySelector(".number-of-products-and-cost");
+	if (accordeonButton.querySelector("img").classList.contains("rotate-180")) {
+		selectAll.style.display = "none";
+		numberOfProductsAndCost.style.display = "block";
+	} else {
+		selectAll.style.display = "block";
+		numberOfProductsAndCost.style.display = "none";
+	}
+}
 
 
 
