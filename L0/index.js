@@ -550,16 +550,7 @@ function formatString(str) {
 	return arrayOfPart.join(' ');
 }
 
-console.log(formatString("3"));
-console.log(formatString("63"));
-console.log(formatString("063"));
-console.log(formatString("1063"));
-console.log(formatString("01063"));
-console.log(formatString("101063"));
-console.log(formatString("2101063"));
-console.log(formatString("32101063"));
-console.log(formatString("432101063"));
-console.log(formatString("5432101063"));
+
 
 // DELIVERY WAY 
 

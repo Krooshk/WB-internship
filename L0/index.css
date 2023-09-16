@@ -637,7 +637,8 @@ footer {
 	position: relative;
 }
 
-.free::after {
+.free::after,
+.free1::after {
 	position: absolute;
 	content: url('src/images/line-dashed.svg');
 	left: 0px;
@@ -2226,12 +2227,14 @@ label[for="all"] span {
 	bottom: 25px;
 }
 
-.free {
+.free,
+.free1 {
 	cursor: pointer;
 }
 
 
-.free::before {
+.free::before,
+.free1::before {
 	content: "Если товары вам не подойдут, мы вернем их обратно на склад — это бесплатно";
 	position: absolute;
 	width: 288px;
@@ -2247,10 +2250,22 @@ label[for="all"] span {
 	display: none;
 }
 
-.free:hover.free::before {
+.for-free {
+	position: relative;
+}
+
+.free1::before {
+	z-index: 20;
+	top: 40px;
+	left: -35px;
+}
+
+.free:hover.free::before,
+.free1:hover.free1::before {
 	display: block;
 	opacity: 1;
 }
+
 
 .counter div:first-child,
 .counter div:last-child {
