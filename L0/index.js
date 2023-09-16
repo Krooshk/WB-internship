@@ -149,7 +149,6 @@ inputsFromForm.forEach((el) => {
 
 inputsFromForm.forEach((el) => {
 	el.addEventListener("input", (e) => {
-		console.log(e.target.name);
 		if (mistake.has(e.target.name)) {
 			checkInput(e.target)
 		}
@@ -286,7 +285,6 @@ buttonPopupDelivery.addEventListener("click", (e) => {
 		currentDeliveryWay.address = choosenAddress.nextElementSibling.children[0].textContent;
 		currentDeliveryWay.method = METHODS.courier;
 	}
-	console.log(pointDetails);
 	setAddress();
 })
 
@@ -325,6 +323,9 @@ let delIconsGoodsMissing = document.querySelectorAll('.missing-goods .deleteIcon
 delIconsGoodsOnHands.forEach(icon => {
 	icon.addEventListener("click", () => {
 		icon.closest('li.shopping-cart-product').remove();
+		let good = icon.closest('li.shopping-cart-product');
+		arrayGoods.delete(good);
+		countAmount();
 	})
 })
 delIconsGoodsMissing.forEach(icon => {
@@ -358,7 +359,7 @@ delIconsDeliveryPoint.forEach(icon => {
 
 // Work with final amount
 
-let arrayGoods = new Map();
+var arrayGoods = new Map();
 
 let finalAmount = document.querySelector('.final-amount');
 let numberOfProducts = document.querySelector('.number-of-products');
@@ -375,7 +376,7 @@ function changeValuesInFinalSection() {
 
 	for (let [el, good] of arrayGoods) {
 		if (good.isChoosen) {
-			console.log(good.count * good.fullprice);
+			// console.log(good.count * good.fullprice);
 			final.countAllofGoods += good.count;
 			final.discountpriceAll += good.count * good.discountprice;
 			final.fullpriceAll += good.count * good.fullprice;
@@ -390,10 +391,14 @@ function changeValuesInFinalSection() {
 [finalAmount, numberOfProducts, discount, fullAmount].forEach(el => el.textContent = "0");
 
 
-let goodsInCart = [...document.querySelectorAll('.shopping-cart ul>li.shopping-cart-product')];
+
 
 
 function countAmount() {
+	let goodsInCart = [...document.querySelectorAll('.shopping-cart ul>li.shopping-cart-product')];
+	goodsInCart.forEach(good => {
+		countForOneProduct(good);
+	})
 	goodsInCart.forEach(good => {
 		let obj = {
 			isChoosen: good.querySelector('.custom-checkbox').checked,
@@ -405,7 +410,6 @@ function countAmount() {
 		arrayGoods.set(good, obj)
 	})
 	changeValuesInFinalSection();
-	console.log('qwerty');
 }
 countAmount();
 
@@ -441,12 +445,6 @@ counterPlus.forEach((el) => {
 })
 
 
-
-
-
-console.log(counterMinus, counterPlus);
-
-
 chooseAll.addEventListener("click", (e) => {
 	let state = e.target.checked;
 	shoppingCheckbox.forEach(el => {
@@ -467,8 +465,14 @@ inputOfGoods.forEach(el => {
 	el.addEventListener("input", countAmount);
 })
 
-// console.log(chooseAll);
-// console.log(shoppingCheckbox);
+
+
+function countForOneProduct(product) {
+	let discount = product.querySelector('.shopping-cart-five div:first-child span');
+	let startCost = product.querySelector('.shopping-cart-five div:last-child del');
+	discount.textContent = Math.floor(product.getAttribute("discountprice") * product.querySelector(".counter input").value);
+	startCost.textContent = Math.floor(product.getAttribute("fullprice") * product.querySelector(".counter input").value) + " сом";
+}
 
 
 
