@@ -172,7 +172,7 @@ function checkInput(el, clickOnOrder = null) {
 
 
 	if ((!Boolean(value.match(allRegex[name]))) && (clickOnOrder || (value != ""))) {
-		if (name = "INN") {
+		if (name === "INN") {
 			hint.textContent = "Проверьте ИНН";
 			hint.style.color = "#F55123";
 		}
@@ -182,7 +182,7 @@ function checkInput(el, clickOnOrder = null) {
 		hint.classList.add('input-up-hint-active');
 		return false;
 	} else {
-		if (name = "INN") {
+		if (name === "INN") {
 			hint.textContent = "Для таможенного оформления";
 			hint.style.color = "#000";
 		}
