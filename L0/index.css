@@ -2329,3 +2329,56 @@ label[for="all"] span {
 #final-amount {
 	font-size: 24px;
 }
+
+.discount-explanation {
+	position: relative;
+}
+
+.discount-explanation>div {
+	cursor: pointer;
+	display: none;
+	position: absolute;
+	width: 240px;
+	height: 64px;
+	background-color: white;
+	right: 1px;
+	top: 20px;
+	z-index: 50;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.30), 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 8px;
+	padding: 11px 16px 13px 16px;
+}
+
+del {
+	cursor: pointer;
+}
+
+.discount-explanation:hover>div {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.discount-explanation-first-line {
+	padding-top: 8px;
+}
+
+
+.discount-explanation-first-line,
+.discount-explanation-second-line {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: #A0A0A4;
+	font-family: Segoe UI;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 16px;
+}
+
+.discount-explanation-first-line>div:last-child,
+.discount-explanation-second-line>div:last-child {
+	color: black;
+	margin-top: -15px;
+}
