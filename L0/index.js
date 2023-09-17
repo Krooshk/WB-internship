@@ -430,6 +430,7 @@ function countAmount() {
 	countNumberOfGoodsAndCost();
 	changeCountInIconCart();
 	changeDeliveryWayIcons();
+	highlightSigns();
 }
 countAmount();
 
@@ -607,7 +608,6 @@ function deleteRow() {
 	let rows = document.querySelectorAll(".delivery-way-day");
 
 	rows.forEach(row => {
-		console.log(row.querySelector('img'))
 		if (!row.querySelector('img')) {
 			let elem1 = row.parentElement;
 			let elem2 = elem1.previousElementSibling;
@@ -617,6 +617,30 @@ function deleteRow() {
 	})
 }
 
+
+// Highlight signs
+
+function highlightSigns() {
+	let products = document.querySelectorAll('li.shopping-cart-product')
+	console.log(products);
+	products.forEach(product => {
+		let count = arrayGoods.get(product).count;
+		let left = arrayGoods.get(product).left;
+		let minus = product.querySelector(".counter div:first-child img");
+		let plus = product.querySelector(".counter div:last-child img");
+		if (count === 1) {
+			minus.src = "src/images/counter/minusdim.svg";
+		} else {
+			minus.src = "src/images/counter/minus.svg";
+		}
+
+		if (left && left === count) {
+			plus.src = "src/images/counter/plusdim.svg";
+		} else {
+			plus.src = "src/images/counter/plus.svg";
+		}
+	})
+}
 
 
 
