@@ -416,6 +416,7 @@ function countAmount() {
 	})
 	goodsInCart.forEach(good => {
 		let obj = {
+			name: good.getAttribute("data-name"),
 			isChoosen: good.querySelector('.custom-checkbox').checked,
 			fullprice: Number(good.getAttribute('fullprice')),
 			discountprice: Number(good.getAttribute('discountprice')),
@@ -428,6 +429,7 @@ function countAmount() {
 	changeValuesInFinalSection();
 	countNumberOfGoodsAndCost();
 	changeCountInIconCart();
+	changeDeliveryWayIcons();
 }
 countAmount();
 
@@ -554,17 +556,74 @@ function formatString(str) {
 
 // DELIVERY WAY 
 
-let images = document.querySelectorAll(".product-item");
+
+
+function changeDeliveryWayIcons() {
+	let images = [...document.querySelectorAll(".product-item")];
+	let arrayForDelete = [];
+	let isTaken = false;
+
+
+	for (let image of images) {
+		let name = image.getAttribute("data-name");
+		let product = document.querySelector(`li.shopping-cart-product[data-name="${name}"]`);
+		if (!product) {
+			arrayForDelete.push(image);
+			continue;
+		}
+		let obj = arrayGoods.get(product);
+		if (!obj.limit) {
+			let numberOfGoods = obj.count;
+			image.nextElementSibling.textContent = obj.count;
+			image.nextElementSibling.style.opacity = numberOfGoods > 1 ? 1 : 0;
+		} else {
+			choosenNum(image, obj);
+		}
+
+
+
+	}
+	function choosenNum(image, obj) {
+		if (!isTaken) {
+			image.nextElementSibling.textContent = (Number(obj.limit) > Number(obj.count)) ? obj.count : obj.limit;
+			isTaken = true;
+			return;
+		}
+		let diff = Number(obj.count) - Number(obj.limit);
+		if (diff < 1) {
+			image.parentElement.remove();
+		} else {
+			image.nextElementSibling.style.opacity = diff > 1 ? 1 : 0;
+			image.nextElementSibling.textContent = Number(obj.count) - Number(obj.limit);
+		}
+	}
+	arrayForDelete.forEach(el => el.parentElement.remove());
+	deleteRow();
+}
+
+
+
+function deleteRow() {
+	let rows = document.querySelectorAll(".delivery-way-day");
+
+	rows.forEach(row => {
+		console.log(row.querySelector('img'))
+		if (!row.querySelector('img')) {
+			let elem1 = row.parentElement;
+			let elem2 = elem1.previousElementSibling;
+			elem1.remove();
+			elem2.remove();
+		}
+	})
+}
 
 
 
 
 
-console.log(arrayGoods);
 
 
 
-console.log(images);
 
 
 

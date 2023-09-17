@@ -58,7 +58,7 @@
 			<div class="line"></div>
 			<div class="shopping-cart">
 				<ul class="accordion__content open">
-					<li fullprice="1051" discountprice="522" left="2" range='[{"amount":100,"range":[5,6]}]'
+					<li data-name="t-shirt" fullprice="1051" discountprice="522" left="2"
 						class="shopping-cart-product">
 
 						<div class="shopping-cart-first">
@@ -145,8 +145,8 @@
 					</li>
 
 
-					<li limit="184" fullprice="11500.235" discountprice="10500.235" left="1000" style="padding-top: 3px;"
-						class="shopping-cart-product">
+					<li data-name="mobile" limit="184" fullprice="11500.235" discountprice="10500.235" left="1000"
+						style="padding-top: 3px;" class="shopping-cart-product">
 						<div class="shopping-cart-first">
 							<input class="custom-checkbox" checked type="checkbox" name="2" id="2">
 							<label for="2"></label>
@@ -231,7 +231,7 @@
 						<div class="line line-mobile"></div>
 					</li>
 
-					<li fullprice="475" discountprice="247" left="2" class="shopping-cart-product">
+					<li data-name="pen" fullprice="475" discountprice="247" left="2" class="shopping-cart-product">
 						<div class="shopping-cart-first">
 							<input class="custom-checkbox" checked type="checkbox" name="3" id="3">
 							<label for="3"></label>
@@ -481,20 +481,20 @@
 						<h4>5—6 февраля</h4>
 					</div>
 					<div>
-						<div class="delivery-way-day1-goods">
+						<div class="delivery-way-day1-goods delivery-way-day">
 							<div>
-								<img data-name="t-shirt" class="product-item" src="src/images/goods/tshirt.png" width="40px" height="56px"
-									alt="tshirt">
+								<img data-name="t-shirt" class="product-item" src="src/images/goods/tshirt.png"
+									width="40px" height="56px" alt="tshirt">
 								<div class="product-item-count">345</div>
 							</div>
 							<div>
-								<img data-name="mobile" class="product-item" src="src/images/goods/mobile.png" width="40px" height="56px"
-									alt="mobile">
+								<img data-name="mobile" class="product-item" src="src/images/goods/mobile.png"
+									width="40px" height="56px" alt="mobile">
 								<div class="product-item-count">345</div>
 							</div>
 							<div>
-								<img data-name="pen" class="product-item" src="src/images/goods/pens.png" width="40px" height="56px"
-									alt="pens">
+								<img data-name="pen" class="product-item" src="src/images/goods/pens.png" width="40px"
+									height="56px" alt="pens">
 								<div class="product-item-count">345</div>
 							</div>
 						</div>
@@ -503,10 +503,10 @@
 						<h4>7—8 февраля</h4>
 					</div>
 					<div>
-						<div class="delivery-way-day2-goods">
+						<div class="delivery-way-day2-goods delivery-way-day">
 							<div>
-								<img data-name="t-shirt" class="product-item" src="src/images/goods/mobile.png" width="40px" height="56px"
-									alt="mobile">
+								<img data-name="mobile" class="product-item" src="src/images/goods/mobile.png"
+									width="40px" height="56px" alt="mobile">
 								<div class="product-item-count">345</div>
 							</div>
 
@@ -597,7 +597,8 @@
 
 			<div class="section-final-six">
 				<div><img src="src/images/priceShipping.svg" alt="okey"></div>
-				<div class="for-free">Обратная доставка товаров на склад при отказе — <span class="free1">бесплатно</span></div>
+				<div class="for-free">Обратная доставка товаров на склад при отказе — <span
+						class="free1">бесплатно</span></div>
 			</div>
 
 			<div class="section-final-seven">
