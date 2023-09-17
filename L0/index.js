@@ -78,7 +78,7 @@ let finalButton = document.querySelector('.section-final-button button');
 checkboxPay.addEventListener("change", () => {
 	if (checkboxPay.checked) {
 		let finalSumm = document.querySelector('.section-final-first div:last-child');
-		finalButton.innerHTML = "Оплатить " + finalSumm.innerHTML;
+		finalButton.innerHTML = "Оплатить " + finalSumm.textContent;
 	} else {
 		finalButton.innerHTML = "Заказать";
 	}
