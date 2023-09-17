@@ -512,11 +512,12 @@ footer {
 .delivery-way {
 	position: relative;
 	width: 100%;
-	height: 362px;
+	height: auto;
+	/* height: 362px; */
 	background-color: white;
 	border-radius: 16px;
 	margin: 6px 16px 16px 0px;
-	padding: 16px 24px 28px 24px;
+	padding: 16px 24px 70px 24px;
 }
 
 .delivery-way-first {
@@ -1791,6 +1792,7 @@ label[for="all"] span {
 		padding-left: 16px;
 		padding-right: 16px;
 		height: auto;
+		padding-bottom: 28px;
 	}
 
 	.delivery-way-table-4x2 {
@@ -2317,5 +2319,8 @@ label[for="all"] span {
 	line-height: 18px;
 	border-radius: 16px;
 	padding: 0 4px;
+}
 
+#final-amount {
+	font-size: 24px;
 }
