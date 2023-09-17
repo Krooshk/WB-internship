@@ -132,8 +132,8 @@ function getFormValue(form) {
 }
 
 const allRegex = {
-	firstName: /^(?:[a-zA-Z]+|[а-яА-Я]+)$/,
-	secondName: /^(?:[a-zA-Z]+|[а-яА-Я]+)$/,
+	firstName: /^(?:[a-zA-Z]+|[а-яА-ЯЁё]+)$/,
+	secondName: /^(?:[a-zA-Z]+|[а-яА-ЯЁё]+)$/,
 	mail: /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
 	tel: /^\+\d+ \d{3} \d{3} \d{2} \d{2}$/,
 	INN: /^\d{14}$/,
@@ -172,12 +172,20 @@ function checkInput(el, clickOnOrder = null) {
 
 
 	if ((!Boolean(value.match(allRegex[name]))) && (clickOnOrder || (value != ""))) {
+		if (name = "INN") {
+			hint.textContent = "Проверьте ИНН";
+			hint.style.color = "#F55123";
+		}
 		el.style.color = "#F55123";
 		el.style.borderBottom = "1px solid #F55123";
 		mistake.add(name);
 		hint.classList.add('input-up-hint-active');
 		return false;
 	} else {
+		if (name = "INN") {
+			hint.textContent = "Для таможенного оформления";
+			hint.style.color = "#000";
+		}
 		el.style.color = "#9797AF";
 		mistake.delete(name);
 		el.style.borderBottom = "1px solid rgba(0, 0, 0, 0.20)";
