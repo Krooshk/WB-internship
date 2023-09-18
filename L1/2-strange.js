@@ -6,13 +6,13 @@
 function strange(num) {
 	let sum = 0;
 
-	for (let i = 1; i < num; i ++) {  // go from 1 to (num -1) and check is this number a divisor
+	for (let i = 1; i < num; i++) {  // идем от 1 до (num -1) и проверяем является ли i делителем
 		if (num % i === 0) {
-			sum += i; // if this i is divisor then add value to the sum
+			sum += i; // если это число делитель добавляем его к сумме
 		}
 	}
 
-	return num === sum; // return comparing the amount with the original number 
+	return num === sum; // возвращаем сравнение изначального числа и суммы делителей 
 
 }
 

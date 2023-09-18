@@ -13,26 +13,24 @@ console.log(sortObj([
 	{ name: 'Anton', age: 30 },
 	{ name: 'Boris', age: 30 },]))
 
-	// I use standard method of Array - sort, key moment in this method is using comparator
-	// comparator is callback, which must return one of three possible value (Positive, Negative numbers or zero)
-	// Zero if a case equivalent
-	//  Positive number if first number bigger than second number, in this case we have to make twist 
-	//  Negative number if first number smaller than second number, in this case we do nothing
+// Я использовал стандартный метод массивов - sort, ключевой момент в этом методе использование компаратора внутри
+// comparator это функция - callback, которая должна вернуть один и трех вариантов  (Положительное число, Отрицательное число либо ноль)
+// ноль - в случае эквивалентности 
+//  Положительное число - если первое число больше второго, в этом случае меняем местами  
+//  Отрицательное число если первое число меньше второго, в этом случае не меняем местами
 
-
-	function sortObj(arr){
-		return arr.sort((a,b) => {
-			if (a.age === b.age){
-				if (a.name === b.name){
-					return 0
-				} 
-				if (a.name > b.name) {
-					return 1
-				} else { return -1}
-			} else {
-				return a.age - b.age
+function sortObj(arr) {
+	return arr.sort((a, b) => {
+		if (a.age === b.age) {
+			if (a.name === b.name) {
+				return 0
 			}
-		})
-	}
+			if (a.name > b.name) {
+				return 1
+			} else { return -1 }
+		} else {
+			return a.age - b.age
+		}
+	})
+}
 
-	
