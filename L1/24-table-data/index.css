@@ -1,0 +1,91 @@
+table {
+	border: 1px solid #eee;
+	table-layout: fixed;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+}
+
+table td {
+	padding: 5px 10px;
+	border: 1px solid #eee;
+	text-align: left;
+}
+
+table tbody tr:nth-child(odd) {
+	background: #fff;
+}
+
+table tbody tr:nth-child(even) {
+	background: #F7F7F7;
+}
+
+.pagination {
+	width: 200px;
+	display: flex;
+	margin: 0 auto;
+}
+
+input {
+	box-sizing: border-box;
+	height: 100%;
+	margin-inline-end: 8px;
+	padding: 0 6px;
+	text-align: center;
+	background-color: #ffffff;
+	border: 1px solid #d9d9d9;
+	border-radius: 6px;
+	outline: none;
+	transition: border-color 0.2s;
+	color: inherit;
+	font-size: 14px;
+	width: 30px;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.pagination {
+	font-size: 16px;
+}
+
+.center {
+	display: flex;
+	width: 70px;
+	margin: 0 5px;
+}
+
+.center div {
+	font-size: 20px;
+}
+
+.left,
+.right {
+	padding-top: 2px;
+	background-color: #efefef;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	border-radius: 8px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.isEdge {
+	color: rgba(0, 0, 0, 0.25);
+}
+
+
+.column {
+	cursor: pointer;
+}
