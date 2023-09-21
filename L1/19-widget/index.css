@@ -11,7 +11,7 @@ body {
 	border-radius: 25px;
 	overflow-y: auto;
 	font-size: 16px;
-
+	overflow-x: hidden;
 }
 
 .post {
@@ -45,6 +45,7 @@ img {
 }
 
 .image img {
+	max-width: 510px;
 	max-height: 510px;
 	display: block;
 	object-fit: cover;
