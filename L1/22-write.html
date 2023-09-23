@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>var i = 0</script>
+	<div id="uniqid">
+		<script>let i = 0</script>
+		<span></span>
+		<script language="JavaScript" type="text/JavaScript">
+		document.querySelector('#uniqid span').textContent = ++i;
+        document.write(document.getElementById('uniqid').innerHTML);
+		</script>
+	</div>
+</body>
+
+</html>
+
+// document.write можно вызвать 21 раз, это ограничение браузера. 
+// Код выше выведет 232 числа
+// Инкремент позволяет увидит арифметическую прогрессию 1 | 1 2 | 1 2 3| 1 2 3 4| и так далее до 21
+// 232 числа получается из формулы 21(21+1)/2 = 231 ----> + одно число изначальное , итого 232
