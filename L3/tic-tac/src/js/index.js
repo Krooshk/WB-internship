@@ -7,12 +7,20 @@ let restartBtn = document.getElementById("restart");
 let wrapper = document.querySelector(".wrapper");
 let btnMode = document.querySelector('#button-16 input');
 let modeBlock = document.querySelector('.mode');
+let btnGameWithFriend = document.querySelector('.btn-game-with-friend');
+let btnGameWithComp = document.querySelector('.btn-game-with-comp');
+let startPage = document.querySelector('.start-page');
 
 
-let isOpponentComp = false;
-let xTurn = true;
-let count = 0;
-let origBoard = Array.from(Array(9).keys());;
+let stateOftheGame = {
+	isStartPage: true,
+	isOpponentComp: false,
+	xTurn: true,
+	count: 0,
+	origBoard: Array.from(Array(9).keys()),
+	isEasyMode: true,
+}
+
 
 const enableButtons = () => {
 	btnRef.forEach((element) => {
@@ -28,6 +36,30 @@ const disableButtons = () => {
 	});
 };
 
+const drawFunction = () => {
+	[...btnRef].forEach(el => el.style.backgroundColor = '#31643e80')
+};
+
+const winChecker = () => {
+	saveLocaleStorage();
+	for (let i of winningPattern) {
+		let [element1, element2, element3] = [
+			btnRef[i[0]].innerText,
+			btnRef[i[1]].innerText,
+			btnRef[i[2]].innerText,
+		];
+
+		if (element1 != "" && (element2 != "") & (element3 != "")) {
+			if (element1 == element2 && element2 == element3) {
+				// console.log(i, element1);
+				winFunction(i, element1);
+				return true;
+			}
+		}
+	}
+	return false;
+};
+
 const winFunction = (pattern, element1) => {
 	disableButtons();
 	let btns = [...btnRef].filter((el, index) => {
@@ -40,110 +72,113 @@ const winFunction = (pattern, element1) => {
 
 };
 
-const drawFunction = () => {
-	[...btnRef].forEach(el => el.style.backgroundColor = '#31643e80')
-};
+
+if (localStorage.getItem('state')) {
+	let btns = [...btnRef];
+	stateOftheGame = JSON.parse(localStorage.getItem('state'));
+	btnMode.checked = stateOftheGame.isEasyMode;
+	console.log(stateOftheGame)
+	if (!stateOftheGame.isStartPage) {
+		showPlayground(true);
+		if (stateOftheGame.isOpponentComp) {
+			modeBlock.classList.add('active');
+		} else {
+			modeBlock.classList.remove('active');
+		}
+	} else {
+		showPlayground(false);
+	}
+	let countOfElements = 0;
+	stateOftheGame.origBoard.forEach((el, index) => {
+		if (el === "X") {
+			fill_X(btns[index], index);
+			countOfElements++;
+		}
+		if (el === "O") {
+			fill_O(btns[index], index);
+			countOfElements++;
+		}
+	})
+	stateOftheGame.xTurn = countOfElements % 2 === 0 ? true : false;
+	winChecker();
+
+}
+
+
 
 function resetToZero() {
 	document.body.style.pointerEvents = "auto";
-	count = 0;
-	origBoard = Array.from(Array(9).keys());;
+	stateOftheGame.count = 0;
+	stateOftheGame.origBoard = Array.from(Array(9).keys());
+	stateOftheGame.xTurn = true;
 	enableButtons();
-	xTurn = true;
+	saveLocaleStorage();
+
 }
 
 restartBtn.addEventListener("click", resetToZero);
 
-const winChecker = () => {
 
-	for (let i of winningPattern) {
-		let [element1, element2, element3] = [
-			btnRef[i[0]].innerText,
-			btnRef[i[1]].innerText,
-			btnRef[i[2]].innerText,
-		];
 
-		if (element1 != "" && (element2 != "") & (element3 != "")) {
-			if (element1 == element2 && element2 == element3) {
-				console.log(i, element1);
-				winFunction(i, element1);
-				return true;
-			}
-		}
-	}
-	return false;
-};
-
-btnRef.forEach((element) => {
-	element.addEventListener("click", () => {
-		if (xTurn) {
-			origBoard[Number(element.id)] = "X";
-			xTurn = false;
-			//Display X
-			element.innerText = "X";
-			element.style.color = "#BD5532";
-			element.disabled = true;
+btnRef.forEach((btn) => {
+	btn.addEventListener("click", () => {
+		if (stateOftheGame.xTurn) {
+			fill_X(btn, Number(btn.id));
 		} else {
-			origBoard[Number(element.id)] = "O";
-			xTurn = true;
-			element.innerText = "O";
-			element.style.color = "#2b243c";
-			element.disabled = true;
+			fill_O(btn, Number(btn.id));
 		}
-		console.log(origBoard);
-
+		stateOftheGame.count += 1;
+		// console.log(origBoard);
 		let isWin = winChecker();
+		let hasFreeSquares = stateOftheGame.count < 9;
 
-		count += 1;
-		if (count == 9) {
+		if (!hasFreeSquares) {
 			document.body.style.pointerEvents = "auto";
 			if (!isWin) {
 				drawFunction();
 			}
 		}
 
-		if ((count < 9) && isOpponentComp && !isWin) {
-			document.body.style.pointerEvents = "none";
-			document.body.disabled = true;
-			setTimeout(() => {
-				if (!xTurn) {
-					let btns = [...document.querySelectorAll('.button-option')];
-					randomStepComputer(btns);
-				}
-				document.body.style.pointerEvents = "auto";
-			}, 700);
+		if (hasFreeSquares && stateOftheGame.isOpponentComp && !isWin) {
+			launchComputer();
 		}
 
 	});
 });
 
 
-window.onload = enableButtons;
 
-let btnGameWithFriend = document.querySelector('.btn-game-with-friend');
-let btnGameWithComp = document.querySelector('.btn-game-with-comp');
-let startPage = document.querySelector('.start-page');
 
 btnGameWithFriend.addEventListener("click", () => {
-	isOpponentComp = false;
-	startPage.style.display = "none";
-	wrapper.style.display = "block";
+	showPlayground(true);
+	stateOftheGame.isOpponentComp = false;
+	stateOftheGame.isStartPage = false;
+	saveLocaleStorage();
 	resetToZero();
 })
 
 btnGameWithComp.addEventListener("click", () => {
-	isOpponentComp = true;
-	startPage.style.display = "none";
-	wrapper.style.display = "block";
+	showPlayground(true);
+	stateOftheGame.isOpponentComp = true;
+	stateOftheGame.isStartPage = false;
+	saveLocaleStorage();
 	modeBlock.classList.add('active');
 	resetToZero();
 })
 
 let home = document.querySelector('.home');
 home.addEventListener("click", () => {
-	startPage.style.display = "flex";
-	wrapper.style.display = "none";
+	showPlayground(false);
+	stateOftheGame.isStartPage = true;
+	stateOftheGame.isOpponentComp = false;
+	saveLocaleStorage();
 	modeBlock.classList.remove('active');
+})
+console.log(btnMode.checked);
+
+btnMode.addEventListener("change", (e) => {
+	stateOftheGame.isEasyMode = e.target.checked;
+	saveLocaleStorage();
 })
 
 
@@ -155,28 +190,18 @@ function randomStepComputer(btns) {
 	// console.log(minimax(origBoard, 'O'));
 
 	if (!btnMode.checked) {
-		let index = minimax(origBoard, 'O').index;
-		origBoard[index] = "O";
-		console.log(index);
+		let index = minimax(stateOftheGame.origBoard, 'O').index;
 		let element = btns[index];
-		xTurn = true;
-		element.innerText = "O";
-		element.style.color = "#2b243c";
-		element.disabled = true;
-
+		fill_O(element, index);
 	} else {
 		btns = btns.filter((el) => el.disabled === false);
 		let randomNum = Math.floor(Math.random() * btns.length);
 		let element = btns[randomNum];
-		origBoard[Number(element.id)] = "O";
-		xTurn = true;
-		element.innerText = "O";
-		element.style.color = "#2b243c";
-		element.disabled = true;
+		fill_O(element, Number(element.id));
 	}
 
-	count += 1;
-	if (count == 9) {
+	stateOftheGame.count += 1;
+	if (stateOftheGame.count == 9) {
 		document.body.style.pointerEvents = "auto";
 		let isWinOnLastStep = winFunction();
 		if (!isWinOnLastStep) {
@@ -186,11 +211,50 @@ function randomStepComputer(btns) {
 	winChecker();
 }
 
+function launchComputer() {
+	document.body.style.pointerEvents = "none";
+	document.body.disabled = true;
+	setTimeout(() => {
+		if (!stateOftheGame.xTurn) {
+			let btns = [...document.querySelectorAll('.button-option')];
+			randomStepComputer(btns);
+		}
+		document.body.style.pointerEvents = "auto";
+	}, 700);
+}
 
+function fill_O(element, index) {
+	stateOftheGame.origBoard[index] = "O";
+	stateOftheGame.xTurn = true;
+	console.log(stateOftheGame.xTurn);
+	element.innerText = "O";
+	element.style.color = "#2b243c";
+	element.disabled = true;
+}
+
+function fill_X(element, index) {
+	stateOftheGame.origBoard[index] = "X";
+	stateOftheGame.xTurn = false;
+	element.innerText = "X";
+	element.style.color = "#BD5532";
+	element.disabled = true;
+}
+
+function showPlayground(flag) {
+	if (flag) {
+		startPage.style.display = "none";
+		wrapper.style.display = "block";
+		stateOftheGame.isStartPage = false;
+	} else {
+		stateOftheGame.isStartPage = true;
+		startPage.style.display = "flex";
+		wrapper.style.display = "none";
+	}
+}
 
 function minimax(newBoard, player) {
 
-	var availSpots = emptySquares(origBoard);
+	var availSpots = emptySquares(stateOftheGame.origBoard);
 	if (checkWin(newBoard, "X")) {
 		return { score: -10 };
 	} else if (checkWin(newBoard, "O")) {
@@ -240,9 +304,7 @@ function minimax(newBoard, player) {
 
 }
 
-
 function checkWin(board, player) {
-
 	let plays = board.reduce((a, e, i) =>
 		(e === player) ? a.concat(i) : a, []);
 
@@ -257,9 +319,11 @@ function checkWin(board, player) {
 	return gameWon;
 }
 
-
 function emptySquares(origBoard) {
 	return origBoard.filter(s => typeof s === 'number');
 }
 
+function saveLocaleStorage() {
+	localStorage.setItem('state', JSON.stringify(stateOftheGame));
+}
 
