@@ -1,16 +1,9 @@
-// import  randomStepComputer  from './randomStepComputer.js';
-// import { minimax } from './minimax.js';
-import { winningPattern } from './variables.js';
-
-let btnRef = document.querySelectorAll(".button-option");
-let restartBtn = document.getElementById("restart");
-let wrapper = document.querySelector(".wrapper");
-let btnMode = document.querySelector('#button-16 input');
-let modeBlock = document.querySelector('.mode');
-let btnGameWithFriend = document.querySelector('.btn-game-with-friend');
-let btnGameWithComp = document.querySelector('.btn-game-with-comp');
-let startPage = document.querySelector('.start-page');
-
+import { winningPattern, btnRef, restartBtn, wrapper, btnMode, modeBlock, btnGameWithFriend, btnGameWithComp, startPage, home } from './variables.js';
+import { checkWin } from './checkWin.js'
+import { showPlayground } from './showPlayground.js'
+import { fill_O, fill_X } from './fill.js'
+import { enableButtons, disableButtons, drawFunction } from './workWithButtons.js'
+import { saveLocaleStorage } from './saveLocalStorage.js'
 
 let stateOftheGame = {
 	isStartPage: true,
@@ -21,27 +14,8 @@ let stateOftheGame = {
 	isEasyMode: true,
 }
 
-
-const enableButtons = () => {
-	btnRef.forEach((element) => {
-		element.innerText = "";
-		element.disabled = false;
-		element.style.backgroundColor = "white";
-	});
-};
-
-const disableButtons = () => {
-	btnRef.forEach((element) => {
-		element.disabled = true;
-	});
-};
-
-const drawFunction = () => {
-	[...btnRef].forEach(el => el.style.backgroundColor = '#31643e80')
-};
-
 const winChecker = () => {
-	saveLocaleStorage();
+	saveLocaleStorage(stateOftheGame);
 	for (let i of winningPattern) {
 		let [element1, element2, element3] = [
 			btnRef[i[0]].innerText,
@@ -51,7 +25,6 @@ const winChecker = () => {
 
 		if (element1 != "" && (element2 != "") & (element3 != "")) {
 			if (element1 == element2 && element2 == element3) {
-				// console.log(i, element1);
 				winFunction(i, element1);
 				return true;
 			}
@@ -61,7 +34,7 @@ const winChecker = () => {
 };
 
 const winFunction = (pattern, element1) => {
-	disableButtons();
+	disableButtons(btnRef);
 	let btns = [...btnRef].filter((el, index) => {
 		if (pattern.includes(index)) {
 			return el;
@@ -69,7 +42,6 @@ const winFunction = (pattern, element1) => {
 	})
 	let color = element1 === "X" ? "#bd553280" : "#363b4480";
 	btns.forEach(el => el.style.backgroundColor = color);
-
 };
 
 
@@ -79,23 +51,23 @@ if (localStorage.getItem('state')) {
 	btnMode.checked = stateOftheGame.isEasyMode;
 	console.log(stateOftheGame)
 	if (!stateOftheGame.isStartPage) {
-		showPlayground(true);
+		showPlayground(true, stateOftheGame);
 		if (stateOftheGame.isOpponentComp) {
 			modeBlock.classList.add('active');
 		} else {
 			modeBlock.classList.remove('active');
 		}
 	} else {
-		showPlayground(false);
+		showPlayground(false, stateOftheGame);
 	}
 	let countOfElements = 0;
 	stateOftheGame.origBoard.forEach((el, index) => {
 		if (el === "X") {
-			fill_X(btns[index], index);
+			fill_X(btns[index], index, stateOftheGame);
 			countOfElements++;
 		}
 		if (el === "O") {
-			fill_O(btns[index], index);
+			fill_O(btns[index], index, stateOftheGame);
 			countOfElements++;
 		}
 	})
@@ -104,38 +76,30 @@ if (localStorage.getItem('state')) {
 
 }
 
-
-
 function resetToZero() {
 	document.body.style.pointerEvents = "auto";
 	stateOftheGame.count = 0;
 	stateOftheGame.origBoard = Array.from(Array(9).keys());
 	stateOftheGame.xTurn = true;
-	enableButtons();
-	saveLocaleStorage();
-
+	enableButtons(btnRef);
+	saveLocaleStorage(stateOftheGame);
 }
-
-restartBtn.addEventListener("click", resetToZero);
-
-
 
 btnRef.forEach((btn) => {
 	btn.addEventListener("click", () => {
 		if (stateOftheGame.xTurn) {
-			fill_X(btn, Number(btn.id));
+			fill_X(btn, Number(btn.id), stateOftheGame);
 		} else {
-			fill_O(btn, Number(btn.id));
+			fill_O(btn, Number(btn.id), stateOftheGame);
 		}
 		stateOftheGame.count += 1;
-		// console.log(origBoard);
 		let isWin = winChecker();
 		let hasFreeSquares = stateOftheGame.count < 9;
 
 		if (!hasFreeSquares) {
 			document.body.style.pointerEvents = "auto";
 			if (!isWin) {
-				drawFunction();
+				drawFunction(btnRef);
 			}
 		}
 
@@ -147,38 +111,36 @@ btnRef.forEach((btn) => {
 });
 
 
-
+restartBtn.addEventListener("click", resetToZero);
 
 btnGameWithFriend.addEventListener("click", () => {
-	showPlayground(true);
+	showPlayground(true, stateOftheGame);
 	stateOftheGame.isOpponentComp = false;
 	stateOftheGame.isStartPage = false;
-	saveLocaleStorage();
+	saveLocaleStorage(stateOftheGame);
 	resetToZero();
 })
 
 btnGameWithComp.addEventListener("click", () => {
-	showPlayground(true);
+	showPlayground(true, stateOftheGame);
 	stateOftheGame.isOpponentComp = true;
 	stateOftheGame.isStartPage = false;
-	saveLocaleStorage();
+	saveLocaleStorage(stateOftheGame);
 	modeBlock.classList.add('active');
 	resetToZero();
 })
 
-let home = document.querySelector('.home');
 home.addEventListener("click", () => {
-	showPlayground(false);
+	showPlayground(false, stateOftheGame);
 	stateOftheGame.isStartPage = true;
 	stateOftheGame.isOpponentComp = false;
-	saveLocaleStorage();
+	saveLocaleStorage(stateOftheGame);
 	modeBlock.classList.remove('active');
 })
-console.log(btnMode.checked);
 
 btnMode.addEventListener("change", (e) => {
 	stateOftheGame.isEasyMode = e.target.checked;
-	saveLocaleStorage();
+	saveLocaleStorage(stateOftheGame);
 })
 
 
@@ -192,12 +154,12 @@ function randomStepComputer(btns) {
 	if (!btnMode.checked) {
 		let index = minimax(stateOftheGame.origBoard, 'O').index;
 		let element = btns[index];
-		fill_O(element, index);
+		fill_O(element, index, stateOftheGame);
 	} else {
 		btns = btns.filter((el) => el.disabled === false);
 		let randomNum = Math.floor(Math.random() * btns.length);
 		let element = btns[randomNum];
-		fill_O(element, Number(element.id));
+		fill_O(element, Number(element.id), stateOftheGame);
 	}
 
 	stateOftheGame.count += 1;
@@ -205,7 +167,7 @@ function randomStepComputer(btns) {
 		document.body.style.pointerEvents = "auto";
 		let isWinOnLastStep = winFunction();
 		if (!isWinOnLastStep) {
-			drawFunction();
+			drawFunction(btnRef);
 		}
 	}
 	winChecker();
@@ -223,41 +185,13 @@ function launchComputer() {
 	}, 700);
 }
 
-function fill_O(element, index) {
-	stateOftheGame.origBoard[index] = "O";
-	stateOftheGame.xTurn = true;
-	console.log(stateOftheGame.xTurn);
-	element.innerText = "O";
-	element.style.color = "#2b243c";
-	element.disabled = true;
-}
-
-function fill_X(element, index) {
-	stateOftheGame.origBoard[index] = "X";
-	stateOftheGame.xTurn = false;
-	element.innerText = "X";
-	element.style.color = "#BD5532";
-	element.disabled = true;
-}
-
-function showPlayground(flag) {
-	if (flag) {
-		startPage.style.display = "none";
-		wrapper.style.display = "block";
-		stateOftheGame.isStartPage = false;
-	} else {
-		stateOftheGame.isStartPage = true;
-		startPage.style.display = "flex";
-		wrapper.style.display = "none";
-	}
-}
 
 function minimax(newBoard, player) {
 
 	var availSpots = emptySquares(stateOftheGame.origBoard);
-	if (checkWin(newBoard, "X")) {
+	if (checkWin(newBoard, "X", winningPattern)) {
 		return { score: -10 };
-	} else if (checkWin(newBoard, "O")) {
+	} else if (checkWin(newBoard, "O", winningPattern)) {
 		return { score: 10 };
 	} else if (availSpots.length === 0) {
 		return { score: 0 };
@@ -304,26 +238,8 @@ function minimax(newBoard, player) {
 
 }
 
-function checkWin(board, player) {
-	let plays = board.reduce((a, e, i) =>
-		(e === player) ? a.concat(i) : a, []);
-
-	let gameWon = null;
-
-	for (let [index, win] of winningPattern.entries()) {
-		if (win.every(elem => plays.indexOf(elem) > -1)) {
-			gameWon = { index: index, player: player };
-			break;
-		}
-	}
-	return gameWon;
-}
-
 function emptySquares(origBoard) {
 	return origBoard.filter(s => typeof s === 'number');
 }
 
-function saveLocaleStorage() {
-	localStorage.setItem('state', JSON.stringify(stateOftheGame));
-}
 
