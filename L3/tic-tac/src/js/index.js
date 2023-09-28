@@ -1,14 +1,17 @@
+// import  randomStepComputer  from './randomStepComputer.js';
+
+
 let btnRef = document.querySelectorAll(".button-option");
-let popupRef = document.querySelector(".popup");
-let newgameBtn = document.getElementById("new-game");
 let restartBtn = document.getElementById("restart");
-let msgRef = document.getElementById("message");
 let wrapper = document.querySelector(".wrapper");
 let btnMode = document.querySelector('#button-16');
 let modeBlock = document.querySelector('.mode');
 
+let isOpponentComp = false;
+let xTurn = true;
+let count = 0;
 
-//Winning Pattern Array
+
 let winningPattern = [
 	[0, 1, 2],
 	[0, 3, 6],
@@ -21,34 +24,34 @@ let winningPattern = [
 ];
 
 
-
-let isOpponentComp = false;
-let xTurn = true;
-let count = 0;
-
-
 const enableButtons = () => {
 	btnRef.forEach((element) => {
 		element.innerText = "";
 		element.disabled = false;
+		element.style.backgroundColor = "white";
 	});
-	popupRef.classList.add("hide");
 };
 
-const winFunction = (letter) => {
-	resetToZero();
-	popupRef.classList.remove("hide");
-	if (letter == "X") {
-		msgRef.innerHTML = "'X' Победил";
-	} else {
-		msgRef.innerHTML = "'O' Победил";
-	}
+const disableButtons = () => {
+	btnRef.forEach((element) => {
+		element.disabled = true;
+	});
+};
+
+const winFunction = (pattern, element1) => {
+	disableButtons();
+	let btns = [...btnRef].filter((el, index) => {
+		if (pattern.includes(index)) {
+			return el;
+		}
+	})
+	let color = element1 === "X" ? "#bd553280" : "#363b4480";
+	btns.forEach(el => el.style.backgroundColor = color);
+
 };
 
 const drawFunction = () => {
-	resetToZero();
-	popupRef.classList.remove("hide");
-	msgRef.innerHTML = "Ничья";
+	[...btnRef].forEach(el => el.style.backgroundColor = '#31643e80')
 };
 
 function resetToZero() {
@@ -58,7 +61,6 @@ function resetToZero() {
 	xTurn = true;
 }
 
-newgameBtn.addEventListener("click", resetToZero);
 restartBtn.addEventListener("click", resetToZero);
 
 const winChecker = () => {
@@ -72,7 +74,8 @@ const winChecker = () => {
 
 		if (element1 != "" && (element2 != "") & (element3 != "")) {
 			if (element1 == element2 && element2 == element3) {
-				winFunction(element1);
+				console.log(i, element1);
+				winFunction(i, element1);
 				return true;
 			}
 		}
@@ -106,20 +109,20 @@ btnRef.forEach((element) => {
 				drawFunction();
 			}
 		}
+		winChecker();
 		//Check for win on every click
 		if ((count < 9) && isOpponentComp) {
 			document.body.style.pointerEvents = "none";
 			document.body.disabled = true;
 			setTimeout(() => {
 				if (!xTurn) {
-					stepComputer();
+					let btns = [...document.querySelectorAll('.button-option')];
+					randomStepComputer(btns, xTurn, count, winChecker, winFunction, drawFunction);
 				}
 				document.body.style.pointerEvents = "auto";
 			}, 700);
 		}
 
-
-		winChecker();
 	});
 });
 //Enable Buttons and disable popup on page load
@@ -130,7 +133,7 @@ let btnGameWithComp = document.querySelector('.btn-game-with-comp');
 let startPage = document.querySelector('.start-page');
 
 btnGameWithFriend.addEventListener("click", () => {
-	isOpponentComp = false;;
+	isOpponentComp = false;
 	startPage.style.display = "none";
 	wrapper.style.display = "block";
 	resetToZero();
@@ -155,9 +158,11 @@ home.addEventListener("click", () => {
 })
 
 
-function stepComputer() {
-	let btns = [...document.querySelectorAll('.button-option')];
+function randomStepComputer(btns) {
 	btns = btns.filter((el) => el.disabled === false);
+	if (btns.length === 0) {
+		return;
+	}
 	let randomNum = Math.floor(Math.random() * btns.length);
 	let element = btns[randomNum];
 
