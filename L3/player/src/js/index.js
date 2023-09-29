@@ -1,85 +1,48 @@
-//start wavesurfer object 
-wavesurfer = WaveSurfer.create({
-    container: "#wave",
-    waveColor: "#cdedff",
-    progressColor: "#1AAFFF",
-    height: 48,
-    scrollParent: false
+let wavesurfer = WaveSurfer.create({
+	container: "#wave",
+	waveColor: "#cdedff",
+	progressColor: "#1AAFFF",
+	height: 48,
+	scrollParent: false
 });
 
-//load audio file
-wavesurfer.load("./TheFatRat - Upwind [Chapter 4].m4a");
-
-//play and pause a player
-// playPause.addEventListener("click", function (e) {
-//     wavesurfer.playPause();
-// });
-
-//load audio duration on load
-wavesurfer.on("ready", function (e) {
-    duration.textContent = timeCalculator(wavesurfer.getDuration());
-});
-
-//get updated current time on play
-wavesurfer.on("audioprocess", function (e) {
-    current.textContent = timeCalculator(wavesurfer.getCurrentTime());
-});
-
-//change play button to pause on plying
-wavesurfer.on("play", function (e) {
-    playPause.classList.remove("fi-rr-play");
-    playPause.classList.add("fi-rr-pause");
-});
-
-//change pause button to play on pause
-wavesurfer.on("pause", function (e) {
-    playPause.classList.add("fi-rr-play");
-    playPause.classList.remove("fi-rr-pause");
-});
-
-//update current time on seek
-wavesurfer.on("seek", function (e) {
-    current.textContent = timeCalculator(wavesurfer.getCurrentTime());
-});
 
 
 function createTrackItem(index, name, duration) {
-	var trackItem = document.createElement('div');
+	let trackItem = document.createElement('div');
 	trackItem.setAttribute("class", "playlist-track-ctn");
 	trackItem.setAttribute("id", "ptc-" + index);
 	trackItem.setAttribute("data-index", index);
 	document.querySelector(".playlist-ctn").appendChild(trackItem);
 
-	var playBtnItem = document.createElement('div');
+	let playBtnItem = document.createElement('div');
 	playBtnItem.setAttribute("class", "playlist-btn-play");
 	playBtnItem.setAttribute("id", "pbp-" + index);
 	document.querySelector("#ptc-" + index).appendChild(playBtnItem);
 
-	var btnImg = document.createElement('i');
+	let btnImg = document.createElement('i');
 	btnImg.setAttribute("class", "fas fa-play");
 	btnImg.setAttribute("height", "40");
 	btnImg.setAttribute("width", "40");
 	btnImg.setAttribute("id", "p-img-" + index);
 	document.querySelector("#pbp-" + index).appendChild(btnImg);
 
-	var trackInfoItem = document.createElement('div');
+	let trackInfoItem = document.createElement('div');
 	trackInfoItem.setAttribute("class", "playlist-info-track");
 	trackInfoItem.innerHTML = name
 	document.querySelector("#ptc-" + index).appendChild(trackInfoItem);
 
-	var trackDurationItem = document.createElement('div');
+	let trackDurationItem = document.createElement('div');
 	trackDurationItem.setAttribute("class", "playlist-duration");
 	trackDurationItem.innerHTML = duration
 	document.querySelector("#ptc-" + index).appendChild(trackDurationItem);
 }
 
-
-// test MP3 files from : https://file-examples.com/index.php/sample-audio-files/sample-mp3-download/
-var listAudio = [
+let listAudio = [
 	{
 		name: "Aqua Caelestis",
 		file: "../src/assets/sounds/AquaCaelestis.mp3",
-		duration: "0:15"
+		duration: "00:15"
 	},
 	{
 		name: "Ennio Morricone",
@@ -95,26 +58,57 @@ var listAudio = [
 		name: "SummerWind",
 		file: "../src/assets/sounds/SummerWind.mp3",
 		duration: "00:15"
+	},
+	{
+		name: "Bonus Track",
+		file: "../src/assets/sounds/Smeshariki.mp3",
+		duration: "00:15"
 	}
+
 ]
 
-for (var i = 0; i < listAudio.length; i++) {
+for (let i = 0; i < listAudio.length; i++) {
 	createTrackItem(i, listAudio[i].name, listAudio[i].duration);
 }
-var indexAudio = 0;
+// let currentAudio = document.getElementById("myAudio");
+
+let indexAudio = 0;
 
 function loadNewTrack(index) {
-	var player = document.querySelector('#source-audio')
-	player.src = listAudio[index].file
+	let promise = new Promise((resolve, reject) => {
+		resolve(wavesurfer.load(listAudio[index].file))
+	})
+	promise.then(toggleAudio);
 	document.querySelector('.title').innerHTML = listAudio[index].name
-	this.currentAudio = document.getElementById("myAudio");
-	this.currentAudio.load()
-	this.toggleAudio()
-	this.updateStylePlaylist(this.indexAudio, index)
-	this.indexAudio = index;
+	// toggleAudio();
+	updateStylePlaylist(index, indexAudio);
+	indexAudio = index;
 }
 
-var playListItems = document.querySelectorAll(".playlist-track-ctn");
+console.log(wavesurfer.isPlaying());
+
+function toggleAudio() {
+	console.log('here');
+	// console.log(wavesurfer);
+	// console.log(!wavesurfer.isPlaying());
+	if (!wavesurfer.isPlaying()) {
+		console.log('here1');
+		wavesurfer.play();
+		// wavesurfer.playPause();
+		document.querySelector('#icon-play').style.display = 'none';
+		document.querySelector('#icon-pause').style.display = 'block';
+		document.querySelector('#ptc-' + indexAudio).classList.add("active-track");
+		playToPause(indexAudio);
+	} else {
+		// console.log('here1');
+		document.querySelector('#icon-play').style.display = 'block';
+		document.querySelector('#icon-pause').style.display = 'none';
+		pauseToPlay(indexAudio);
+		wavesurfer.pause();
+	}
+}
+
+let playListItems = document.querySelectorAll(".playlist-track-ctn");
 
 for (let i = 0; i < playListItems.length; i++) {
 	playListItems[i].addEventListener("click", getClickedElement.bind(this));
@@ -123,9 +117,10 @@ for (let i = 0; i < playListItems.length; i++) {
 function getClickedElement(event) {
 	for (let i = 0; i < playListItems.length; i++) {
 		if (playListItems[i] == event.target) {
-			var clickedIndex = event.target.getAttribute("data-index")
-			if (clickedIndex == this.indexAudio) { // alert('Same audio');
-				this.toggleAudio()
+			let clickedIndex = event.target.getAttribute("data-index")
+			// console.log(clickedIndex);
+			if (clickedIndex == indexAudio) { // alert('Same audio');
+				toggleAudio()
 			} else {
 				loadNewTrack(clickedIndex);
 			}
@@ -133,151 +128,49 @@ function getClickedElement(event) {
 	}
 }
 
-document.querySelector('#source-audio').src = listAudio[indexAudio].file
-document.querySelector('.title').innerHTML = listAudio[indexAudio].name
+// document.querySelector('#source-audio').src = listAudio[indexAudio].file
+document.querySelector('.title').innerHTML = listAudio[indexAudio].name;
+wavesurfer.load(listAudio[indexAudio].file);
+// wavesurfer.load(listAudio[indexAudio].file);
+// let currentAudio = document.getElementById("myAudio");
+// currentAudio.load()
 
 
-var currentAudio = document.getElementById("myAudio");
 
-currentAudio.load()
-
-currentAudio.onloadedmetadata = function () {
-	document.getElementsByClassName('duration')[0].innerHTML = this.getMinutes(this.currentAudio.duration)
-}.bind(this);
-
-var interval1;
-
-function toggleAudio() {
-
-	if (this.currentAudio.paused) {
-		document.querySelector('#icon-play').style.display = 'none';
-		document.querySelector('#icon-pause').style.display = 'block';
-		document.querySelector('#ptc-' + this.indexAudio).classList.add("active-track");
-		this.playToPause(this.indexAudio)
-		this.currentAudio.play();
-	} else {
-		document.querySelector('#icon-play').style.display = 'block';
-		document.querySelector('#icon-pause').style.display = 'none';
-		this.pauseToPlay(this.indexAudio)
-		this.currentAudio.pause();
-	}
-}
-
-function pauseAudio() {
-	this.currentAudio.pause();
-	clearInterval(interval1);
-}
-
-var timer = document.getElementsByClassName('timer')[0]
-
-var barProgress = document.getElementById("myBar");
-
-
-var width = 0;
-
-function onTimeUpdate() {
-	var t = this.currentAudio.currentTime
-	timer.innerHTML = this.getMinutes(t);
-	this.setBarProgress();
-	if (this.currentAudio.ended) {
-		document.querySelector('#icon-play').style.display = 'block';
-		document.querySelector('#icon-pause').style.display = 'none';
-		this.pauseToPlay(this.indexAudio)
-		if (this.indexAudio < listAudio.length - 1) {
-			var index = parseInt(this.indexAudio) + 1
-			this.loadNewTrack(index)
-		}
-	}
-}
-
-
-function setBarProgress() {
-	var progress = (this.currentAudio.currentTime / this.currentAudio.duration) * 100;
-	document.getElementById("myBar").style.width = progress + "%";
-}
-
-
-function getMinutes(t) {
-	var min = parseInt(parseInt(t) / 60);
-	var sec = parseInt(t % 60);
-	if (sec < 10) {
-		sec = "0" + sec
-	}
-	if (min < 10) {
-		min = "0" + min
-	}
-	return min + ":" + sec
-}
-
-var progressbar = document.querySelector('#myProgress')
-progressbar.addEventListener("click", seek.bind(this));
-
-
-function seek(event) {
-	var percent = event.offsetX / progressbar.offsetWidth;
-	this.currentAudio.currentTime = percent * this.currentAudio.duration;
-	barProgress.style.width = percent * 100 + "%";
-}
-
-function forward() {
-	this.currentAudio.currentTime = this.currentAudio.currentTime + 5
-	this.setBarProgress();
-}
-
-function rewind() {
-	this.currentAudio.currentTime = this.currentAudio.currentTime - 5
-	this.setBarProgress();
-}
-
-
-function next() {
-	if (this.indexAudio < listAudio.length - 1) {
-		var oldIndex = this.indexAudio
-		this.indexAudio++;
-		updateStylePlaylist(oldIndex, this.indexAudio)
-		this.loadNewTrack(this.indexAudio);
-	}
-}
-
-function previous() {
-	if (this.indexAudio > 0) {
-		var oldIndex = this.indexAudio
-		this.indexAudio--;
-		updateStylePlaylist(oldIndex, this.indexAudio)
-		this.loadNewTrack(this.indexAudio);
-	}
-}
-
-function updateStylePlaylist(oldIndex, newIndex) {
+function updateStylePlaylist(newIndex, oldIndex) {
+	pauseToPlay(oldIndex);
 	document.querySelector('#ptc-' + oldIndex).classList.remove("active-track");
-	this.pauseToPlay(oldIndex);
+	playToPause(newIndex);
 	document.querySelector('#ptc-' + newIndex).classList.add("active-track");
-	this.playToPause(newIndex)
 }
+
 
 function playToPause(index) {
-	var ele = document.querySelector('#p-img-' + index)
+	let ele = document.querySelector('#p-img-' + index)
 	ele.classList.remove("fa-play");
 	ele.classList.add("fa-pause");
+	// wavesurfer.playPause();
 }
 
 function pauseToPlay(index) {
-	var ele = document.querySelector('#p-img-' + index)
+	let ele = document.querySelector('#p-img-' + index)
 	ele.classList.remove("fa-pause");
 	ele.classList.add("fa-play");
+	// wavesurfer.playPause();
 }
 
 
 function toggleMute() {
-	var btnMute = document.querySelector('#toggleMute');
+	// var btnMute = document.querySelector('#toggleMute');
+	console.log(wavesurfer.getMuted);
 	var volUp = document.querySelector('#icon-vol-up');
 	var volMute = document.querySelector('#icon-vol-mute');
-	if (this.currentAudio.muted == false) {
-		this.currentAudio.muted = true
+	if (wavesurfer.getMuted() == false) {
+		wavesurfer.setMuted(true);
 		volUp.style.display = "none"
 		volMute.style.display = "block"
 	} else {
-		this.currentAudio.muted = false
+		wavesurfer.setMuted(false);
 		volMute.style.display = "none"
 		volUp.style.display = "block"
 	}
