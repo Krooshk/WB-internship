@@ -20,7 +20,8 @@ function createTrackItem(index, name, duration) {
 	playBtnItem.setAttribute("id", "pbp-" + index);
 	document.querySelector("#ptc-" + index).appendChild(playBtnItem);
 
-	let btnImg = document.createElement('i');
+	let btnImg = document.createElement('img');
+	btnImg.src = '../src/assets/img/svg/play.svg';
 	btnImg.setAttribute("class", "fas fa-play");
 	btnImg.setAttribute("height", "40");
 	btnImg.setAttribute("width", "40");
@@ -149,6 +150,7 @@ function playToPause(index) {
 	let ele = document.querySelector('#p-img-' + index)
 	ele.classList.remove("fa-play");
 	ele.classList.add("fa-pause");
+	ele.src = '../src/assets/img/svg/pause.svg'
 	// wavesurfer.playPause();
 }
 
@@ -156,6 +158,7 @@ function pauseToPlay(index) {
 	let ele = document.querySelector('#p-img-' + index)
 	ele.classList.remove("fa-pause");
 	ele.classList.add("fa-play");
+	ele.src = '../src/assets/img/svg/play.svg'
 	// wavesurfer.playPause();
 }
 
@@ -193,3 +196,30 @@ function previous() {
 		loadNewTrack(indexAudio);
 	}
 }
+
+
+let input = document.querySelector('input');
+
+input.addEventListener('change', (e) => {
+	var blob = window.URL || window.webkitURL;
+	if (!blob) {
+		console.log('Your browser does not support Blob URLs :(');
+		return;
+	}
+	// console.log(e.target);
+	// console.log(e.target.files[0]);
+	let file = e.target.files[0];
+	let fileURL = blob.createObjectURL(file);
+	console.log(fileURL);
+	let obj = {
+		name: `${file.name}`,
+		file: `${fileURL}`,
+		duration: "00:50",
+	}
+	listAudio.push(obj);
+	let index = listAudio.length - 1;
+
+	createTrackItem(index, listAudio[index].name, listAudio[index].duration);
+	playListItems = document.querySelectorAll(".playlist-track-ctn");
+	playListItems[index].addEventListener("click", getClickedElement.bind(this));
+})
