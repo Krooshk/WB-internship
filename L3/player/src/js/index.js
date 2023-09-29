@@ -223,3 +223,33 @@ input.addEventListener('change', (e) => {
 	playListItems = document.querySelectorAll(".playlist-track-ctn");
 	playListItems[index].addEventListener("click", getClickedElement.bind(this));
 })
+
+function getMinutes(t) {
+	var min = parseInt(parseInt(t) / 60);
+	var sec = parseInt(t % 60);
+	if (sec < 10) {
+		sec = "0" + sec
+	}
+	if (min < 10) {
+		min = "0" + min
+	}
+	return min + ":" + sec
+}
+
+let duration = document.getElementsByClassName('duration')[0];
+let timer = document.getElementsByClassName('timer')[0];
+
+wavesurfer.on("ready", function (e) {
+	duration.textContent = getMinutes(wavesurfer.getDuration());
+});
+
+// //get updated current time on play
+wavesurfer.on("audioprocess", function (e) {
+	timer.textContent = getMinutes(wavesurfer.getCurrentTime());
+});
+
+
+// //update current time on seek
+wavesurfer.on("seek", function (e) {
+	timer.textContent = getMinutes(wavesurfer.getCurrentTime());
+});

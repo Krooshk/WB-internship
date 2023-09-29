@@ -1,16 +1,5 @@
 
 
-let wavesurfer = WaveSurfer.create({
-    container: "#wave",
-    waveColor: "#cdedff",
-    progressColor: "#1AAFFF",
-    height: 48,
-    scrollParent: false
-});
-
-// //load audio file
-
-
 
 // //load audio duration on load
 // wavesurfer.on("ready", function (e) {
@@ -22,17 +11,6 @@ let wavesurfer = WaveSurfer.create({
 //     current.textContent = timeCalculator(wavesurfer.getCurrentTime());
 // });
 
-// //change play button to pause on plying
-// wavesurfer.on("play", function (e) {
-//     playPause.classList.remove("fi-rr-play");
-//     playPause.classList.add("fi-rr-pause");
-// });
-
-// //change pause button to play on pause
-// wavesurfer.on("pause", function (e) {
-//     playPause.classList.add("fi-rr-play");
-//     playPause.classList.remove("fi-rr-pause");
-// });
 
 // //update current time on seek
 // wavesurfer.on("seek", function (e) {
