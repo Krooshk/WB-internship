@@ -39,6 +39,7 @@ function createTrackItem(index, name, duration) {
 	document.querySelector("#ptc-" + index).appendChild(trackDurationItem);
 }
 
+console.log();
 let listAudio = [
 	{
 		name: "Aqua Caelestis",
@@ -206,22 +207,26 @@ input.addEventListener('change', (e) => {
 		console.log('Your browser does not support Blob URLs :(');
 		return;
 	}
-	// console.log(e.target);
-	// console.log(e.target.files[0]);
+	
 	let file = e.target.files[0];
 	let fileURL = blob.createObjectURL(file);
-	console.log(fileURL);
-	let obj = {
-		name: `${file.name}`,
-		file: `${fileURL}`,
-		duration: "00:50",
-	}
-	listAudio.push(obj);
-	let index = listAudio.length - 1;
+	let newSong = new Audio();
+	newSong.src = fileURL;
 
-	createTrackItem(index, listAudio[index].name, listAudio[index].duration);
-	playListItems = document.querySelectorAll(".playlist-track-ctn");
-	playListItems[index].addEventListener("click", getClickedElement.bind(this));
+	newSong.onloadedmetadata = function () {
+		let obj = {
+			name: `${file.name}`,
+			file: `${fileURL}`,
+			duration: "00:00",
+		}
+		listAudio.push(obj);
+		let index = listAudio.length - 1;
+		obj.duration = getMinutes(newSong.duration);
+
+		createTrackItem(index, listAudio[index].name, listAudio[index].duration);
+		playListItems = document.querySelectorAll(".playlist-track-ctn");
+		playListItems[index].addEventListener("click", getClickedElement.bind(this));
+	};
 })
 
 function getMinutes(t) {
