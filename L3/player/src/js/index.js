@@ -1,3 +1,8 @@
+import { createTrackItem } from '../js/createTrackItem.js';
+import { getMinutes } from '../js/getMinutes.js';
+import { playToPause, pauseToPlay } from '../js/playAndPause.js';
+import { listAudio } from '../js/listAudio.js';
+
 let wavesurfer = WaveSurfer.create({
 	container: "#wave",
 	waveColor: "#cdedff",
@@ -6,73 +11,20 @@ let wavesurfer = WaveSurfer.create({
 	scrollParent: false
 });
 
-
-
-function createTrackItem(index, name, duration) {
-	let trackItem = document.createElement('div');
-	trackItem.setAttribute("class", "playlist-track-ctn");
-	trackItem.setAttribute("id", "ptc-" + index);
-	trackItem.setAttribute("data-index", index);
-	document.querySelector(".playlist-ctn").appendChild(trackItem);
-
-	let playBtnItem = document.createElement('div');
-	playBtnItem.setAttribute("class", "playlist-btn-play");
-	playBtnItem.setAttribute("id", "pbp-" + index);
-	document.querySelector("#ptc-" + index).appendChild(playBtnItem);
-
-	let btnImg = document.createElement('img');
-	btnImg.src = '../src/assets/img/svg/play.svg';
-	btnImg.setAttribute("class", "fas fa-play");
-	btnImg.setAttribute("height", "40");
-	btnImg.setAttribute("width", "40");
-	btnImg.setAttribute("id", "p-img-" + index);
-	document.querySelector("#pbp-" + index).appendChild(btnImg);
-
-	let trackInfoItem = document.createElement('div');
-	trackInfoItem.setAttribute("class", "playlist-info-track");
-	trackInfoItem.innerHTML = name
-	document.querySelector("#ptc-" + index).appendChild(trackInfoItem);
-
-	let trackDurationItem = document.createElement('div');
-	trackDurationItem.setAttribute("class", "playlist-duration");
-	trackDurationItem.innerHTML = duration
-	document.querySelector("#ptc-" + index).appendChild(trackDurationItem);
-}
-
-console.log();
-let listAudio = [
-	{
-		name: "Aqua Caelestis",
-		file: "../src/assets/audio/AquaCaelestis.mp3",
-		duration: "00:15"
-	},
-	{
-		name: "Ennio Morricone",
-		file: "../src/assets/audio/EnnioMorricone.mp3",
-		duration: "00:15"
-	},
-	{
-		name: "River Flows In You",
-		file: "../src/assets/audio/RiverFlowsInYou.mp3",
-		duration: "00:15"
-	},
-	{
-		name: "SummerWind",
-		file: "../src/assets/audio/SummerWind.mp3",
-		duration: "00:15"
-	},
-	{
-		name: "Bonus Track",
-		file: "../src/assets/audio/Smeshariki.mp3",
-		duration: "00:15"
-	}
-
-]
+let previousBtn = document.querySelector('.btn-previous');
+previousBtn.addEventListener('click', previous);
+let toggleAudioBtn = document.querySelector('.btn-toggleAudio');
+toggleAudioBtn.addEventListener('click', toggleAudio);
+let nextBtn = document.querySelector('.btn-next');
+nextBtn.addEventListener('click', next);
+let toggleMuteBtn = document.querySelector('.btn-toggleMute');
+toggleMuteBtn.addEventListener('click', toggleMute);
+let inputRange = document.querySelector('input[type="range"]');
+let volume = inputRange.value;
 
 for (let i = 0; i < listAudio.length; i++) {
 	createTrackItem(i, listAudio[i].name, listAudio[i].duration);
 }
-// let currentAudio = document.getElementById("myAudio");
 
 let indexAudio = 0;
 
@@ -82,27 +34,18 @@ function loadNewTrack(index) {
 	})
 	promise.then(toggleAudio);
 	document.querySelector('.title').innerHTML = listAudio[index].name
-	// toggleAudio();
 	updateStylePlaylist(index, indexAudio);
 	indexAudio = index;
 }
 
-console.log(wavesurfer.isPlaying());
-
 function toggleAudio() {
-	console.log('here');
-	// console.log(wavesurfer);
-	// console.log(!wavesurfer.isPlaying());
 	if (!wavesurfer.isPlaying()) {
-		console.log('here1');
 		wavesurfer.play();
-		// wavesurfer.playPause();
 		document.querySelector('#icon-play').style.display = 'none';
 		document.querySelector('#icon-pause').style.display = 'block';
 		document.querySelector('#ptc-' + indexAudio).classList.add("active-track");
 		playToPause(indexAudio);
 	} else {
-		// console.log('here1');
 		document.querySelector('#icon-play').style.display = 'block';
 		document.querySelector('#icon-pause').style.display = 'none';
 		pauseToPlay(indexAudio);
@@ -119,9 +62,8 @@ for (let i = 0; i < playListItems.length; i++) {
 function getClickedElement(event) {
 	for (let i = 0; i < playListItems.length; i++) {
 		if (playListItems[i] == event.target) {
-			let clickedIndex = event.target.getAttribute("data-index")
-			// console.log(clickedIndex);
-			if (clickedIndex == indexAudio) { // alert('Same audio');
+			let clickedIndex = event.target.getAttribute("data-index");
+			if (clickedIndex == indexAudio) {
 				toggleAudio()
 			} else {
 				loadNewTrack(clickedIndex);
@@ -130,13 +72,8 @@ function getClickedElement(event) {
 	}
 }
 
-// document.querySelector('#source-audio').src = listAudio[indexAudio].file
 document.querySelector('.title').innerHTML = listAudio[indexAudio].name;
 wavesurfer.load(listAudio[indexAudio].file);
-// wavesurfer.load(listAudio[indexAudio].file);
-// let currentAudio = document.getElementById("myAudio");
-// currentAudio.load()
-
 
 
 function updateStylePlaylist(newIndex, oldIndex) {
@@ -146,38 +83,30 @@ function updateStylePlaylist(newIndex, oldIndex) {
 	document.querySelector('#ptc-' + newIndex).classList.add("active-track");
 }
 
-
-function playToPause(index) {
-	let ele = document.querySelector('#p-img-' + index)
-	ele.classList.remove("fa-play");
-	ele.classList.add("fa-pause");
-	ele.src = '../src/assets/img/svg/pause.svg'
-	// wavesurfer.playPause();
-}
-
-function pauseToPlay(index) {
-	let ele = document.querySelector('#p-img-' + index)
-	ele.classList.remove("fa-pause");
-	ele.classList.add("fa-play");
-	ele.src = '../src/assets/img/svg/play.svg'
-	// wavesurfer.playPause();
-}
-
-
 function toggleMute() {
-	// var btnMute = document.querySelector('#toggleMute');
-	console.log(wavesurfer.getMuted);
-	var volUp = document.querySelector('#icon-vol-up');
-	var volMute = document.querySelector('#icon-vol-mute');
+	let volUp = document.querySelector('#icon-vol-up');
+	let volMute = document.querySelector('#icon-vol-mute');
+	// console.log(wavesurfer.getMuted());
 	if (wavesurfer.getMuted() == false) {
-		wavesurfer.setMuted(true);
-		volUp.style.display = "none"
-		volMute.style.display = "block"
+		mute(volUp, volMute);
+		inputRange.value = 0;
 	} else {
-		wavesurfer.setMuted(false);
-		volMute.style.display = "none"
-		volUp.style.display = "block"
+		sound(volUp, volMute);
+		inputRange.value = volume;
 	}
+}
+
+function mute(volUp, volMute) {
+	wavesurfer.setMuted(true);
+	volUp.style.display = "none"
+	volMute.style.display = "block"
+}
+
+function sound(volUp, volMute) {
+	wavesurfer.setMuted(false);
+	wavesurfer.setVolume(volume / 20);
+	volMute.style.display = "none"
+	volUp.style.display = "block"
 }
 
 function next() {
@@ -198,16 +127,14 @@ function previous() {
 	}
 }
 
+let inputFile = document.querySelector('input[type="file"]');
 
-let input = document.querySelector('input');
-
-input.addEventListener('change', (e) => {
-	var blob = window.URL || window.webkitURL;
+inputFile.addEventListener('change', (e) => {
+	let blob = window.URL || window.webkitURL;
 	if (!blob) {
 		console.log('Your browser does not support Blob URLs :(');
 		return;
 	}
-	
 	let file = e.target.files[0];
 	let fileURL = blob.createObjectURL(file);
 	let newSong = new Audio();
@@ -229,17 +156,21 @@ input.addEventListener('change', (e) => {
 	};
 })
 
-function getMinutes(t) {
-	var min = parseInt(parseInt(t) / 60);
-	var sec = parseInt(t % 60);
-	if (sec < 10) {
-		sec = "0" + sec
+
+
+inputRange.addEventListener("change", (e) => {
+	let volUp = document.querySelector('#icon-vol-up');
+	let volMute = document.querySelector('#icon-vol-mute');
+	volume = e.target.value;
+	console.log(volume);
+	if (volume === '0') {
+		mute(volUp, volMute);
+	} else {
+		wavesurfer.setVolume(volume / 20);
+		sound(volUp, volMute);
 	}
-	if (min < 10) {
-		min = "0" + min
-	}
-	return min + ":" + sec
-}
+
+})
 
 let duration = document.getElementsByClassName('duration')[0];
 let timer = document.getElementsByClassName('timer')[0];
@@ -248,13 +179,10 @@ wavesurfer.on("ready", function (e) {
 	duration.textContent = getMinutes(wavesurfer.getDuration());
 });
 
-// //get updated current time on play
 wavesurfer.on("audioprocess", function (e) {
 	timer.textContent = getMinutes(wavesurfer.getCurrentTime());
 });
 
-
-// //update current time on seek
 wavesurfer.on("seek", function (e) {
 	timer.textContent = getMinutes(wavesurfer.getCurrentTime());
 });

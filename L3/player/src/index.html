@@ -23,24 +23,24 @@
 			<div class="repeat">
 				<img width="25" src="../src/assets/img/svg/repeat.svg" alt="repeat">
 			</div>
-			<div class="btn-action first-btn" onclick="previous()">
+			<div class="btn-action first-btn btn-previous">
 				<div id="btn-faws-back">
 					<img width="25" class='fas fa-step-backward' src="../src/assets/img/svg/play-prev.svg" alt="prev">
 				</div>
 			</div>
-			<div class="btn-action" onclick="toggleAudio()">
+			<div class="btn-action btn-toggleAudio">
 				<div id="btn-faws-play-pause">
 					<img width="30" class='fas fa-play' id="icon-play" src="../src/assets/img/svg/play.svg" alt="pause">
 					<img width="30" class='fas fa-pause' id="icon-pause" style="display: none"
 						src="../src/assets/img/svg/pause.svg" alt="play">
 				</div>
 			</div>
-			<div class="btn-action" onclick="next()">
+			<div class="btn-action btn-next">
 				<div id="btn-faws-next">
 					<img width="25" class='fas fa-step-forward' src="../src/assets/img/svg/play-next.svg" alt="next">
 				</div>
 			</div>
-			<div class="btn-mute" id="toggleMute" onclick="toggleMute()">
+			<div class="btn-mute btn-toggleMute" id="toggleMute">
 				<div id="btn-faws-volume">
 					<img height="25px" id="icon-vol-up" class='fas fa-volume-up' src="../src/assets/img/svg/sound.svg"
 						alt="sound">
@@ -48,6 +48,7 @@
 						src="../src/assets/img/svg/mute.svg" alt="mute">
 				</div>
 			</div>
+			<input type="range" id="seekbar" min="0" max="20" step="1" value="20">
 		</div>
 		<div class="playlist-ctn">
 		</div>
@@ -57,7 +58,7 @@
 		</label>
 	</div>
 	<script src="https://unpkg.com/wavesurfer.js"></script>
-	<script src='../src/js/index.js'></script>
+	<script type="module" src='../src/js/index.js'></script>
 </body>
 
 </html>
