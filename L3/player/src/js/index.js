@@ -31,6 +31,10 @@ toggleMuteBtn.addEventListener('click', toggleMute);
 let inputRange = document.querySelector('input[type="range"]');
 let volume = inputRange.value;
 
+let isShuffle = false;
+let isRepeat = false;
+let shuffledList = [];
+
 for (let i = 0; i < listAudio.length; i++) {
 	createTrackItem(i, listAudio[i].name, listAudio[i].duration);
 }
@@ -119,21 +123,28 @@ function sound(volUp, volMute) {
 }
 
 function next() {
+	// if (isShuffle){
+		
+	// }
+	let oldIndex = indexAudio;
 	if (indexAudio < listAudio.length - 1) {
-		let oldIndex = indexAudio
 		indexAudio++;
-		updateStylePlaylist(indexAudio, oldIndex)
-		loadNewTrack(indexAudio);
+	} else {
+		indexAudio = 0;
 	}
+	updateStylePlaylist(indexAudio, oldIndex)
+	loadNewTrack(indexAudio);
 }
 
 function previous() {
+	let oldIndex = indexAudio;
 	if (indexAudio > 0) {
-		let oldIndex = indexAudio
 		indexAudio--;
-		updateStylePlaylist(indexAudio, oldIndex)
-		loadNewTrack(indexAudio);
+	} else {
+		indexAudio = listAudio.length - 1;
 	}
+	updateStylePlaylist(indexAudio, oldIndex)
+	loadNewTrack(indexAudio);
 }
 
 let inputFile = document.querySelector('input[type="file"]');
@@ -197,7 +208,7 @@ wavesurfer.on("seek", function (e) {
 });
 
 let repeat = document.querySelector('.repeat');
-let isRepeat = false;
+
 
 repeat.addEventListener('click', () => {
 	let img = repeat.querySelector('img');
@@ -210,12 +221,18 @@ repeat.addEventListener('click', () => {
 });
 
 let shuffle = document.querySelector('.shuffle');
-let isShuffle = false;
+
 
 shuffle.addEventListener('click', () => {
 	let img = shuffle.querySelector('img');
 	isShuffle = !isShuffle;
 	if (isShuffle) {
+		let temporaryArray = []
+		for (let i=0; i < listAudio.length; i++) {
+			temporaryArray.push(i);
+		}
+		temporaryArray.sort(() => Math.random() - 0.5);
+		shuffledList = temporaryArray;
 		img.src = "../src/assets/img/svg/shuffle.svg";
 	} else {
 		img.src = "../src/assets/img/svg/shuffle-unactive.svg";
