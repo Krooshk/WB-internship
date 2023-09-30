@@ -175,6 +175,7 @@ inputFile.addEventListener('change', (e) => {
 			duration: "00:00",
 		}
 		listAudio.push(obj);
+		mix();
 		let index = listAudio.length - 1;
 		obj.duration = getMinutes(newSong.duration);
 		// localStorage.setItem('list', JSON.stringify(listAudio));
@@ -235,24 +236,7 @@ shuffle.addEventListener('click', () => {
 	let img = shuffle.querySelector('img');
 	isShuffle = !isShuffle;
 	if (isShuffle) {
-		let temporaryArray = []
-		for (let i = 0; i < listAudio.length; i++) {
-			temporaryArray.push(i);
-		}
-
-		temporaryArray.sort(() => Math.random() - 0.7);
-		console.log(temporaryArray);
-		shuffledList[temporaryArray.at(-1)] = { next: temporaryArray[0] };
-		temporaryArray.reduce((accum, curr) => {
-			shuffledList[accum] = { next: curr };
-			return curr;
-		}, 0)
-		shuffledList[temporaryArray[0]].prev = temporaryArray.at(-1);
-		temporaryArray.reduceRight((accum, curr) => {
-			shuffledList[accum].prev = curr;
-			return curr;
-		}, 0)
-		console.log(shuffledList);
+		mix();
 		img.src = "../src/assets/img/svg/shuffle.svg";
 	} else {
 		img.src = "../src/assets/img/svg/shuffle-unactive.svg";
@@ -266,3 +250,22 @@ wavesurfer.on("finish", () => {
 		next();
 	}
 });
+
+
+function mix() {
+	let temporaryArray = []
+	for (let i = 0; i < listAudio.length; i++) {
+		temporaryArray.push(i);
+	}
+	temporaryArray.sort(() => Math.random() - 0.7);
+	shuffledList[temporaryArray.at(-1)] = { next: temporaryArray[0] };
+	temporaryArray.reduce((accum, curr) => {
+		shuffledList[accum] = { next: curr };
+		return curr;
+	}, 0)
+	shuffledList[temporaryArray[0]].prev = temporaryArray.at(-1);
+	temporaryArray.reduceRight((accum, curr) => {
+		shuffledList[accum].prev = curr;
+		return curr;
+	}, 0)
+}
