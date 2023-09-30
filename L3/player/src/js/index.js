@@ -33,7 +33,7 @@ let volume = inputRange.value;
 
 let isShuffle = false;
 let isRepeat = false;
-let shuffledList = [];
+let shuffledList = {};
 
 for (let i = 0; i < listAudio.length; i++) {
 	createTrackItem(i, listAudio[i].name, listAudio[i].duration);
@@ -49,6 +49,7 @@ function loadNewTrack(index) {
 	document.querySelector('.title').innerHTML = listAudio[index].name
 	updateStylePlaylist(index, indexAudio);
 	indexAudio = index;
+
 }
 
 function toggleAudio() {
@@ -123,28 +124,35 @@ function sound(volUp, volMute) {
 }
 
 function next() {
-	// if (isShuffle){
-		
-	// }
 	let oldIndex = indexAudio;
-	if (indexAudio < listAudio.length - 1) {
-		indexAudio++;
+	if (isShuffle) {
+		updateStylePlaylist(shuffledList[indexAudio].next, oldIndex)
+		loadNewTrack(shuffledList[indexAudio].next);
 	} else {
-		indexAudio = 0;
+		if (indexAudio < listAudio.length - 1) {
+			indexAudio++;
+		} else {
+			indexAudio = 0;
+		}
+		updateStylePlaylist(indexAudio, oldIndex)
+		loadNewTrack(indexAudio);
 	}
-	updateStylePlaylist(indexAudio, oldIndex)
-	loadNewTrack(indexAudio);
 }
 
 function previous() {
 	let oldIndex = indexAudio;
-	if (indexAudio > 0) {
-		indexAudio--;
+	if (isShuffle) {
+		updateStylePlaylist(shuffledList[indexAudio].prev, oldIndex)
+		loadNewTrack(shuffledList[indexAudio].prev);
 	} else {
-		indexAudio = listAudio.length - 1;
+		if (indexAudio > 0) {
+			indexAudio--;
+		} else {
+			indexAudio = listAudio.length - 1;
+		}
+		updateStylePlaylist(indexAudio, oldIndex)
+		loadNewTrack(indexAudio);
 	}
-	updateStylePlaylist(indexAudio, oldIndex)
-	loadNewTrack(indexAudio);
 }
 
 let inputFile = document.querySelector('input[type="file"]');
@@ -228,11 +236,23 @@ shuffle.addEventListener('click', () => {
 	isShuffle = !isShuffle;
 	if (isShuffle) {
 		let temporaryArray = []
-		for (let i=0; i < listAudio.length; i++) {
+		for (let i = 0; i < listAudio.length; i++) {
 			temporaryArray.push(i);
 		}
-		temporaryArray.sort(() => Math.random() - 0.5);
-		shuffledList = temporaryArray;
+
+		temporaryArray.sort(() => Math.random() - 0.7);
+		console.log(temporaryArray);
+		shuffledList[temporaryArray.at(-1)] = { next: temporaryArray[0] };
+		temporaryArray.reduce((accum, curr) => {
+			shuffledList[accum] = { next: curr };
+			return curr;
+		}, 0)
+		shuffledList[temporaryArray[0]].prev = temporaryArray.at(-1);
+		temporaryArray.reduceRight((accum, curr) => {
+			shuffledList[accum].prev = curr;
+			return curr;
+		}, 0)
+		console.log(shuffledList);
 		img.src = "../src/assets/img/svg/shuffle.svg";
 	} else {
 		img.src = "../src/assets/img/svg/shuffle-unactive.svg";
