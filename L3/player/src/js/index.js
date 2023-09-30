@@ -3,12 +3,21 @@ import { getMinutes } from '../js/getMinutes.js';
 import { playToPause, pauseToPlay } from '../js/playAndPause.js';
 import { listAudio } from '../js/listAudio.js';
 
+// if (localStorage.getItem('list')) {
+// 	listAudio.length = 0;
+// 	let listFromStorage = JSON.parse(localStorage.getItem('list'));
+// 	for (let elem of listFromStorage) {
+// 		listAudio.push(elem);
+// 	}
+// }
+
 let wavesurfer = WaveSurfer.create({
 	container: "#wave",
 	waveColor: "#cdedff",
 	progressColor: "#1AAFFF",
 	height: 48,
-	scrollParent: false
+	scrollParent: false,
+	dragToSeek: true,
 });
 
 let previousBtn = document.querySelector('.btn-previous');
@@ -149,7 +158,7 @@ inputFile.addEventListener('change', (e) => {
 		listAudio.push(obj);
 		let index = listAudio.length - 1;
 		obj.duration = getMinutes(newSong.duration);
-
+		// localStorage.setItem('list', JSON.stringify(listAudio));
 		createTrackItem(index, listAudio[index].name, listAudio[index].duration);
 		playListItems = document.querySelectorAll(".playlist-track-ctn");
 		playListItems[index].addEventListener("click", getClickedElement.bind(this));
@@ -185,4 +194,38 @@ wavesurfer.on("audioprocess", function (e) {
 
 wavesurfer.on("seek", function (e) {
 	timer.textContent = getMinutes(wavesurfer.getCurrentTime());
+});
+
+let repeat = document.querySelector('.repeat');
+let isRepeat = false;
+
+repeat.addEventListener('click', () => {
+	let img = repeat.querySelector('img');
+	isRepeat = !isRepeat;
+	if (isRepeat) {
+		img.src = "../src/assets/img/svg/repeat.svg";
+	} else {
+		img.src = "../src/assets/img/svg/repeat-unactive.svg";
+	}
+});
+
+let shuffle = document.querySelector('.shuffle');
+let isShuffle = false;
+
+shuffle.addEventListener('click', () => {
+	let img = shuffle.querySelector('img');
+	isShuffle = !isShuffle;
+	if (isShuffle) {
+		img.src = "../src/assets/img/svg/shuffle.svg";
+	} else {
+		img.src = "../src/assets/img/svg/shuffle-unactive.svg";
+	}
+});
+
+wavesurfer.on("finish", () => {
+	if (isRepeat) {
+		wavesurfer.play();
+	} else {
+		next();
+	}
 });
