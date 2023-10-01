@@ -137,3 +137,8 @@ body {
 svg {
 	fill: #466eaf;
 }
+
+.shuffle,
+.repeat {
+	cursor: pointer;
+}

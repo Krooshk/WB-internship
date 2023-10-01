@@ -2,14 +2,9 @@ import { createTrackItem } from '../js/createTrackItem.js';
 import { getMinutes } from '../js/getMinutes.js';
 import { playToPause, pauseToPlay } from '../js/playAndPause.js';
 import { listAudio } from '../js/listAudio.js';
+import { mix } from '../js/mix.js'
 
-// if (localStorage.getItem('list')) {
-// 	listAudio.length = 0;
-// 	let listFromStorage = JSON.parse(localStorage.getItem('list'));
-// 	for (let elem of listFromStorage) {
-// 		listAudio.push(elem);
-// 	}
-// }
+localStorage.setItem('list', JSON.stringify(listAudio));
 
 let wavesurfer = WaveSurfer.create({
 	container: "#wave",
@@ -31,15 +26,21 @@ toggleMuteBtn.addEventListener('click', toggleMute);
 let inputRange = document.querySelector('input[type="range"]');
 let volume = inputRange.value;
 
+let duration = document.getElementsByClassName('duration')[0];
+let timer = document.getElementsByClassName('timer')[0];
+let playListItems = document.querySelectorAll(".playlist-track-ctn");
+let repeat = document.querySelector('.repeat');
+let shuffle = document.querySelector('.shuffle');
+
+
 let isShuffle = false;
 let isRepeat = false;
+let indexAudio = 0;
 let shuffledList = {};
 
 for (let i = 0; i < listAudio.length; i++) {
 	createTrackItem(i, listAudio[i].name, listAudio[i].duration);
 }
-
-let indexAudio = 0;
 
 function loadNewTrack(index) {
 	let promise = new Promise((resolve, reject) => {
@@ -49,7 +50,6 @@ function loadNewTrack(index) {
 	document.querySelector('.title').innerHTML = listAudio[index].name
 	updateStylePlaylist(index, indexAudio);
 	indexAudio = index;
-
 }
 
 function toggleAudio() {
@@ -66,8 +66,6 @@ function toggleAudio() {
 		wavesurfer.pause();
 	}
 }
-
-let playListItems = document.querySelectorAll(".playlist-track-ctn");
 
 for (let i = 0; i < playListItems.length; i++) {
 	playListItems[i].addEventListener("click", getClickedElement.bind(this));
@@ -89,7 +87,6 @@ function getClickedElement(event) {
 document.querySelector('.title').innerHTML = listAudio[indexAudio].name;
 wavesurfer.load(listAudio[indexAudio].file);
 
-
 function updateStylePlaylist(newIndex, oldIndex) {
 	pauseToPlay(oldIndex);
 	document.querySelector('#ptc-' + oldIndex).classList.remove("active-track");
@@ -100,7 +97,6 @@ function updateStylePlaylist(newIndex, oldIndex) {
 function toggleMute() {
 	let volUp = document.querySelector('#icon-vol-up');
 	let volMute = document.querySelector('#icon-vol-mute');
-	// console.log(wavesurfer.getMuted());
 	if (wavesurfer.getMuted() == false) {
 		mute(volUp, volMute);
 		inputRange.value = 0;
@@ -156,7 +152,6 @@ function previous() {
 }
 
 let inputFile = document.querySelector('input[type="file"]');
-
 inputFile.addEventListener('change', (e) => {
 	let blob = window.URL || window.webkitURL;
 	if (!blob) {
@@ -172,26 +167,21 @@ inputFile.addEventListener('change', (e) => {
 		let obj = {
 			name: `${file.name}`,
 			file: `${fileURL}`,
-			duration: "00:00",
 		}
 		listAudio.push(obj);
-		mix();
+		shuffledList = mix(shuffledList, listAudio);
 		let index = listAudio.length - 1;
 		obj.duration = getMinutes(newSong.duration);
-		// localStorage.setItem('list', JSON.stringify(listAudio));
 		createTrackItem(index, listAudio[index].name, listAudio[index].duration);
 		playListItems = document.querySelectorAll(".playlist-track-ctn");
 		playListItems[index].addEventListener("click", getClickedElement.bind(this));
 	};
 })
 
-
-
 inputRange.addEventListener("change", (e) => {
 	let volUp = document.querySelector('#icon-vol-up');
 	let volMute = document.querySelector('#icon-vol-mute');
 	volume = e.target.value;
-	console.log(volume);
 	if (volume === '0') {
 		mute(volUp, volMute);
 	} else {
@@ -200,9 +190,6 @@ inputRange.addEventListener("change", (e) => {
 	}
 
 })
-
-let duration = document.getElementsByClassName('duration')[0];
-let timer = document.getElementsByClassName('timer')[0];
 
 wavesurfer.on("ready", function (e) {
 	duration.textContent = getMinutes(wavesurfer.getDuration());
@@ -216,8 +203,13 @@ wavesurfer.on("seek", function (e) {
 	timer.textContent = getMinutes(wavesurfer.getCurrentTime());
 });
 
-let repeat = document.querySelector('.repeat');
-
+wavesurfer.on("finish", () => {
+	if (isRepeat) {
+		wavesurfer.play();
+	} else {
+		next();
+	}
+});
 
 repeat.addEventListener('click', () => {
 	let img = repeat.querySelector('img');
@@ -229,43 +221,13 @@ repeat.addEventListener('click', () => {
 	}
 });
 
-let shuffle = document.querySelector('.shuffle');
-
-
 shuffle.addEventListener('click', () => {
 	let img = shuffle.querySelector('img');
 	isShuffle = !isShuffle;
 	if (isShuffle) {
-		mix();
+		shuffledList = mix(shuffledList, listAudio);
 		img.src = "../src/assets/img/svg/shuffle.svg";
 	} else {
 		img.src = "../src/assets/img/svg/shuffle-unactive.svg";
 	}
 });
-
-wavesurfer.on("finish", () => {
-	if (isRepeat) {
-		wavesurfer.play();
-	} else {
-		next();
-	}
-});
-
-
-function mix() {
-	let temporaryArray = []
-	for (let i = 0; i < listAudio.length; i++) {
-		temporaryArray.push(i);
-	}
-	temporaryArray.sort(() => Math.random() - 0.7);
-	shuffledList[temporaryArray.at(-1)] = { next: temporaryArray[0] };
-	temporaryArray.reduce((accum, curr) => {
-		shuffledList[accum] = { next: curr };
-		return curr;
-	}, 0)
-	shuffledList[temporaryArray[0]].prev = temporaryArray.at(-1);
-	temporaryArray.reduceRight((accum, curr) => {
-		shuffledList[accum].prev = curr;
-		return curr;
-	}, 0)
-}
