@@ -15,6 +15,8 @@ let restart = document.querySelector('.restart');
 let countAttempt = 0;
 let parity = "";
 
+let firstHint = document.querySelector('.first-hint');
+let secondHint = document.querySelector('.second-hint');
 
 function startTheGame() {
 	if ((Number(leftEdge.value) >= 1) && (Number(rightEdge.value) <= 1000) && (Number(leftEdge.value) < Number(rightEdge.value))) {
@@ -27,7 +29,7 @@ function startTheGame() {
 		parity = (secretNumber % 2) === 0 ? "четное" : "нечетное";
 
 	} else {
-		alert('Проверьте значения');
+		alert('Проверьте значения (Возможный диапазон: 1 - 1000)');
 	}
 }
 
@@ -37,25 +39,27 @@ function checkAnswer() {
 	checkEveryThirdAttempt();
 	let num = fieldForAnswers.value;
 	if ((num < leftEdgeValue) || (num > rightEdgeValue)) {
-		console.log('Число меньше');
+		firstHint.textContent = 'Посмотрите на диапазон';
 		return;
 	}
 	if (num > secretNumber) {
-		console.log('Число меньше');
+		firstHint.textContent = 'Число меньше';
 		return;
 	}
 	if (num < secretNumber) {
-		console.log('Число больше');
+		firstHint.textContent = 'Число больше';
 		return;
 	}
-
-	console.log('Вы угадали');
+	firstHint.textContent = 'Вы угадали';
 }
 
 function checkEveryThirdAttempt() {
 	if ((countAttempt > 0) && ((countAttempt % 3) === 0)) {
-		console.log(`Число ${parity}`);
+		secondHint.textContent = `Число ${parity}`;
+	} else {
+		secondHint.textContent = '';
 	}
+
 }
 
 function restartFn() {
@@ -70,14 +74,9 @@ function restartFn() {
 	count.textContent = 0;
 	leftEdgeDisplay.textContent = "";
 	rightEdgeDisplay.textContent = "";
-
-
 }
 
 startBtn.addEventListener('click', startTheGame);
 sentBtn.addEventListener('click', checkAnswer);
 restart.addEventListener('click', restartFn);
 
-
-// Начать игру заново
-// 

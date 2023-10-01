@@ -15,8 +15,16 @@ body {
 
 .wrapper {
 	width: 450px;
-	margin: 100px auto 0px;
+	margin: 80px auto 0px;
 	background-color: rgba(93, 46, 16, 0.753);
+	padding: 25px;
+	border-radius: 25px;
+}
+
+.hint {
+	width: 450px;
+	background-color: rgba(14, 64, 31, 0.753);
+	margin: 20px auto 0px;
 	padding: 25px;
 	border-radius: 25px;
 }
@@ -32,7 +40,7 @@ button {
 	height: 40px;
 	width: 150px;
 	margin: 0 auto;
-	background-color: darkgreen;
+	background-color: rgba(14, 64, 31, 0.753);
 	cursor: pointer;
 	border-radius: 10px;
 	display: block;
