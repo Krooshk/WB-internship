@@ -17,11 +17,11 @@ let parity = "";
 
 
 function startTheGame() {
-	if ((leftEdge.value >= 1) && (rightEdge.value <= 1000) && (leftEdge.value < rightEdge.value)) {
+	if ((Number(leftEdge.value) >= 1) && (Number(rightEdge.value) <= 1000) && (Number(leftEdge.value) < Number(rightEdge.value))) {
 		leftEdgeValue = Number(leftEdge.value);
 		rightEdgeValue = Number(rightEdge.value);
-		leftEdgeDisplay.textContent = leftEdgeValue;
-		rightEdgeDisplay.textContent = rightEdgeValue;
+		leftEdgeDisplay.textContent = 'Левая граница -' + leftEdgeValue;
+		rightEdgeDisplay.textContent = 'Правая граница -' + rightEdgeValue;
 		range.classList.add('unactive');
 		secretNumber = Math.floor(Math.random() * (rightEdgeValue - leftEdgeValue + 1)) + leftEdgeValue;
 		parity = (secretNumber % 2) === 0 ? "четное" : "нечетное";
@@ -36,7 +36,7 @@ function checkAnswer() {
 	count.textContent = countAttempt;
 	checkEveryThirdAttempt();
 	let num = fieldForAnswers.value;
-	if((num < leftEdgeValue) || (num > rightEdgeValue)){
+	if ((num < leftEdgeValue) || (num > rightEdgeValue)) {
 		console.log('Число меньше');
 		return;
 	}

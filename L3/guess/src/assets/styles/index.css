@@ -1,3 +1,87 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Raleway", sans-serif;
+}
+
+body {
+	background-image: url("../img/alesha.png");
+}
+
 .unactive {
 	display: none;
+}
+
+.wrapper {
+	width: 450px;
+	margin: 100px auto 0px;
+	background-color: rgba(93, 46, 16, 0.753);
+	padding: 25px;
+	border-radius: 25px;
+}
+
+h1 {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	line-height: 105%;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+button {
+	height: 40px;
+	width: 150px;
+	margin: 0 auto;
+	background-color: darkgreen;
+	cursor: pointer;
+	border-radius: 10px;
+	display: block;
+}
+
+.range>div {
+	display: flex;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.restart {
+	background-color: rgba(0, 255, 255, 0.507);
+}
+
+input[type="number"] {
+	height: 40px;
+	background-color: rgba(255, 200, 127, 0.164);
+	padding: 10px;
+	font-size: 16px;
+	width: 90%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.current-range {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.start {
+	margin-bottom: 10px;
+}
+
+.wrapper-count {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input.field-for-answers {
+	width: 200px;
+}
+
+.sent {
+	margin-top: 10px;
 }

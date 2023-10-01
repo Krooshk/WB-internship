@@ -9,21 +9,27 @@
 </head>
 
 <body>
-	<h1>Guess the number</h1>
-	<div><button class="restart">Restart</button></div>
-	<div class="current-range">
-		<div class="current-left-edge"></div>
-		<div class="current-right-edge"></div>
-	</div>
-	<div class="range">
-		<div>Left edge<input class="left-edge" type="number"></div>
-		<div>Right edge<input class="right-edge" type="number"></div>
-		<button class="start">Start</button>
-	</div>
-	<div>
-		<div class="count">0</div>
-		<div>Your value<input class="field-for-answers" type="number"></div>
-		<button class="sent">Sent</button>
+	<div class="wrapper">
+		<h1>Угадай номер и выиграй <i>полцарства</i></h1>
+		<button class="restart">Заново</button>
+		<div class="current-range">
+			<div class="current-left-edge"></div>
+			<div class="current-right-edge"></div>
+		</div>
+		<div class="range">
+			<div>
+				<div>Левая граница<input class="left-edge" type="number"></div>
+				<div>Правая граница<input class="right-edge" type="number"></div>
+			</div>
+			<button class="start">Начать</button>
+		</div>
+		<div>
+			<div class="wrapper-count">
+				Количество попыток: <span class="count">0</span>
+			</div>
+			<div>И ваше число - <input class="field-for-answers" type="number"></div>
+			<button class="sent">Отправить</button>
+		</div>
 	</div>
 	<script src="../src/js/index.js"></script>
 </body>
