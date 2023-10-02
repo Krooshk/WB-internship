@@ -1,10 +1,10 @@
 const MIN_SIZE = 4;
 const MAX_SIZE = 64;
-const DEFAULT_SIZE = 32;
+const DEFAULT_SIZE = 10; //32
 
 const MIN_SPEED = 1;
 const MAX_SPEED = 4;
-const DEFAULT_SPEED = 3;
+const DEFAULT_SPEED = 3
 
 const MIN = 20;
 const MAX = 300;
@@ -22,7 +22,7 @@ let size;
 let delay;
 
 let arr = [];
-
+let paused = false;
 let array_container_width;
 let element_width;
 let element_width_max;
@@ -105,8 +105,11 @@ function enableOthers() {
 	document.getElementById("size-slider").disabled = false;
 }
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+async function sleep(ms) {
+	while (paused) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -157,10 +160,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			await selectionSort();
 		else if (algo_selected === "Insertion Sort")
 			await insertionSort();
-		else if (algo_selected === "Merge Sort")
-			await mergeSort(0, size - 1);
 		else if (algo_selected === "Quicksort")
 			await quicksort(0, size - 1);
+		else if (algo_selected == "Heapsort")
+			await heapsort();
 		else {
 			document.getElementById("no-algo-warning").classList.remove('display-none');
 			document.getElementById("no-algo-warning").classList.add('display-flex');
@@ -193,4 +196,15 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 	});
+});
+
+let pausedButton = document.getElementById("pause");
+
+pausedButton.addEventListener("click", function () {
+    paused = !paused;
+    if (paused) {
+        pausedButton.textContent = "Продолжить";
+    } else {
+        pausedButton.textContent = "Пауза";
+    }
 });
