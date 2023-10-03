@@ -168,6 +168,7 @@ function toggleNav() {
 }
 
 function onSave(destination, type, el) {
+	console.log('here');
 	removeFocus();
 	renderMeme();
 	const meme = {};

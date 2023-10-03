@@ -3,7 +3,7 @@
 	display: grid;
 	align-items: center;
 	min-width: 360px;
-	background-color: #c56fff6f;
+	background-color: #2386c36f;
 }
 
 .upload-zone_dragover {
@@ -32,8 +32,8 @@
 }
 
 .upload-zone_dragover._active {
-	color: #c56fff;
-	background-color: #c56fff77;
+	color: #6f9fff;
+	background-color: #6fb5ff77;
 }
 
 .form-upload__label {
@@ -65,7 +65,7 @@
 }
 
 .form-upload__input::file-selector-button:hover {
-	background-color: #c56fff;
+	background-color: #6f9fff;
 }
 
 .form-upload__container {
@@ -75,7 +75,7 @@
 }
 
 .upload-zone_gragover {
-	background-color: #593273;
+	background-color: #6f9fff;
 }
 
 .upload-hint,
@@ -105,7 +105,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: #593273;
+	background-color: #6f9fff;
 }
 
 .upload-loader__image {
@@ -114,7 +114,6 @@
 }
 
 #uploadFile_Loader {
-	/* position: absolute; */
 	top: 100px;
 	left: 150px;
 	width: 612px;
