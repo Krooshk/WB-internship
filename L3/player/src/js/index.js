@@ -42,6 +42,8 @@ for (let i = 0; i < listAudio.length; i++) {
 	createTrackItem(i, listAudio[i].name, listAudio[i].duration);
 }
 
+playListItems = document.querySelectorAll(".playlist-track-ctn");
+
 function loadNewTrack(index) {
 	let promise = new Promise((resolve, reject) => {
 		resolve(wavesurfer.load(listAudio[index].file))
@@ -76,7 +78,8 @@ function getClickedElement(event) {
 		if (playListItems[i] == event.target) {
 			let clickedIndex = event.target.getAttribute("data-index");
 			if (clickedIndex == indexAudio) {
-				toggleAudio()
+				console.log('here');
+				toggleAudio();
 			} else {
 				loadNewTrack(clickedIndex);
 			}

@@ -3,13 +3,13 @@ const MAX_SIZE = 64;
 const DEFAULT_SIZE = 10; //32
 
 const MIN_SPEED = 1;
-const MAX_SPEED = 4;
-const DEFAULT_SPEED = 3
+const MAX_SPEED = 10;
+const DEFAULT_SPEED = 6;
 
 const MIN = 20;
 const MAX = 300;
 
-const WAITING_TIME = 100;
+const WAITING_TIME = 25;
 
 const UNSORTED = 'deepskyblue';
 const SORTED = 'mediumspringgreen';
@@ -107,9 +107,9 @@ function enableOthers() {
 
 async function sleep(ms) {
 	while (paused) {
-        await new Promise(resolve => setTimeout(resolve, 100));
-    }
-    return new Promise(resolve => setTimeout(resolve, ms));
+		await new Promise(resolve => setTimeout(resolve, 100));
+	}
+	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("speed-slider").setAttribute('value', DEFAULT_SPEED);
 
 	size = DEFAULT_SIZE;
-	delay = WAITING_TIME * Math.pow(2, MAX_SPEED - DEFAULT_SPEED);
+	delay = WAITING_TIME * (MAX_SPEED - DEFAULT_SPEED);
 
 	updateValues();
 
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	document.getElementById("speed-slider").addEventListener("input", function () {
-		delay = WAITING_TIME * Math.pow(2, MAX_SPEED - this.value);
+		delay = WAITING_TIME * (MAX_SPEED - this.value);
 	});
 
 	window.addEventListener("resize", function () {
@@ -201,10 +201,10 @@ document.addEventListener("DOMContentLoaded", function () {
 let pausedButton = document.getElementById("pause");
 
 pausedButton.addEventListener("click", function () {
-    paused = !paused;
-    if (paused) {
-        pausedButton.textContent = "Продолжить";
-    } else {
-        pausedButton.textContent = "Пауза";
-    }
+	paused = !paused;
+	if (paused) {
+		pausedButton.textContent = "Продолжить";
+	} else {
+		pausedButton.textContent = "Пауза";
+	}
 });
