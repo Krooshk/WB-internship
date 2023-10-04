@@ -65,6 +65,7 @@ body {
 
 .algo-btn,
 #sort,
+#pause,
 #randomize {
 	background-color: #222;
 	margin: 5px 2px;
@@ -87,13 +88,26 @@ body {
 	color: black;
 }
 
+#pause {
+	min-width: 120px;
+	float: right;
+	background-color: rgb(250, 175, 0);
+	color: black;
+}
+
+button {
+	cursor: pointer;
+}
+
 #sort:hover,
-#randomize:hover {
+#randomize:hover,
+#pause:hover {
 	opacity: 0.8;
 }
 
 #sort:disabled,
-#randomize:disabled {
+#randomize:disabled,
+#pause:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
 }

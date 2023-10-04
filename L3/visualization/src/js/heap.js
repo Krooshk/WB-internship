@@ -1,4 +1,4 @@
-var heapSize;
+let heapSize;
 
 function left(i) {
     return 2 * i + 1;
@@ -9,9 +9,9 @@ function right(i) {
 }
 
 async function maxHeapify(i) {
-    var l = left(i);
-    var r = right(i);
-    var largest, temp;
+    let l = left(i);
+    let r = right(i);
+    let largest, temp;
 
     setColor(i, COMPARE);
     if(l < heapSize)
@@ -55,7 +55,7 @@ async function maxHeapify(i) {
 async function buildMaxHeap() {
     heapSize = size;
 
-    for(var i = Math.floor(size / 2) - 1; i >= 0; i--)
+    for(let i = Math.floor(size / 2) - 1; i >= 0; i--)
         await maxHeapify(i);
 }
 
@@ -64,7 +64,7 @@ async function heapsort() {
 
     await buildMaxHeap();
 
-    for(var i = size - 1; i > 0; i--) {
+    for(let i = size - 1; i > 0; i--) {
         setColor(0, SELECTED);
         setColor(i, COMPARE);
         await sleep(delay);

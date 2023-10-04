@@ -1,10 +1,10 @@
 async function partition(p, r) {
     await sleep(delay);
 
-    var i = p - 1;
+    let i = p - 1;
     setColor(r, SELECTED);
 
-    for(var j = p; j < r; j++) {
+    for(let j = p; j < r; j++) {
         await sleep(delay);
 
         if(arr[j] <= arr[r]) {
@@ -34,7 +34,7 @@ async function partition(p, r) {
 
 async function quicksort(p, r) {
     if(p < r) {
-        var q = await partition(p, r);
+        let q = await partition(p, r);
 
         await quicksort(p, q - 1);
 

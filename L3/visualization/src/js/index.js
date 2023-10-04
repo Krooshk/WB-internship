@@ -27,8 +27,10 @@ let array_container_width;
 let element_width;
 let element_width_max;
 let margin_element;
-
 let algo_selected;
+
+let pausedButton = document.getElementById("pause");
+pausedButton.disabled = true;
 
 function updateValues() {
 	array_container_width = Math.floor(document.getElementById("array-container").offsetWidth);
@@ -96,12 +98,14 @@ function swap(a, b) {
 function disableOthers() {
 	document.getElementById("sort").disabled = true;
 	document.getElementById("randomize").disabled = true;
+	pausedButton.disabled = false;
 	document.getElementById("size-slider").disabled = true;
 }
 
 function enableOthers() {
 	document.getElementById("sort").disabled = false;
 	document.getElementById("randomize").disabled = false;
+	pausedButton.disabled = true;
 	document.getElementById("size-slider").disabled = false;
 }
 
@@ -198,13 +202,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 });
 
-let pausedButton = document.getElementById("pause");
-
 pausedButton.addEventListener("click", function () {
 	paused = !paused;
 	if (paused) {
-		pausedButton.textContent = "Продолжить";
+		pausedButton.textContent = "Continue";
 	} else {
-		pausedButton.textContent = "Пауза";
+		pausedButton.textContent = "Pause";
 	}
 });
