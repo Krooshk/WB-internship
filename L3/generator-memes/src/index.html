@@ -14,7 +14,7 @@
 	<header>
 		<h1>Генератор мемов</h1>
 	</header>
-	<section class="editor flex space-around">
+	<section class="editor">
 		<div id="uploadFile_Loader" class="upload-zone">
 			<form class="form-upload" id="uploadForm">
 				<div class="upload-zone_dragover">
@@ -40,12 +40,13 @@
 			width="512" id="meme"></canvas>
 		<div class="control">
 			<input onkeyup="onTextChange(this.value)" type="text" placeholder="Enter Text">
-			<div><button title="Previous Text" onclick="onFocusPrevTxt()" class="prev"><img class="rotate180"
+			<div class="manipulation-with-text">
+				<button title="Previous Text" onclick="onFocusPrevTxt()" class="prev"><img class="rotate180"
 						src="../src/assets/img/svg/next.svg" alt=""></button>
 				<button title="Next Text" onclick="onFocusNextTxt()" class="next"><img
 						src="../src/assets/img/svg/next.svg" alt=""></button>
-				<button title="Add New Text" onclick="onAddText()" class="add"><img src="../src/assets/img/svg/plus.svg"
-						alt=""></button>
+				<button title="Add New Text" onclick="onAddText()" class="add"><img 
+						src="../src/assets/img/svg/plus.svg" alt=""></button>
 				<button title="Delete Text line" onclick="onRemoveLayer()" class="delete"><img
 						src="../src/assets/img/svg/bin.svg" alt=""></button>
 			</div>
