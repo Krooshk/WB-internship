@@ -7,6 +7,9 @@
 
 body {
 	background-image: url("../img/alesha.png");
+	background-repeat: no-repeat;
+	background-size: 100vw;
+	background-color: rgba(78, 44, 20, 0.299);
 }
 
 .unactive {
