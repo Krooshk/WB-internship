@@ -1,13 +1,11 @@
-
-
-//Global variables and Constants
 const gCanvas = document.querySelector('#meme');
 const gCtx = gCanvas.getContext('2d');
-var gIsMouseDown = false;
-var gFeelsLikeADrag = false;
-var gAsyncCheat = undefined;
-var gElImg
-//------------------------------------------------------------//
+let gIsMouseDown = false;
+let gFeelsLikeADrag = false;
+let gAsyncCheat = undefined;
+let gElImg
+
+
 function renderMeme(meme = getMeme()) {
 	let form = document.querySelector('#uploadFile_Loader');
 	form.style.display = 'none';
@@ -45,7 +43,6 @@ function calculatBoundriesRect(text) {
 
 function drawText(text, isFocused) {
 	let { txt, size, align, fill, stroke, font, pos } = text;
-	// gCtx.lineWidth = '2'
 	gCtx.font = `${size}px ${font}`;
 	gCtx.textAlign = align;
 	calculatBoundriesRect(text);
@@ -57,9 +54,6 @@ function drawText(text, isFocused) {
 }
 
 function onTextAlignChange(align) {
-	// var elList = document.querySelector('.text-align');
-	// elList.classList.remove(`align-${gEditorSettings.align}`);//TODO:Function
-	// elList.classList.add(`align-${alignClass}`); 
 	setAlign(align);
 	renderMeme();
 }
@@ -137,13 +131,12 @@ function mouseIsDown(ev) {
 function mouseIsUp() {
 	gIsMouseDown = false;
 	gFeelsLikeADrag = false;
-	// clearInterval(gIntervalDrag);
 }
+
 function drag(ev) {
 	if (gIsMouseDown && gFeelsLikeADrag) {
 		relocateText(ev.offsetX, ev.offsetY);
 		renderMeme();
-
 	}
 }
 
@@ -163,26 +156,14 @@ function onSetSize(el) {
 function renderSize() {
 	document.querySelector('[name="font-size"]').value = getEditorAttr['size']
 }
-function toggleNav() {
-	document.querySelector('nav-list').style.display = 'block'
-}
 
-function onSave(destination, type, el) {
+function onSave(type, el) {
 	console.log('here');
 	removeFocus();
 	renderMeme();
 	const meme = {};
 	meme.dataURL = gCanvas.toDataURL(`image/${type}`);
-
-	switch (destination) {
-		case 'download':
-			el.href = meme.dataURL;
-			break;
-		case 'localStorage':
-		default:
-			addToSavedMemes(meme);
-			break;
-	}
+	el.href = meme.dataURL;
 }
 
 function setElImg(elImg) {

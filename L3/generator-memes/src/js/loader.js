@@ -74,8 +74,6 @@ function openEditor(file) {
 				renderTxtInput();
 
 			})
-		// console.log(img.width);
-
 		return reader;
 	};
 

@@ -45,8 +45,8 @@
 						src="../src/assets/img/svg/next.svg" alt=""></button>
 				<button title="Next Text" onclick="onFocusNextTxt()" class="next"><img
 						src="../src/assets/img/svg/next.svg" alt=""></button>
-				<button title="Add New Text" onclick="onAddText()" class="add"><img 
-						src="../src/assets/img/svg/plus.svg" alt=""></button>
+				<button title="Add New Text" onclick="onAddText()" class="add"><img src="../src/assets/img/svg/plus.svg"
+						alt=""></button>
 				<button title="Delete Text line" onclick="onRemoveLayer()" class="delete"><img
 						src="../src/assets/img/svg/bin.svg" alt=""></button>
 			</div>
@@ -69,11 +69,12 @@
 				<input title="Fill Color" onchange="onSetFill(this.value)" type="color" name="fill">
 				<input title="Stroke Color" onchange="onSetStroke(this.value)" type="color" name="stroke">
 			</div>
-			<a onclick="onSave('download','png',this)" title="Save as png" class="save png" download="meme.png"><img
+			<a onclick="onSave('png',this)" title="Save as png" class="save png" download="meme.png"><img
 					src="../src/assets/img/svg/save.svg" alt=""></a>
+
+
 		</div>
 	</section>
-
 	<script src="../src/js/editor-service.js"></script>
 	<script src="../src/js/editor-control.js"></script>
 	<script src="../src/js/loader.js"></script>
