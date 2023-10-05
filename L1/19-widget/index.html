@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="index.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="widget">
+		<div>
+
+		</div>
+	</div>
+
+	<template id="tmpl">
+		<div class="post">
+			<div class="time">time</div>
+			<div class="text">Text</div>
+			<div class="image"></div>
+			<div class="line">
+				<ul class="left-part">
+					<li class="like"><img width="20px" src="src/images/likeheart.svg" alt="">
+						<div>like</div>
+					</li>
+					<li class="comment"><img width="20px" src="src/images/comment.svg" alt="">
+						<div>comment</div>
+					</li>
+					<li class="repost"><img width="20px" src="src/images/forward.svg" alt="">
+						<div> repost</div>
+					</li>
+				</ul>
+				<div class="view"><img width="20px" src="src/images/eye.svg" alt="">
+					<div>view</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<script type="module" src="index.js"></script>
+	<script type="module" src="queue.js"></script>
+	<script type="module" src="fillTemplate.js"></script>
+</body>
+
+</html>
