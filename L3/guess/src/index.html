@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../src/assets/styles/index.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>Угадай номер и выиграй <i>полцарства</i></h1>
+		<button class="restart">Заново</button>
+		<div class="current-range">
+			<div class="current-left-edge"></div>
+			<div class="current-right-edge"></div>
+		</div>
+		<div class="range">
+			<div>
+				<div>Левая граница<input class="left-edge" type="number"></div>
+				<div>Правая граница<input class="right-edge" type="number"></div>
+			</div>
+			<button class="start">Начать</button>
+		</div>
+		<div>
+			<div class="wrapper-count">
+				Количество попыток: <span class="count">0</span>
+			</div>
+			<div>И ваше число - <input class="field-for-answers" type="number"></div>
+			<button class="sent">Отправить</button>
+		</div>
+	</div>
+	<div class="hint">
+		<div class="first-hint"></div>
+		<div class="second-hint"></div>
+		<!-- <div class="attention"></div> -->
+	</div>
+	<script src="../src/js/index.js"></script>
+</body>
+
+</html>

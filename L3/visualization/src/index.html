@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../src/assets/styles/index.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="container">
+		<div id="array-container">
+			<div id="array"></div>
+			<h5 id="no-algo-warning" class="display-none">No Algorithm Selected!</h5>
+		</div>
+		<div id="algo-container">
+			<button class="algo-btn">Bubble Sort</button>
+			<button class="algo-btn">Selection Sort</button>
+			<button class="algo-btn">Insertion Sort</button>
+			<button class="algo-btn">Quicksort</button>
+			<button class="algo-btn">Heapsort</button>
+			<button id="sort">Sort</button>
+			<button id="pause">Pause</button>
+		</div>
+		<div id="change-container">
+			<button id="randomize">Randomize</button>
+			<div id="sliders">
+				<div class="slider-container">
+					<label>Array Size</label>
+					<input type="range" id="size-slider" class="slider" autocomplete="off">
+				</div>
+				<div class="slider-container">
+					<label>Speed</label>
+					<input type="range" id="speed-slider" class="slider" autocomplete="off">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../src/js/heap.js"></script>
+	<script src="../src/js/bubble.js"></script>
+	<script src="../src/js/insert.js"></script>
+	<script src="../src/js/selection.js"></script>
+	<script src="../src/js/quicksort.js"></script>
+	<script src="../src/js/index.js"></script>
+</body>
+
+</html>
