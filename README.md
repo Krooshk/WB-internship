@@ -23,7 +23,7 @@
 Код с комментариями для всех задач, 20 задача находится внутри папки 19-widget, ниже приведены ссылки на задачи с наличием интерфейса
  - [deploy (17 задача: поле ввода адреса с функцией геокодинга)](https://krooshk.github.io/WB-internship/L1/17-geo)
  - [deploy (19 задача: виджет,с постами паблика из VK)](https://krooshk.github.io/WB-internship/L1/19-widget)
- - [deploy (24 задача: страница, отображающая таблицу с данными)](http://krooshk.github.io/WB-internship/L1/24-table-data) Нужно скачать расширение для обхода CORS, либо запустить локально
+ - [deploy (24 задача: страница, отображающая таблицу с данными)](http://krooshk.github.io/WB-internship/L1/24-table-data) Нужно скачать расширение для обхода CORS, либо запустить локально, либо запустить в небезопасном режиме в браузере 
 ###  L2 - мини-проекты
 - 2 Генератор мемов  [code sourse of generator-memes](https://github.com/Krooshk/WB-internship/tree/main/L3/generator-memes) |
 [deploy generator-memes](https://krooshk.github.io/WB-internship/L3/generator-memes/src/)
