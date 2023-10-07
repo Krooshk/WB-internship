@@ -1,5 +1,8 @@
 ##### В данной папке находится проект "Генератор мемов".
 ---
+> 2 Генератор мемов  [code sourse of generator-memes](https://github.com/Krooshk/WB-internship/tree/main/L3/generator-memes) |
+[deploy generator-memes](https://krooshk.github.io/WB-internship/L3/generator-memes/src/)
+
  Используемые технологии:
  - HTML
  - CSS
