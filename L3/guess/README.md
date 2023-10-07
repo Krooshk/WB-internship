@@ -1,4 +1,4 @@
-##### В данной папке находится проект "Плеер".
+##### В данной папке находится проект "Угадай число".
 ---
  6 Игра «Угадай число» [code sourse of guess](https://github.com/Krooshk/WB-internship/tree/main/L3/guess) | [deploy guess](https://krooshk.github.io/WB-internship/L3/guess/src/)
 
@@ -12,6 +12,8 @@
 В нижнем поле вводится предполагаемый ответ.
 Подсказки высвечиваются в нижнем зеленом блоке, каждый третий ход выводится свойство загаднного числа(четное/нечетное).
 Игру можно начать заново - нажав на кнопку вверху "Заново"
+
+
 ---
 Ниже представлен скриншот игры:
 ![guess](https://github.com/Krooshk/WB-internship/blob/main/L3/guess/src/assets/img/imagesForReadme/guess.jpg?raw=true)
