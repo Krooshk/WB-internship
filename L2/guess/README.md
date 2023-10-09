@@ -1,6 +1,6 @@
 ##### В данной папке находится проект "Угадай число".
 ---
- 6 Игра «Угадай число» [code sourse of guess](https://github.com/Krooshk/WB-internship/tree/main/L3/guess) | [deploy guess](https://krooshk.github.io/WB-internship/L3/guess/src/)
+ 6 Игра «Угадай число» [code sourse of guess](https://github.com/Krooshk/WB-internship/tree/main/L2/guess) | [deploy guess](https://krooshk.github.io/WB-internship/L2/guess/src/)
 
  Используемые технологии:
  - HTML
@@ -16,7 +16,7 @@
 
 ---
 Ниже представлен скриншот игры:
-![guess](https://github.com/Krooshk/WB-internship/blob/main/L3/guess/src/assets/img/imagesForReadme/guess.jpg?raw=true)
+![guess](https://github.com/Krooshk/WB-internship/blob/main/L2/guess/src/assets/img/imagesForReadme/guess.jpg?raw=true)
 
 
 

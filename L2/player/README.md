@@ -1,8 +1,8 @@
 ##### В данной папке находится проект "Плеер".
 ---
 
-- 5 Музыкальный плеер с визуализацией [code sourse of player](https://github.com/Krooshk/WB-internship/tree/main/L3/player) |
-[deploy player](https://krooshk.github.io/WB-internship/L3/player/src/)
+- 5 Музыкальный плеер с визуализацией [code sourse of player](https://github.com/Krooshk/WB-internship/tree/main/L2/player) |
+[deploy player](https://krooshk.github.io/WB-internship/L2/player/src/)
 
 
  Используемые технологии:
@@ -29,4 +29,4 @@
 
 Ниже представлена gif-анимация работы приложения.
 
-![player](https://github.com/Krooshk/WB-internship/blob/main/L3/player/src/assets/img/imagesForReadme/player.gif?raw=true)
+![player](https://github.com/Krooshk/WB-internship/blob/main/L2/player/src/assets/img/imagesForReadme/player.gif?raw=true)
